@@ -1,0 +1,103 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+button {
+  font-family: Arial, sans-serif;
+  color: #FFF;
+  font-size: 16px;
+  padding: 15px;
+  border-radius: 8px;
+  border: 0;
+  margin: 16px 0;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.file-upload-label {
+  font-family: Arial, sans-serif;
+  background-color: #a0a0a0;
+  color: #FFF;
+  font-size: 16px;
+  padding: 15px;
+  border-radius: 8px;
+  border: 0;
+  margin: 16px 0;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.file-upload-label:hover {
+  background-color: #8c8c8c;
+}
+
+.primary-button {
+  background-color: #C20332;
+}
+
+.primary-button:hover {
+  background-color: #8e1a2c;
+}
+
+.secondary-button {
+  background-color: #a0a0a0;
+}
+
+.secondary-button:hover {
+  background-color: #8c8c8c;
+}
+
+.success-message {
+  background-color: rgb(236, 247, 242);
+  color: #017e16;
+  padding: 6px 16px;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 2;
+  border-radius: 4px;
+}
+
+.error-message {
+  background-color: #fae7e8;
+  color: #c20332;
+  padding: 6px 16px;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 2;
+  border-radius: 4px;
+}
+
+.info-message {
+  background-color: #e8f0fe;
+  color: #4935f8;
+  padding: 6px 16px;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 2;
+  border-radius: 4px;
+}
+
+.code-container {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow-x: auto;
+  max-width: 800px;
+  width: 100%;
+  margin: 30px;
+}
+
+code {
+  display: block;
+  white-space: pre;
+  overflow-x: auto;
+  font-family: 'Courier New', Courier, monospace;
+  color: #333;
+}

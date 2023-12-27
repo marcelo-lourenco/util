@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Localiza NUMDOC em arquivos CNAB 240</title>
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  <script src="js/scripts.js"></script>
+
+</head>
+
+<style>
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #ddd;
+    margin-top: 20px;
+  }
+
+  th,
+  td {
+    text-align: left;
+    padding: 8px;
+  }
+
+  th {
+    background-color: #f2f2f2;
+  }
+
+  code {
+    font-family: "Courier New", monospace;
+  }
+</style>
+
+<body>
+
+  <h1>Encontrar "numdoc" em aquivos CNAB 240</h1>
+
+  <h2>Orientações:</h2>
+  <p>Selecione o arquivo de remessa ou de retorno de CNAB 240 e clique em "Processar".</p>
+  <hr>
+
+  <label for="cnabFiles" id="escolherArquivo" class="file-upload-label">Escolher Arquivos</label>
+  <input type="file" id="cnabFiles" multiple onchange="displaySelectedFileNames()">
+
+  <button id="process-button" class="primary-button" onclick="processFiles()">PROCESSAR</button>
+
+  <div class="success-message" style="display: none;"></div>
+  <div class="error-message" style="display: none;"></div>
+  <div class="info-message" style="display: none;"></div>
+
+  <hr>
+
+  <h2>Orientações:</h2>
+  <p>Selecione o arquivo de remessa ou de retorno de CNAB 240 e clique em "Processar".</p>
+  <hr>
+
+
+  <table id="output">
+    <thead>
+      <tr id="headerRow">
+        <th data-column="nomeArquivo">Nome do Arquivo</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    const selectedFileNamesDisplay = document.querySelector('.success-message');
+    const headerRow = document.getElementById('headerRow');
+    const outputTable = document.getElementById('output').getElementsByTagName('tbody')[0];
+
+    function displaySelectedFileNames() {
+      const fileInput = document.getElementById('cnabFiles');
+      const files = fileInput.files;
+
+      if (files.length > 0) {
+        const selectedFileNames = Array.from(files).map(file => file.name);
+        displayInfoMessage(`Arquivo(s) selecionado(s): ${selectedFileNames.join(', ')}`);
+      } else {
+        selectedFileNamesDisplay.style.display = 'none';
+      }
+    }
+
+
+    function extractInfo(line, fileName, segmento) {
+      let data;
+
+      if (segmento === "A") {
+        data = {
+          nomeArquivo: fileName,
+          numDoc: line.substring(73, 81)
+        };
+      } else if (segmento === "J" && line.substring(17, 19) !== "52") {
+        data = {
+          nomeArquivo: fileName,
+          numDoc: line.substring(202, 221)
+        };
+      }
+
+      for (const key in data) {
+        if (!headerRow.querySelector(`[data-column="${key}"]`)) {
+          const th = document.createElement('th');
+          th.textContent = key;
+          th.setAttribute('data-column', key);
+          headerRow.appendChild(th);
+        }
+      }
+
+      return data;
+    }
+
+
+    function processFiles() {
+      const fileInput = document.getElementById('cnabFiles');
+      const files = fileInput.files;
+
+      if (files.length === 0) {
+        displayErrorMessage('Por favor, selecione arquivo(s) de remessa ou retorno.');
+        return;
+      }
+
+      if (files.length > 0) {
+        outputTable.innerHTML = ''; // Limpar tabela
+
+        for (const file of files) {
+          const reader = new FileReader();
+          reader.onload = function (event) {
+            const content = event.target.result;
+            const lines = content.split('\n');
+            const extractedData = [];
+
+            for (const line of lines) {
+              if (line.length >= 240) {
+                let segmento = line.substring(13, 14);
+                if (segmento == "A" || segmento == "J") {
+                  extractedData.push(extractInfo(line, file.name, segmento));
+                }
+              }
+            }
+
+            for (const data of extractedData) {
+              const row = outputTable.insertRow();
+              for (const key in data) {
+                const cell = row.insertCell();
+                cell.textContent = data[key];
+              }
+            }
+          };
+
+          reader.readAsText(file);
+        }
+
+        displaySuccessMessage('Arquivo(s) processado(s) com sucesso');
+      }
+    }
+
+    function displayErrorMessage(message) {
+      const errorMessage = document.querySelector('.error-message');
+      errorMessage.textContent = message;
+      errorMessage.style.display = 'block';
+      document.querySelector('.success-message').style.display = 'none';
+      document.querySelector('.info-message').style.display = 'none';
+    }
+
+    function displaySuccessMessage(message) {
+      const successMessage = document.querySelector('.success-message');
+      successMessage.textContent = message;
+      successMessage.style.display = 'block';
+      document.querySelector('.error-message').style.display = 'none';
+      document.querySelector('.info-message').style.display = 'none';
+    }
+
+    function displayInfoMessage(message) {
+      const infoMessage = document.querySelector('.info-message');
+      infoMessage.textContent = message;
+      infoMessage.style.display = 'block';
+      document.querySelector('.success-message').style.display = 'none';
+      document.querySelector('.error-message').style.display = 'none';
+    }
+
+  </script>
+</body>
+
+</html>

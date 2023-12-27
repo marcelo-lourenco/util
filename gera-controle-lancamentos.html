@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerador de documento "controle-lancamento"</title>
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  <script src="js/scripts.js"></script>
+</head>
+
+<body>
+  <h1>Gerador de documentos para a collection "controle_lancamentos"</h1>
+
+  <label for="csvFile" id="escolherArquivo" class="file-upload-label">Escolher Arquivo</label>
+  <input type="file" id="csvFile" accept=".csv" onchange="displayFileName()">
+  <button id="process-button" class="primary-button" onclick="processCSV()">PROCESSAR</button>
+  <div class="success-message" class="secondary-button" style="display: none;">Arquivo gerado com sucesso</div>
+  <div class="error-message" style="display: none;">Por favor, selecione um arquivo CSV.</div>
+  <hr>
+  <h2>Orientações:</h2>
+  <p>Selecine o arquivo ".csv" desejado e clique em "Processar".</p>
+  <hr>
+  <h3>Modelo do arquivo .csv</h3>
+  <div class="code-container">
+    <code>NUMERO_DOC,TIPO_P_E,DATA_VENCIMENTO,DATA_PAGAMENTO,VALOR,VL_REAL_PAGO
+15567320,P,10-APR-23,11-APR-23,4118.83,4118.83
+15569180,F,10-APR-23,11-APR-23,2702.62,2702.62
+21230196,!,28-JUN-23,29-JUN-23,5252.8,5252.8</code>
+  </div>
+
+  <button id="create-file-button" class="primary-button">Modelo CSV</button>
+
+  <hr>
+
+  <h3>Os dados de origem podem ser obtidos na CPLANCTO</h3>
+  <p>Adicione as condições desejadas no "WHERE":</p>
+
+  <div class="code-container">
+    <code>SELECT
+  NUMERO_DOC,
+  TIPO_P_E,
+  DATA_VENCIMENTO,
+  DATA_PAGAMENTO,
+  VALOR,
+  VL_REAL_PAGO
+FROM CONDO.CPLANCTO
+-- WHERE NUMERO_DOC IN( 12345678,98765432, 56781234 )
+-- WHERE TIPO_P_E = '!'</code>
+  </div>
+
+
+  <script>
+
+    function createCSVFile() {
+      const csvContent = `NUMERO_DOC,TIPO_P_E,DATA_VENCIMENTO,DATA_PAGAMENTO,VALOR,VL_REAL_PAGO
+15567320,P,10-APR-23,11-APR-23,4118.83,4118.83
+15569180,F,10-APR-23,11-APR-23,2702.62,2702.62
+21230196,!,28-JUN-23,29-JUN-23,5252.8,5252.8`;
+
+      const fileName = 'modelo-para-gerar-controle-lancamento.csv';
+      const blob = new Blob([csvContent], { type: 'text/csv' });
+
+      const link = document.createElement('a');
+      link.href = window.URL.createObjectURL(blob);
+      link.download = fileName;
+      link.click();
+    }
+
+    // Adiciona um ouvinte de evento ao botão
+    document.getElementById('create-file-button').addEventListener('click', createCSVFile);
+
+
+
+    function validateCSVHeaders(headers) {
+      const requiredColumns = ['NUMERO_DOC', 'TIPO_P_E', 'DATA_VENCIMENTO', 'DATA_PAGAMENTO', 'VALOR', 'VL_REAL_PAGO'];
+
+      for (const column of requiredColumns) {
+        if (!headers.includes(column)) {
+          const errorMessage = `A coluna "${column}" é obrigatória no arquivo CSV.`;
+          displayErrorMessage(errorMessage);
+          return false;
+        }
+      }
+
+      return true;
+    }
+
+
+
+    function processCSV() {
+      const fileInput = document.getElementById('csvFile');
+      const file = fileInput.files[0];
+
+
+      if (!file) {
+        displayErrorMessage('Por favor, selecione um arquivo CSV.');
+        return;
+      }
+
+      const reader = new FileReader();
+
+      reader.onload = function (e) {
+        const csvContent = e.target.result;
+        const lines = csvContent.trim().split('\n');
+        const headers = lines[0].replace(/\r/, '').split(/[,;]/);
+
+        if (!validateCSVHeaders(headers)) {
+          return;
+        }
+
+        // Remover cabeçalho
+        lines.shift();
+
+        const data = lines.map(line => {
+          const values = line.split(',');
+
+          const obj = {
+            "_id": {
+              "$oid": new Date().getTime().toString(16) + '0000000000000000',
+            },
+            "aplicacaoOrigem": getAplicacaoOrigem(values[1]),
+            "numDoc": values[0],
+            "dataAgendamento": {
+              "$date": moment(values[2], 'DD-MMM-YY').toISOString(),
+            },
+            "createDate": {
+              "$date": moment().subtract(2, 'days').toISOString(),
+            },
+            "lastModifiedDate": {
+              "$date": moment().subtract(2, 'days').toISOString(),
+            },
+            "dataGeracaoArquivoRetornoBanco": {
+              "$date": moment().subtract(1, 'days').toISOString(),
+            },
+            "dataProcessamentoRetornoBanco": {
+              "$date": moment().toISOString(),
+            },
+            "dataPagamento": {
+              "$date": moment(values[3], 'DD-MMM-YY').toISOString(),
+            },
+            "dataRealEfeticacaoPagamento": {
+              "$date": moment(values[3], 'DD-MMM-YY').toISOString(),
+            },
+            "valorPagamento": parseFloat(values[4]),
+            "valorRealPagamento": parseFloat(values[5]),
+            "codigoOcorrenciaRetorno": "00",
+            "_class": "model.ControleLancamento",
+          };
+
+          return obj;
+        });
+
+        // Gerar o arquivo .mongodb.js
+        const output = `db.collection.insertMany(${JSON.stringify(data, null, 2)});`;
+
+        // Obter o nome do arquivo e substituir a extensão
+        const fileName = file.name.replace(/\.[^/.]+$/, "") + ".mongodb.js";
+
+        const blob = new Blob([output], { type: 'text/javascript' });
+        const link = document.createElement('a');
+        link.href = window.URL.createObjectURL(blob);
+        link.download = fileName; // Usar o novo nome do arquivo
+        link.click();
+
+        displaySuccessMessage('Arquivo gerado com sucesso');
+      };
+
+      reader.readAsText(file);
+      //} else {
+      //  alert('Por favor, selecione um arquivo CSV.');
+      //}
+    }
+
+    function displayFileName() {
+      const fileInput = document.getElementById('csvFile');
+      const label = document.getElementById('escolherArquivo');
+
+      if (fileInput.files.length > 0) {
+        label.textContent = fileInput.files[0].name;
+      } else {
+        label.textContent = 'Escolher Arquivo';
+      }
+    }
+
+    function getAplicacaoOrigem(tipo_p_e) {
+      switch (tipo_p_e) {
+        case 'P':
+          return 'REGISTRO_PAGAR';
+        case 'F':
+          return 'REGISTRO_FOLHA';
+        case '!':
+          return 'RESIN_INVEST';
+        default:
+          return '';
+      }
+    }
+
+    /* function displayErrorMessage(message) {
+      const errorMessage = document.querySelector('.error-message');
+      errorMessage.textContent = message;
+      errorMessage.style.display = 'block';
+
+      // Esconder a mensagem de sucesso se estiver visível
+      document.querySelector('.success-message').style.display = 'none';
+    }
+
+    function displaySuccessMessage(message) {
+      const successMessage = document.querySelector('.success-message');
+      successMessage.textContent = message;
+      successMessage.style.display = 'block';
+
+      // Esconder a mensagem de erro se estiver visível
+      document.querySelector('.error-message').style.display = 'none';
+    } */
+  </script>
+</body>
+
+</html>

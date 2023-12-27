@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lello Help</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .menu {
+      list-style: none;
+      float: left;
+      background-color: #fff;
+      border-bottom: 3px solid #f2f2f2;
+      width: 100%;
+    }
+
+    .menu li {
+      position: relative;
+      float: left;
+      font-weight: 600;
+    }
+
+    .menu li a {
+      color: #9b9c9c;
+      text-decoration: none;
+      padding: 14px 16px;
+      display: block;
+      border-bottom: 3px solid transparent;
+    }
+
+    .menu li a:hover {
+      background-color: #e5e5e5;
+      border-bottom: 3px solid #c20332;
+      color: #9b9c9c;
+
+    }
+
+    .menu li ul {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #fff;
+      display: none;
+      border: 1px solid #ddd;
+      padding: 0px;
+    }
+
+    .menu li:hover ul,
+    .menu li.over ul {
+      display: block;
+    }
+
+    .menu li ul li {
+      display: block;
+      min-width: 250px;
+    }
+
+    .menu li ul li a {
+      /* white-space: nowrap; */
+      padding-right: 10px;
+    }
+
+    #content {
+      padding: 50px;
+      height: 90vh;
+
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <ul class="menu">
+      <li><a href="home.html" onclick="loadContent('home.html'); return false;">Home</a></li>
+      <li><a href="#" onclick="return false;">Apoio aos testes</a>
+        <ul>
+          <li><a href="https://marcelo-lourenco.github.io/cnab/" target="_blank">CNAB Colorido</a></li>
+          <li><a href="gera-controle-lancamentos.html"
+              onclick="loadContent('gera-controle-lancamentos.html'); return false;">Gerar documentos para a
+              "controle_lancamentos"</a></li>
+          <li><a href="localiza-numdoc-no-cnab240.html"
+              onclick="loadContent('localiza-numdoc-no-cnab240.html'); return false;">Localizar NUMDOC em arquivos CNAB
+              240</a></li>
+          <li><a href="converte-rem-em-ret-folha.html"
+              onclick="loadContent('converte-rem-em-ret-folha.html'); return false;">Converter Arquivo de Remessa em
+              Retorno - Folha</a></li>
+          <li><a href="https://marcelo-lourenco.github.io/boleto/" target="_blank">Validador de Boleto</a></li>
+
+
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <div id="content"></div>
+
+  <script>
+    function loadContent(contentFileName) {
+      var contentUrl = 'data:text/html;charset=utf-8,' + encodeURIComponent('<object type="text/html" data="' + contentFileName + '" ></object>');
+      var contentContainer = document.getElementById("content");
+      contentContainer.innerHTML = '<object type="text/html" data="' + contentFileName + '" style="width: 100%; height: 100%;"></object>';
+    }
+    loadContent("home.html")
+  </script>
+</body>
+
+</html>
