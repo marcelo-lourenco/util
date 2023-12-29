@@ -36,13 +36,13 @@
 
 <body>
 
-  <h1>Encontrar "numdoc" em aquivos CNAB 240</h1>
+  <h1>Encontrar "numdoc" em aquivo(s) CNAB 240</h1>
 
-  <h2>Orientações:</h2>
-  <p>Selecione o arquivo de remessa ou de retorno de CNAB 240 e clique em "Processar".</p>
-  <hr>
+  <h2>Exclusivo para Segmentos A e J</h2>
 
-  <label for="cnabFiles" id="escolherArquivo" class="file-upload-label">Escolher Arquivos</label>
+  <p>Selecione o(s) arquivo(s) de remessa ou de retorno de CNAB 240 e clique em "Processar".</p>
+
+  <label for="cnabFiles" id="escolherArquivo" class="file-upload-label">Escolher Arquivo(s)</label>
   <input type="file" id="cnabFiles" multiple onchange="displaySelectedFileNames()">
 
   <button id="process-button" class="primary-button" onclick="processFiles()">PROCESSAR</button>
@@ -52,12 +52,6 @@
   <div class="info-message" style="display: none;"></div>
 
   <hr>
-
-  <h2>Orientações:</h2>
-  <p>Selecione o arquivo de remessa ou de retorno de CNAB 240 e clique em "Processar".</p>
-  <hr>
-
-
   <table id="output">
     <thead>
       <tr id="headerRow">
@@ -71,6 +65,14 @@
     const selectedFileNamesDisplay = document.querySelector('.success-message');
     const headerRow = document.getElementById('headerRow');
     const outputTable = document.getElementById('output').getElementsByTagName('tbody')[0];
+
+    function p(l, i, f) {
+      // p = posição
+      // l = linha
+      // i = Inicio 
+      // f = fim
+      return l.slice((i - 1), f);
+    }
 
     function displaySelectedFileNames() {
       const fileInput = document.getElementById('cnabFiles');
@@ -91,12 +93,18 @@
       if (segmento === "A") {
         data = {
           nomeArquivo: fileName,
-          numDoc: line.substring(73, 81)
+          numDoc: p(line, 74, 93),
+          dataPagamento: p(line, 94, 101),
+          valorPagamento: p(line, 120, 134)
         };
-      } else if (segmento === "J" && line.substring(17, 19) !== "52") {
+      } else if (segmento === "J" && p(line, 18, 19) !== "52") {
         data = {
           nomeArquivo: fileName,
-          numDoc: line.substring(202, 221)
+          numDoc: p(line, 183, 202),
+          dataVencimento: p(line, 92, 99),
+          valorTitulo: p(line, 100, 114),
+          dataPagamento: p(line, 145, 152),
+          valorPagamento: p(line, 153, 167)
         };
       }
 
@@ -122,6 +130,18 @@
         return;
       }
 
+      // Verificar as extensões dos arquivos selecionados
+      const allowedExtensions = ['.rem', '.ret', '.txt', '.REM', '.RET', '.TXT'];
+      for (const file of files) {
+        const fileNameParts = file.name.split('.');
+        const fileExtension = `.${fileNameParts[fileNameParts.length - 1]}`;
+
+        if (!allowedExtensions.includes(fileExtension)) {
+          displayErrorMessage(`Por favor, selecione apenas arquivo(s) com extensão ".rem", ".ret" ou ".txt".`);
+          return;
+        }
+      }
+
       if (files.length > 0) {
         outputTable.innerHTML = ''; // Limpar tabela
 
@@ -134,7 +154,7 @@
 
             for (const line of lines) {
               if (line.length >= 240) {
-                let segmento = line.substring(13, 14);
+                let segmento = p(line, 14, 14);
                 if (segmento == "A" || segmento == "J") {
                   extractedData.push(extractInfo(line, file.name, segmento));
                 }
@@ -155,30 +175,6 @@
 
         displaySuccessMessage('Arquivo(s) processado(s) com sucesso');
       }
-    }
-
-    function displayErrorMessage(message) {
-      const errorMessage = document.querySelector('.error-message');
-      errorMessage.textContent = message;
-      errorMessage.style.display = 'block';
-      document.querySelector('.success-message').style.display = 'none';
-      document.querySelector('.info-message').style.display = 'none';
-    }
-
-    function displaySuccessMessage(message) {
-      const successMessage = document.querySelector('.success-message');
-      successMessage.textContent = message;
-      successMessage.style.display = 'block';
-      document.querySelector('.error-message').style.display = 'none';
-      document.querySelector('.info-message').style.display = 'none';
-    }
-
-    function displayInfoMessage(message) {
-      const infoMessage = document.querySelector('.info-message');
-      infoMessage.textContent = message;
-      infoMessage.style.display = 'block';
-      document.querySelector('.success-message').style.display = 'none';
-      document.querySelector('.error-message').style.display = 'none';
     }
 
   </script>
