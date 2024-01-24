@@ -13,7 +13,7 @@
 <body>
   <h1>Gerador de documentos para a collection "controle_lancamentos"</h1>
 
-  <h2> Cria o script <i>db.collection.insertMany()</i> para MongoDB</h2>
+  <h2> Cria o script <i>db.controle_lancamentos.insertMany()</i> para MongoDB</h2>
 
   <hr>
 
@@ -28,10 +28,12 @@
 
   <h3>Modelo do arquivo .csv</h3>
   <div class="code-container">
-    <code>NUMERO_DOC,TIPO_P_E,DATA_VENCIMENTO,DATA_PAGAMENTO,VALOR,VL_REAL_PAGO
+    <code>
+NUMERO_DOC,TIPO_P_E,DATA_VENCIMENTO,DATA_PAGAMENTO,VALOR,VL_REAL_PAGO
 15567320,P,10-APR-23,11-APR-23,4118.83,4118.83
 15569180,F,10-APR-23,11-APR-23,2702.62,2702.62
-21230196,!,28-JUN-23,29-JUN-23,5252.8,5252.8</code>
+21230196,!,28-JUN-23,29-JUN-23,5252.8,5252.8
+    </code>
   </div>
 
   <button id="create-file-button" class="primary-button">Gerar Arquivo Modelo</button>
@@ -39,19 +41,18 @@
   <hr>
 
   <h3>Os dados de origem podem ser obtidos na CPLANCTO</h3>
-  <p>Adicione as condições desejadas no "WHERE":</p>
+  <p>Exemplo de query:</p>
 
   <div class="code-container">
-    <code>SELECT
-  NUMERO_DOC,
-  TIPO_P_E,
-  DATA_VENCIMENTO,
-  DATA_PAGAMENTO,
-  VALOR,
-  VL_REAL_PAGO
-FROM CONDO.CPLANCTO
--- WHERE NUMERO_DOC IN( 12345678,98765432, 56781234 )
--- WHERE TIPO_P_E = '!'</code>
+    <code>
+SELECT NUMERO_DOC, TIPO_P_E, DATA_VENCIMENTO, DATA_VENCIMENTO AS DATA_PAGAMENTO, VALOR, VALOR AS VL_REAL_PAGO
+FROM CONDO.CPLANCTO CP
+WHERE TIPO_P_E = '!'
+  AND CP.STATUS = 'E'
+  AND CP.TIPO = 'R'
+  AND CP.FL_ENVIO_BCO = 'S'
+  AND CP.DATA_BAIXA = NULL;
+    </code>
   </div>
 
 
@@ -121,9 +122,9 @@ FROM CONDO.CPLANCTO
           const values = line.split(',');
 
           const obj = {
-            "_id": {
+            /* "_id": {
               "$oid": new Date().getTime().toString(16) + '0000000000000000',
-            },
+            }, */
             "aplicacaoOrigem": getAplicacaoOrigem(values[1]),
             "numDoc": values[0],
             "dataAgendamento": {
@@ -157,7 +158,7 @@ FROM CONDO.CPLANCTO
         });
 
         // Gerar o arquivo .mongodb.js
-        const output = `db.collection.insertMany(${JSON.stringify(data, null, 2)});`;
+        const output = `db.controle_lancamentos.insertMany(${JSON.stringify(data, null, 2)});`;
 
         // Obter o nome do arquivo e substituir a extensão
         const fileName = file.name.replace(/\.[^/.]+$/, "") + ".mongodb.js";
