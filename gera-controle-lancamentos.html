@@ -16,12 +16,22 @@
   <h2> Cria o script <i>db.controle_lancamentos.insertMany()</i> para MongoDB</h2>
 
   <hr>
+  <h3>Gera controle_lancamentos a partir do payload.json</h3>
+  <p>Selecine o arquivo "payload.json" desejado e clique em "Processar".</p>
 
+  <label for="jsonFile" id="escolherArquivoJson" class="file-upload-label">Escolher Arquivo Json</label>
+  <input type="file" id="jsonFile" accept=".json" onchange="displayFileName('jsonFile', 'escolherArquivoJson')">
+  <button id="process-button-json" class="primary-button" onclick="processFile()">PROCESSAR</button>
+  <div class="success-message" class="secondary-button" style="display: none;">Arquivo gerado com sucesso</div>
+  <div class="error-message" style="display: none;">Por favor, selecione um arquivo Json.</div>
+
+  <hr>
+  <h3>Gera controle_lancamentos a partir do .csv</h3>
   <p>Selecine o arquivo ".csv" desejado e clique em "Processar".</p>
+  <label for="csvFile" id="escolherArquivoCsv" class="file-upload-label">Escolher Arquivo CSV</label>
+  <input type="file" id="csvFile" accept=".csv" onchange="displayFileName('csvFile', 'escolherArquivoCsv')">
 
-  <label for="csvFile" id="escolherArquivo" class="file-upload-label">Escolher Arquivo</label>
-  <input type="file" id="csvFile" accept=".csv" onchange="displayFileName()">
-  <button id="process-button" class="primary-button" onclick="processCSV()">PROCESSAR</button>
+  <button id="process-button-csv" class="primary-button" onclick="processCSV()">PROCESSAR</button>
   <div class="success-message" class="secondary-button" style="display: none;">Arquivo gerado com sucesso</div>
   <div class="error-message" style="display: none;">Por favor, selecione um arquivo CSV.</div>
   <hr>
@@ -57,6 +67,69 @@ WHERE TIPO_P_E = '!'
 
 
   <script>
+
+    function processJSON(jsonContent, file) {
+      const data = JSON.parse(jsonContent);
+
+      const sistema = data.sistema;
+      const lotes = data.lotes;
+
+      const result = lotes.flatMap((lote) => {
+        return lote.pagamentos.map((pagamento) => {
+          const vencimento = pagamento.pagto.venc;
+          const [ano, mes, dia] = vencimento;
+          return {
+            aplicacaoOrigem: sistema,
+            numDoc: pagamento.pagto.numDoc,
+            dataAgendamento: { $date: moment([ano, mes - 1, dia]).toISOString() },
+            createDate: { $date: moment().subtract(2, 'days').toISOString() },
+            lastModifiedDate: { $date: moment().subtract(2, 'days').toISOString() },
+            dataGeracaoArquivoRetornoBanco: { $date: moment().subtract(1, 'days').toISOString() },
+            dataProcessamentoRetornoBanco: { $date: moment().toISOString() },
+            dataPagamento: { $date: moment([ano, mes - 1, dia]).toISOString() },
+            dataRealEfeticacaoPagamento: { $date: moment([ano, mes - 1, dia]).toISOString() },
+            valorPagamento: pagamento.pagto.vlDoc,
+            valorRealPagamento: pagamento.pagto.vlDoc,
+            codigoOcorrenciaRetorno: "00",
+            _class: "model.ControleLancamento",
+          };
+        });
+      });
+
+      const outputFileContent = `const obj = ${JSON.stringify(result, null, 2)};`;
+      console.log(outputFileContent);
+      // Aqui você pode fazer o que quiser com outputFileContent, por exemplo, enviar para o servidor.
+
+      const fileName = file.name.replace(/\.[^/.]+$/, "") + ".mongodb.js";
+
+      const blob = new Blob([outputFileContent], { type: 'text/javascript' });
+      const link = document.createElement('a');
+      link.href = window.URL.createObjectURL(blob);
+      link.download = fileName; // Usar o novo nome do arquivo
+      link.click();
+
+      displaySuccessMessage('Arquivo gerado com sucesso');
+
+      alert("Processamento concluído. Verifique o console para a saída.");
+    }
+
+    function processFile() {
+      const fileInput = document.getElementById('jsonFile');
+      const file = fileInput.files[0];
+
+      if (file) {
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+          const jsonContent = e.target.result;
+          processJSON(jsonContent, file);
+        };
+
+        reader.readAsText(file);
+      } else {
+        alert('Por favor, selecione um arquivo JSON.');
+      }
+    }
 
     function createCSVFile() {
       const csvContent = `NUMERO_DOC,TIPO_P_E,DATA_VENCIMENTO,DATA_PAGAMENTO,VALOR,VL_REAL_PAGO
@@ -178,9 +251,10 @@ WHERE TIPO_P_E = '!'
       //}
     }
 
-    function displayFileName() {
-      const fileInput = document.getElementById('csvFile');
-      const label = document.getElementById('escolherArquivo');
+
+    function displayFileName(inputId, labelId) {
+      const fileInput = document.getElementById(inputId);
+      const label = document.getElementById(labelId);
 
       if (fileInput.files.length > 0) {
         label.textContent = fileInput.files[0].name;
