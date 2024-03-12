@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Localiza NUMDOC em arquivos CNAB 240</title>
+  <link rel="stylesheet" type="text/css" href="../css/styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  <script src="../js/scripts.js"></script>
+
+</head>
+
+<style>
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #ddd;
+    margin-top: 20px;
+  }
+
+  th,
+  td {
+    text-align: left;
+    padding: 8px;
+  }
+
+  th {
+    background-color: #f2f2f2;
+  }
+
+  code {
+    font-family: "Courier New", monospace;
+  }
+
+  #checkboxContainer {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #checkboxContainer label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+
+  #checkboxContainer label input {
+    margin-right: 5px;
+  }
+</style>
+
+<body>
+
+  <h1>Selecionar colunas da CNAB 240</h1>
+
+  <h2>Exclusivo para Segmentos A e J</h2>
+
+  <hr>
+
+  <p>Selecione o(s) arquivo(s) de remessa ou de retorno de CNAB 240 e clique em "Processar".</p>
+
+  <label for="cnabFiles" id="escolherArquivo" class="file-upload-label">Escolher Arquivo(s)</label>
+  <input type="file" id="cnabFiles" multiple onchange="displaySelectedFileNames()">
+
+  <div>
+    <!-- Adiciona uma div para a lista de checkboxes -->
+    <h3>Selecionar Itens:</h3>
+    <div id="checkboxContainer"></div>
+  </div>
+
+  <button id="process-button" class="primary-button" onclick="processFiles()">PROCESSAR</button>
+
+  <div class="success-message" style="display: none;"></div>
+  <div class="error-message" style="display: none;"></div>
+  <div class="info-message" style="display: none;"></div>
+
+  <hr>
+  <table id="output">
+    <thead>
+      <tr id="headerRow">
+        <!-- <th data-column="nomeArquivo">Nome do Arquivo</th> -->
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    const selectedFileNamesDisplay = document.querySelector('.success-message');
+    const headerRow = document.getElementById('headerRow');
+    const outputTable = document.getElementById('output').getElementsByTagName('tbody')[0];
+
+    function p(l, i, f) {
+      // p = posição
+      // l = linha
+      // i = Inicio 
+      // f = fim
+      return l.slice((i - 1), f);
+    }
+
+    function displaySelectedFileNames() {
+      const fileInput = document.getElementById('cnabFiles');
+      const files = fileInput.files;
+
+      if (files.length > 0) {
+        const selectedFileNames = Array.from(files).map(file => file.name);
+        displayInfoMessage(`Arquivo(s) selecionado(s): ${selectedFileNames.join(', ')}`);
+      } else {
+        selectedFileNamesDisplay.style.display = 'none';
+      }
+    }
+
+
+    // Adiciona a lista dinâmica de checkboxes
+    const checkboxContainer = document.getElementById('checkboxContainer');
+    const array = [
+      { label: "numDoc", start: 183, end: 202 },
+      { label: "dataVencimento", start: 92, end: 99 },
+      { label: "valorTitulo", start: 100, end: 114 },
+      { label: "dataPagamento", start: 145, end: 152 },
+      { label: "valorPagamento", start: 153, end: 167 },
+      { label: "codigoBarras", start: 18, end: 61 }
+      // Adicione mais itens conforme necessário
+    ];
+
+
+    checkboxContainer.innerHTML = '';
+
+    array.forEach(item => {
+      const label = document.createElement('label');
+      label.htmlFor = item.label;
+
+      const checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.id = item.label;
+      checkbox.value = item.label; // Adiciona o atributo "value" ao checkbox
+      checkbox.checked = true; // Pode ajustar isso conforme necessário
+
+      label.appendChild(checkbox); // Muda a ordem para adicionar o checkbox ao label primeiro
+      label.appendChild(document.createTextNode(item.label));
+
+      checkboxContainer.appendChild(label);
+    });
+
+    // Atualiza o objeto "data" com base nas opções selecionadas
+    function updateData(line, fileName) {
+      let data = { nomeArquivo: fileName };
+
+      array.forEach(item => {
+        const checkbox = document.getElementById(item.label);
+        if (checkbox.checked) {
+          data[item.label] = p(line, item.start, item.end);
+        }
+      });
+
+      return data;
+    }
+
+
+    function extractInfo(line, fileName, segmento) {
+      let data;
+
+      if (segmento === "A") {
+        data = {
+          nomeArquivo: fileName,
+          numDoc: p(line, 74, 93),
+          dataPagamento: p(line, 94, 101),
+          valorPagamento: p(line, 120, 134)
+        };
+      } else if (segmento === "J" && p(line, 18, 19) !== "52") {
+        data = updateData(line, fileName);
+      }
+
+      for (const key in data) {
+        if (!headerRow.querySelector(`[data-column="${key}"]`)) {
+          const checkbox = document.getElementById(key);
+          if (checkbox && checkbox.checked) { // Verifica se a checkbox está marcada
+            const th = document.createElement('th');
+            th.textContent = key;
+            th.setAttribute('data-column', key);
+            headerRow.appendChild(th);
+          }
+        }
+      }
+
+      return data;
+    }
+
+    function clearTable() {
+      outputTable.innerHTML = '';
+      headerRow.innerHTML = ''; // Limpa também as colunas da tabela
+    }
+
+    function processFiles() {
+      const fileInput = document.getElementById('cnabFiles');
+      const files = fileInput.files;
+
+      if (files.length === 0) {
+        displayErrorMessage('Por favor, selecione arquivo(s) de remessa ou retorno.');
+        return;
+      }
+
+      // Verificar as extensões dos arquivos selecionados
+      const allowedExtensions = ['.rem', '.ret', '.txt', '.REM', '.RET', '.TXT'];
+      for (const file of files) {
+        const fileNameParts = file.name.split('.');
+        const fileExtension = `.${fileNameParts[fileNameParts.length - 1]}`;
+
+        if (!allowedExtensions.includes(fileExtension)) {
+          displayErrorMessage(`Por favor, selecione apenas arquivo(s) com extensão ".rem", ".ret" ou ".txt".`);
+          return;
+        }
+      }
+
+      if (files.length > 0) {
+        clearTable();
+        outputTable.innerHTML = ''; // Limpar tabela
+
+        for (const file of files) {
+
+          const reader = new FileReader();
+          reader.onload = function (event) {
+            const content = event.target.result;
+            const lines = content.split('\n');
+            const extractedData = [];
+
+            for (const line of lines) {
+              if (line.length >= 240) {
+                let segmento = p(line, 14, 14);
+                if (segmento == "A" || segmento == "J") {
+                  extractedData.push(extractInfo(line, file.name, segmento));
+                }
+              }
+            }
+
+            for (const data of extractedData) {
+              const row = outputTable.insertRow();
+              for (const key in data) {
+                const checkbox = document.getElementById(key);
+                if (checkbox && checkbox.checked) { // Verifica se a checkbox está marcada
+                  const cell = row.insertCell();
+                  cell.textContent = key === 'nomeArquivo' ? file.name : data[key];
+                }
+              }
+            }
+          };
+
+          reader.readAsText(file);
+        }
+
+        displaySuccessMessage('Arquivo(s) processado(s) com sucesso');
+      }
+    }
+
+  </script>
+</body>
+
+</html>

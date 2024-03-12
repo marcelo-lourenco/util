@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="shortcut icon" href="./img/favicon.svg">
+  <link rel="shortcut icon" href="./assets/images/favicon.svg">
   <title>Lello Help</title>
   <style>
     body {
@@ -81,25 +81,26 @@
 <body>
   <nav>
     <ul class="menu">
-      <li><a href="home.html" onclick="loadContent('home.html'); return false;">Home</a></li>
+      <li><a href="assets/pages/home.html" onclick="loadContent('assets/pages/home.html'); return false;">Home</a></li>
       <li><a href="#" onclick="return false;">Apoio aos testes</a>
         <ul>
           <li>
             <a href="https://marcelo-lourenco.github.io/cnab/" target="_blank">CNAB Colorido</a>
           </li>
           <li>
-            <a href="localiza-numdoc-no-cnab240.html"
-              onclick="loadContent('localiza-numdoc-no-cnab240.html'); return false;">CNAB 240 - Localizar NUMDOC em
-              arquivos com Segmentos A e J</a>
+            <a href="assets/pages/localiza-numdoc-no-cnab240.html"
+              onclick="loadContent('assets/pages/localiza-numdoc-no-cnab240.html'); return false;">CNAB 240 - Localizar
+              NUMDOC em arquivos com Segmentos A e J</a>
           </li>
           <li>
-            <a href="converte-rem-em-ret-cnab240.html"
-              onclick="loadContent('converte-rem-em-ret-cnab240.html'); return false;">CNAB 240 - Converter Arquivo de
-              Remessa em Arquivo de Retorno</a>
+            <a href="assets/pages/converte-rem-em-ret-cnab240.html"
+              onclick="loadContent('assets/pages/converte-rem-em-ret-cnab240.html'); return false;">CNAB 240 - Converter
+              Arquivo de Remessa em Arquivo de Retorno</a>
           </li>
           <li>
-            <a href="gera-controle-lancamentos.html"
-              onclick="loadContent('gera-controle-lancamentos.html'); return false;">Gerar documentos para a
+            <a href="assets/pages/gera-controle-lancamentos.html"
+              onclick="loadContent('assets/pages/gera-controle-lancamentos.html'); return false;">Gerar documentos para
+              a
               "controle_lancamentos" - MongoDB</a>
           </li>
           <li>
@@ -118,7 +119,7 @@
       var contentContainer = document.getElementById("content");
       contentContainer.innerHTML = '<object type="text/html" data="' + contentFileName + '" style="width: 100%; height: 100%;"></object>';
     }
-    loadContent("home.html")
+    loadContent("assets/pages/home.html")
   </script>
 </body>
 
