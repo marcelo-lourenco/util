@@ -152,7 +152,7 @@ WHERE TIPO_P_E = '!'
 
 
     function validateCSVHeaders(headers) {
-      const requiredColumns = ['NUMERO_DOC', 'TIPO_P_E', 'DATA_VENCIMENTO', 'DATA_PAGAMENTO', 'VALOR', 'VL_REAL_PAGO'];
+      const requiredColumns = ['NUMERO_DOC', 'TIPO_P_E', 'DATA_VENCIMENTO', 'DATA_PAGAMENTO', 'VALOR', 'VL_REAL_PAGO', 'CNPJ'];
 
       for (const column of requiredColumns) {
         if (!headers.includes(column)) {
@@ -200,6 +200,7 @@ WHERE TIPO_P_E = '!'
             }, */
             "aplicacaoOrigem": getAplicacaoOrigem(values[1]),
             "numDoc": values[0],
+            "cpfCnpj": values[2],
             "dataAgendamento": {
               "$date": moment(values[2], 'DD-MMM-YY').toISOString(),
             },

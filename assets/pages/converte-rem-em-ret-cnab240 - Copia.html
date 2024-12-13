@@ -211,6 +211,7 @@
             let processedContent = [];
 
             let modifyingLineAB = false; // Flag to indicate whether we are modifying Line B
+            let modifyingLineJJ52 = false;
 
             for (let j = 0; j < lines.length; j++) {
               let line = lines[j];
@@ -226,7 +227,7 @@
 
 
               if (line[7] === '1') { // Header
-                const acceptedCodes = ['2001', '2010', '2041', '3041', '3001',/*  */ '2030','2031', '2211', '2217'/*  */];
+                const acceptedCodes = ['2001', '2010', '2041', '3041', '2030', '2031']; // 2030 e 2031 é do J
                 if (acceptedCodes.includes(p(line, 10, 13))) {
                   modifyingLineAB = true; // Set the flag to true when we encounter Header B
                 } else {
@@ -238,7 +239,7 @@
                 modifyingLineAB = false; // Set the flag to false when we encounter Trailer
               } else if (line[7] === '3' && modifyingLineAB) { // Data lines with B flag
 
-                if (line[13] === 'A') {
+                if (line[13] === 'A' || line[13] === 'J') {
                   //| tipo | segmento | posição   | QTD | campo | nome             | descr                              | Exemplo no retorno     |                                                                                  |
                   //| 3    | A        | 135 a 154 | 20  | G043  | Crédito          | Nº do Docum. Atribuído pelo Banco  | "12345678            " | repete o NUM DOC -p(line, 74, 93) - G064- Crédito - Nº do Docum. Atribuído p/ Empresa |
                   //| 3    | A        | 155 a 162 | 8   | P003  | Crédito          | Data Real da Efetivação Pagto      | "DDMMAAAA"             | repete p(line, 94, 101) - data pagamento                                         |
@@ -256,9 +257,7 @@
                   line = p(line, 1, 134) + p135a154 + p155a162 + p163a177 + p(line, 178, 230) + p231a240;
                 }
 
-                
-
-                if (line[13] === 'B') {
+                if (line[13] === 'B' || (line[13] === 'J' && p(line, 18, 19) === '52')) {
                   //| tipo | segmento | posição   | QTD | campo | nome             | descr                              | Exemplo no retorno     |                                                                                  |
                   //| 3    | B        | 227 a 232 | 6   | P012  | Cód UG Centraliz | Uso Exclusivo para o SIAPE         | "000000"               |                                                                                  |
                   //| 3    | B        | 233 a 240 | 8   | P015  | Ident Banco SPB  | Código ISPB                        | "12345678"             | conforeme "segmento A" código do banco Favorecido - 021 a 023 -  P002            |
@@ -269,72 +268,6 @@
 
                   line = p(line, 1, 226) + p227a232 + p233a240;
                 }
-
-                if (line[13] === 'J' && p(line, 18, 19) !== '52') {
-                  //| tipo | segmento | posição   | QTD | campo | nome             | descr                              | Exemplo no retorno     |                                                                                  |
-                  //| 3    | A        | 135 a 154 | 20  | G043  | Crédito          | Nº do Docum. Atribuído pelo Banco  | "12345678            " | repete o NUM DOC -p(line, 74, 93) - G064- Crédito - Nº do Docum. Atribuído p/ Empresa |
-                  //| 3    | A        | 155 a 162 | 8   | P003  | Crédito          | Data Real da Efetivação Pagto      | "DDMMAAAA"             | repete p(line, 94, 101) - data pagamento                                         |
-                  //| 3    | A        | 163 a 177 | 15  | P004  | Crédito          | Valor Real da Efetivação do Pagto  | "000000000000000"      |                                                                                  |
-                  //| 3    | A        | 231 a 240 | 10  | G059  | Aviso            | Códigos das Ocorrências p/ Retorno | "00        "           |                                                                                  |
-
-                  let p135a154 = p(line, 74, 93); // "Nº do Docum. Atribuído pelo Banco" <= "Num Documento"
-                  //window.alert(p135a154);
-                  let p155a162 = p(line, 94, 101); // "Data Real da Efetivação Pagto" <= "data pagamento"
-                  //window.alert(p155a162);
-                  let p163a177 = p(line, 120, 134); // Valor Real da Efetivação do Pagto " <= "Valor do Documento (Nominal)"
-                  //window.alert(p163a177);
-                  let p231a240 = p("00        ");
-
-                  line = p(line, 1, 134) + p135a154 + p155a162 + p163a177 + p(line, 178, 230) + p231a240;
-                }
-
-                if (line[13] === 'J' && p(line, 18, 19) === '52') {
-                  //| tipo | segmento | posição   | QTD | campo | nome             | descr                              | Exemplo no retorno     |                                                                                  |
-                  //| 3    | B        | 227 a 232 | 6   | P012  | Cód UG Centraliz | Uso Exclusivo para o SIAPE         | "000000"               |                                                                                  |
-                  //| 3    | B        | 233 a 240 | 8   | P015  | Ident Banco SPB  | Código ISPB                        | "12345678"             | conforeme "segmento A" código do banco Favorecido - 021 a 023 -  P002            |
-                  // Replace positions 211 to 213 with "REGISTRO_FOLHA"
-
-                  let p227a232 = "000000"; // "Uso Exclusivo para o SIAPE" <= "000000"
-                  let p233a240 = "60746948"; // "Código ISPB" <= "60746948"
-
-                  line = p(line, 1, 226) + p227a232 + p233a240;
-                }
-
-                if (line[13] === 'O') {
-                  //| tipo | segmento | posição   | QTD | campo | nome             | descr                              | Exemplo no retorno     |                                                                                  |
-                  //| 3    | A        | 135 a 154 | 20  | G043  | Crédito          | Nº do Docum. Atribuído pelo Banco  | "12345678            " | repete o NUM DOC -p(line, 74, 93) - G064- Crédito - Nº do Docum. Atribuído p/ Empresa |
-                  //| 3    | A        | 155 a 162 | 8   | P003  | Crédito          | Data Real da Efetivação Pagto      | "DDMMAAAA"             | repete p(line, 94, 101) - data pagamento                                         |
-                  //| 3    | A        | 163 a 177 | 15  | P004  | Crédito          | Valor Real da Efetivação do Pagto  | "000000000000000"      |                                                                                  |
-                  //| 3    | A        | 231 a 240 | 10  | G059  | Aviso            | Códigos das Ocorrências p/ Retorno | "00        "           |                                                                                  |
-
-                  let p135a154 = p(line, 74, 93); // "Nº do Docum. Atribuído pelo Banco" <= "Num Documento"
-                  //window.alert(p135a154);
-                  let p155a162 = p(line, 94, 101); // "Data Real da Efetivação Pagto" <= "data pagamento"
-                  //window.alert(p155a162);
-                  let p163a177 = p(line, 120, 134); // Valor Real da Efetivação do Pagto " <= "Valor do Documento (Nominal)"
-                  //window.alert(p163a177);
-                  let p231a240 = p("00        ");
-
-                  line = p(line, 1, 134) + p135a154 + p155a162 + p163a177 + p(line, 178, 230) + p231a240;
-                }
-                if (line[13] === 'N') {
-                  //| tipo | segmento | posição   | QTD | campo | nome             | descr                              | Exemplo no retorno     |                                                                                  |
-                  //| 3    | A        | 135 a 154 | 20  | G043  | Crédito          | Nº do Docum. Atribuído pelo Banco  | "12345678            " | repete o NUM DOC -p(line, 74, 93) - G064- Crédito - Nº do Docum. Atribuído p/ Empresa |
-                  //| 3    | A        | 155 a 162 | 8   | P003  | Crédito          | Data Real da Efetivação Pagto      | "DDMMAAAA"             | repete p(line, 94, 101) - data pagamento                                         |
-                  //| 3    | A        | 163 a 177 | 15  | P004  | Crédito          | Valor Real da Efetivação do Pagto  | "000000000000000"      |                                                                                  |
-                  //| 3    | A        | 231 a 240 | 10  | G059  | Aviso            | Códigos das Ocorrências p/ Retorno | "00        "           |                                                                                  |
-
-                  let p135a154 = p(line, 74, 93); // "Nº do Docum. Atribuído pelo Banco" <= "Num Documento"
-                  //window.alert(p135a154);
-                  let p155a162 = p(line, 94, 101); // "Data Real da Efetivação Pagto" <= "data pagamento"
-                  //window.alert(p155a162);
-                  let p163a177 = p(line, 120, 134); // Valor Real da Efetivação do Pagto " <= "Valor do Documento (Nominal)"
-                  //window.alert(p163a177);
-                  let p231a240 = p("00        ");
-
-                  line = p(line, 1, 134) + p135a154 + p155a162 + p163a177 + p(line, 178, 230) + p231a240;
-                }
-
               }
               processedContent.push(line);
             }
