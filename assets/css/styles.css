@@ -138,3 +138,26 @@ code {
 .card-link:hover {
   text-decoration: none;
 }
+
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  margin-top: 20px;
+} 
+
+th,
+td {
+  text-align: left;
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+code {
+  font-family: "Courier New", monospace;
+}
