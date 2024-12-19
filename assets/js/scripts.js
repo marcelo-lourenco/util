@@ -1,23 +1,28 @@
+function displayMessage(type, message) {
+  const messageTypes = ['error', 'success', 'info', 'warning'];
+  messageTypes.forEach(msgType => {
+    const element = document.querySelector(`.${msgType}-message`);
+    if (msgType === type) {
+      element.textContent = message;
+      element.style.display = 'block';
+    } else {
+      element.style.display = 'none';
+    }
+  });
+}
+
 function displayErrorMessage(message) {
-  const errorMessage = document.querySelector('.error-message');
-  errorMessage.textContent = message;
-  errorMessage.style.display = 'block';
-  document.querySelector('.success-message').style.display = 'none';
-  document.querySelector('.info-message').style.display = 'none';
+  displayMessage('error', message);
 }
 
 function displaySuccessMessage(message) {
-  const successMessage = document.querySelector('.success-message');
-  successMessage.textContent = message;
-  successMessage.style.display = 'block';
-  document.querySelector('.error-message').style.display = 'none';
-  document.querySelector('.info-message').style.display = 'none';
+  displayMessage('success', message);
 }
 
 function displayInfoMessage(message) {
-  const infoMessage = document.querySelector('.info-message');
-  infoMessage.textContent = message;
-  infoMessage.style.display = 'block';
-  document.querySelector('.success-message').style.display = 'none';
-  document.querySelector('.error-message').style.display = 'none';
+  displayMessage('info', message);
+}
+
+function displayWarningMessage(message) {
+  displayMessage('warning', message);
 }

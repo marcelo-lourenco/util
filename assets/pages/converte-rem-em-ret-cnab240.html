@@ -8,16 +8,8 @@
   <link rel="stylesheet" type="text/css" href="../css/styles.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
   <script src="../js/scripts.js"></script>
-  
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-W25QQRNG8L"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-  
-    gtag('config', 'G-W25QQRNG8L');
-  </script>
+  <script src="../js/converte-rem-em-ret-cnab240.js"></script>
+  <script src="../js/gtag.js"></script>
 </head>
 
 <body>
@@ -32,6 +24,7 @@
   <div class="success-message" style="display: none;"></div>
   <div class="error-message" style="display: none;"></div>
   <div class="info-message" style="display: none;"></div>
+  <div class="warning-message" style="display: none;"></div>
   <hr>
   <h2>Campos que serão alterados</h2>
 
@@ -208,164 +201,6 @@
       </tbody>
     </table>
   </div>
-
-  <script>
-    const selectedFileNamesDisplay = document.querySelector('.success-message');
-
-    function displaySelectedFileNames() {
-      const fileInput = document.getElementById('cnabFile');
-      const files = fileInput.files;
-
-      if (files.length > 0) {
-        const selectedFileNames = Array.from(files).map(file => file.name);
-        displayInfoMessage(`Arquivo(s) selecionado(s): ${selectedFileNames.join(', ')}`);
-      } else {
-        selectedFileNamesDisplay.style.display = 'none';
-      }
-    }
-
-
-    function p(l, i, f) {
-      // p = posição
-      // l = linha
-      // i = Inicio
-      // f = fim
-      return l.slice((i - 1), f);
-    }
-    function processFiles() {
-      const inputFile = document.getElementById('cnabFile');
-      const files = inputFile.files;
-
-      if (files.length === 0) {
-        displayErrorMessage('Por favor, selecione um arquivo CNAB de Remessa');
-        return;
-      }
-      if (files.length > 0) {
-
-        for (let i = 0; i < files.length; i++) {
-          const file = files[i];
-          const reader = new FileReader();
-
-          reader.onload = function (event) {
-            const fileContent = event.target.result;
-            const lines = fileContent.split('\n');
-            let processedContent = [];
-
-            let modifyingLine = false;
-
-            for (let j = 0; j < lines.length; j++) {
-              let line = lines[j];
-
-              if (line[7] === '0') { // Header Arquivo
-                //| tipo | segmento | posição   | QTD | campo | nome             | descr                              | Exemplo no retorno     |                                                                                  |
-                //| 0    |          | 143 a 143 | 1   | G015  | Arquivo          | Código Remessa / Retorno           | "2"                    |                                                                                  |
-                //| 0    |          | 172 a 191 | 20  | G021  | Reservado Banco  |                                    | "00000000BRAD        " |                                                                                  |
-                let p143a143 = "2";
-                let p172a191 = "00000000BRAD        "
-                line = p(line, 1, 142) + p143a143 + p(line, 144, 171) + p172a191 + p(line, 192, 240);
-              }
-
-
-              if (line[7] === '1') { // Header
-                const acceptedCodes = ['2001', '2010', '2041', '3041', '3001',/*  */ '2030', '2031', '2211', '2217'/*  */];
-                if (acceptedCodes.includes(p(line, 10, 13))) {
-                  modifyingLine = true; // Set the flag to true when we encounter Header B
-                } else {
-                  displayErrorMessage(`Por favor, selecione um arquivo cuja posições 10 a 13 do header do lote seja ${acceptedCodes}`);
-                  return
-                }
-
-              } else if (line[7] === '5') { // Trailer
-                modifyingLine = false; // Set the flag to false when we encounter Trailer
-              } else if (line[7] === '3' && modifyingLine) { // Data lines with B flag
-
-                if (line[13] === 'A') {
-                  //| tipo | segmento | posição   | QTD | campo | nome             | descr                              | Exemplo no retorno     |                                                                                  |
-                  //| 3    | A        | 135 a 154 | 20  | G043  | Crédito          | Nº do Docum. Atribuído pelo Banco  | "12345678            " | repete o NUM DOC -p(line, 74, 93) - G064- Crédito - Nº do Docum. Atribuído p/ Empresa |
-                  //| 3    | A        | 155 a 162 | 8   | P003  | Crédito          | Data Real da Efetivação Pagto      | "DDMMAAAA"             | repete p(line, 94, 101) - data pagamento                                         |
-                  //| 3    | A        | 163 a 177 | 15  | P004  | Crédito          | Valor Real da Efetivação do Pagto  | "000000000000000"      |                                                                                  |
-                  //| 3    | A        | 231 a 240 | 10  | G059  | Aviso            | Códigos das Ocorrências p/ Retorno | "00        "           |                                                                                  |
-
-                  let p135a154 = p(line, 74, 93); // "Nº do Docum. Atribuído pelo Banco" <= "Num Documento"
-                  //window.alert(p135a154);
-                  let p155a162 = p(line, 94, 101); // "Data Real da Efetivação Pagto" <= "data pagamento"
-                  let p163a177 = p(line, 120, 134); // Valor Real da Efetivação do Pagto " <= "Valor do Documento (Nominal)"
-                  let p231a240 = p("00        ");
-
-                  line = p(line, 1, 134) + p135a154 + p155a162 + p163a177 + p(line, 178, 230) + p231a240;
-                }
-
-                if (line[13] === 'B') {
-                  //| tipo | segmento | posição   | QTD | campo | nome             | descr                              | Exemplo no retorno     |                                                                                  |
-                  //| 3    | B        | 227 a 232 | 6   | P012  | Cód UG Centraliz | Uso Exclusivo para o SIAPE         | "000000"               |                                                                                  |
-                  //| 3    | B        | 233 a 240 | 8   | P015  | Ident Banco SPB  | Código ISPB                        | "12345678"             | conforeme "segmento A" código do banco Favorecido - 021 a 023 -  P002            |
-                  let p227a232 = "000000"; // "Uso Exclusivo para o SIAPE" <= "000000"
-                  let p233a240 = "60746948"; // "Código ISPB" <= "60746948"
-
-                  line = p(line, 1, 226) + p227a232 + p233a240;
-                }
-
-                if (line[13] === 'J' && p(line, 18, 19) !== '52') {
-                  //| tipo | segmento | posição   | QTD | campo | nome             | descr                              | Exemplo no retorno     |                                                                                  |
-                  //| 3    | J        | 203 a 222 | 20  | G043  | Nosso Número     | Nº do Docto Atribuído pelo Banco   | "12345678            " | repete o Referência Sacado -p(line, 183, 202) - G064- Crédito - Nº do Docum. Atribuído p/ Empresa |
-                  //| 3    | J        | 231 a 240 | 10  | G059  | Ocorrências      | Códigos das Ocorrências p/ Retorno | "00        "           |                                                                                  |
-
-                  let p203a222 = p(line, 183, 202); // "Nº do Docto Atribuído pelo Banco" <= "Referência Sacado"
-                  let p231a240 = p("00        ");
-
-                  line = p(line, 1, 202) + p203a222 + p(line, 223, 230) + p231a240;
-                }
-
-                if (line[13] === 'J' && p(line, 18, 19) === '52') {
-                  // repete toda a linha
-                  line = p(line, 1, 240);
-                }
-
-                if (line[13] === 'O') {
-                  //| tipo | segmento | posição   | QTD | campo | nome             | descr                              | Exemplo no retorno     |                                                                                  |
-                  //| 3    | O        | 143 a 162 | 20  | G043  | Nosso Número     | Nº do Docto Atribuído pelo Banco   | "12345678            " | repete o Seu número -p(line, 123, 142) - G064- Crédito - Nº do Docum. Atribuído p/ Empresa |
-                  //| 3    | O        | 231 a 240 | 10  | G059  | Aviso            | Códigos das Ocorrências p/ Retorno | "00        "           |                                                                                  |
-                  let p143a162 = p(line, 123, 142); // "Nº do Docto Atribuído pelo Banco" <= "Seu número"
-                  let p231a240 = p("00        ");
-
-                  line = p(line, 1, 142) + p143a162 + p(line, 163, 230) + p231a240;
-                }
-                if (line[13] === 'N') {
-                  //| tipo | segmento | posição   | QTD | campo | nome             | descr                              | Exemplo no retorno     |                                                                                  |
-                  //| 3    | N        | 231 a 240 | 10  | G059  | Aviso            | Códigos das Ocorrências p/ Retorno | "00        "           |                                                                                  |
-                  let p231a240 = p("00        ");
-
-                  line = p(line, 1, 230) + p231a240;
-                }
-
-              }
-              processedContent.push(line);
-            }
-
-            const processedFileContent = processedContent.join('\n');
-
-            // Remove the original file extension from the name
-            const fileNameWithoutExtension = file.name.replace(/\.[^/.]+$/, "");
-
-            // Create a new Blob with the processed content
-            const processedBlob = new Blob([processedFileContent], { type: 'text/plain' });
-
-            // Create a temporary link to download the processed file
-            const downloadLink = document.createElement('a');
-            downloadLink.href = URL.createObjectURL(processedBlob);
-
-            // Use the updated file name with the .ret extension
-            downloadLink.download = fileNameWithoutExtension + '.ret';
-            downloadLink.click();
-          };
-
-          reader.readAsText(file);
-        }
-        displaySuccessMessage('Arquivo(s) processado(s) com sucesso');
-      }
-    }
-
-  </script>
 </body>
 
 </html>
