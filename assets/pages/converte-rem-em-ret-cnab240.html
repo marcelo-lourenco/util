@@ -19,26 +19,28 @@
   <hr>
   <p>Selecione o arquivo de Remessa e clique em "Processar".</p>
   <label for="cnabFile" id="escolherArquivo" class="file-upload-label">Escolher Arquivo</label>
-  <input type="file" id="cnabFile" multiple onchange="displaySelectedFileNames()">
-  <button id="process-button" class="primary-button" onclick="processFiles()">Processar</button>
+  <input type="file" id="cnabFile" multiple>
+  <button id="process-button" class="primary-button">Processar</button>
   <div class="success-message" style="display: none;"></div>
   <div class="error-message" style="display: none;"></div>
   <div class="info-message" style="display: none;"></div>
   <div class="warning-message" style="display: none;"></div>
   <hr>
+
   <h2>Campos que serão alterados</h2>
 
   <div>
+    <h3>Bradesco</h3>
     <table>
       <thead>
         <tr>
-          <th>tipo</th>
-          <th>segmento</th>
-          <th>posição</th>
+          <th>Tipo</th>
+          <th>Segmento</th>
+          <th>Posição</th>
           <th>QTD</th>
-          <th>campo</th>
-          <th>nome</th>
-          <th>descr</th>
+          <th>Campo</th>
+          <th>Nome</th>
+          <th>Descrição</th>
           <th>Exemplo no retorno</th>
           <th>Observação</th>
         </tr>
@@ -196,6 +198,117 @@
           <td>Aviso</td>
           <td>Códigos das Ocorrências p/ Retorno</td>
           <td>"00 "</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr>
+  <div>
+    <h3>Itaú</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Tipo</th>
+          <th>Segmento</th>
+          <th>Posição</th>
+          <th>QTD</th>
+          <th>Campo</th>
+          <th>Nome</th>
+          <th>Descrição</th>
+          <th>Exemplo no Retorno</th>
+          <th>Observação</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>0</td>
+          <td>Header Arq</td>
+          <td>143 a 143</td>
+          <td>1</td>
+          <td></td>
+          <td>Arquivo-Código</td>
+          <td>Código Remessa/Retorno</td>
+          <td>"2"</td>
+          <td>1=Remessa, 2=Retorno</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>Header Lote</td>
+          <td>231 a 240</td>
+          <td>10</td>
+          <td></td>
+          <td>Ocorrências</td>
+          <td>Código Ocorrências p/ Retorno</td>
+          <td>"00"</td>
+          <td>Nota 8</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Seg A</td>
+          <td>135 a 154</td>
+          <td>20</td>
+          <td></td>
+          <td>Nosso Número</td>
+          <td>Nº Docto Atribuído pelo Banco</td>
+          <td>"12345678&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"</td>
+          <td>repete o numDoc - posição 74 a 93</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Seg A</td>
+          <td>155 a 162</td>
+          <td>8</td>
+          <td></td>
+          <td>Data Efetiva</td>
+          <td>Data Real Efetivação do Pagto</td>
+          <td>"DDMMAAAA"</td>
+          <td>repete a dataPagamento - posição 94 a 101</td>
+
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Seg A</td>
+          <td>163 a 177</td>
+          <td>15</td>
+          <td></td>
+          <td>Valor Efetivo</td>
+          <td>Valor Real Efetivação do Pagto</td>
+          <td>"000000000000000"</td>
+          <td>repete valor pagamento - posição 120 a 134</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Seg A</td>
+          <td>198 a 203</td>
+          <td>6</td>
+          <td></td>
+          <td>Nº do Documento</td>
+          <td>Nº do Doc/TED/OP/Cheque no Retorno</td>
+          <td>"123456"</td>
+          <td>Recebe um randômico de 6 dígitos</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Seg A</td>
+          <td>231 a 240</td>
+          <td>10</td>
+          <td></td>
+          <td>Ocorrências</td>
+          <td>Código Ocorrências no Retorno</td>
+          <td>"00"</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Seg B</td>
+          <td>231 a 240</td>
+          <td>10</td>
+          <td></td>
+          <td>Ocorrências</td>
+          <td>Código de Ocorrências no Retorno</td>
+          <td>"00"</td>
           <td></td>
         </tr>
       </tbody>
