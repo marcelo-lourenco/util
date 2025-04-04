@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const selectedFileNamesDisplay = document.querySelector('.success-message');
+  const selectedFileNamesDisplay = document.querySelector('.alert-success');
   const fileInput = document.getElementById('cnabFile');
   const processButton = document.getElementById('process-button');
 

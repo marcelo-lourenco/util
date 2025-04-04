@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8">
+  <title>Teste Help</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="plugins/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="plugins/themify-icons/themify-icons.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap">
+  <link rel="stylesheet" href="assets/style.css" media="screen" />
+  <link rel="icon" href="images/favicon.svg" type="image/x-icon">
+  <script src="assets/gtag.js"></script>
+</head>
+
+<body>
+  <!-- header -->
+  <header class="banner overlay bg-cover">
+    <nav class="navbar navbar-expand-md navbar-dark">
+      <div class="container">
+        <a class="navbar-brand px-2" href="index.html">HOME</a>
+        <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation"
+          aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse text-center" id="navigation">
+          <ul class="navbar-nav ml-auto">
+            <!-- <li class="nav-item">
+							<a class="nav-link text-dark" href="index.html">Home</a>
+						</li> -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle text-dark" href="#" id="dropdown01" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Apoio aos Testes
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="dropdown01">
+                <li>
+                  <a class="dropdown-item" href="https://marcelo-lourenco.github.io/gerador-br/#/geradores"
+                    target="_blank">Gerador de Dados Brasileiros
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="cnab-converte-rem-em-ret.html">
+                    CNAB 240 - Converter Arquivo de Remessa em Retorno
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="https://marcelo-lourenco.github.io/cnab/" target="_blank">CNAB 240 e
+                    400 - Layout Colorido
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="cnab240-localiza-numdoc.html">
+                    CNAB 240 - Localizar NUMDOC em arquivos com Segmentos A e J
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="mongo-gera-controle-lancamentos.html">
+                    Gerar documentos para a "controle_lancamentos" - MongoDB
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle text-dark" href="#" id="dropdown02" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Extensão Chrome
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="dropdown02">
+                <li>
+                  <a class="dropdown-item"
+                    href="https://chromewebstore.google.com/detail/dlfdmghbdpojkioblkohjafoccdnponn"
+                    target="_blank">Validador de Boleto
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item"
+                    href="https://chromewebstore.google.com/detail/ipfihnddjaepajgdamecijfdefikdgam"
+                    target="_blank">Gerador de Dados Fictícios
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item"
+                    href="https://chromewebstore.google.com/detail/kfinkhckgepbndjcolgehfgomeiklffi"
+                    target="_blank">CNAB Converte Remessa para Retorno
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item"
+                    href="https://chromewebstore.google.com/detail/occanfpdiglllenbekgbnhijeoincilf"
+                    target="_blank">Jira Expandir Área de Trabalho
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle text-dark" href="#" id="dropdown02" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Pacotes e Extensões
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="dropdown02">
+                <li>
+                  <a class="dropdown-item" href="https://www.npmjs.com/package/gerador-br" target="_blank">Pacote NPM -
+                    Gerador de Dados Brasileiros
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item"
+                    href="https://marketplace.visualstudio.com/items?itemName=mlourenco.api-test-builder"
+                    target="_blank">Extensão VS Code - API Test Builder
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <!-- /header -->
+
+  <main>
+    <section class="single section-sm pb-0">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="p-lg-5 p-4 bg-white text-center">
+              <h2 class="mb-5">Encontrar "numdoc" em aquivo(s) CNAB 240</h2>
+              <h3>Exclusivo para Segmentos A e J</h3>
+              <div class="content col-lg-8 mx-auto">
+                <p>Selecione o(s) arquivo(s) de remessa ou de retorno de CNAB 240 e clique em "Processar".</p>
+                <div class="d-grid gap-2 py-5 d-sm-flex justify-content-sm-center">
+                  <input type="file" class="form-control" id="cnabFiles" multiple onchange="displaySelectedFileNames()">
+                  <button class="btn btn-primary" id="process-button" onclick="processFiles()">Processar</button>
+                </div>
+              </div>
+              <div class="alert alert-success alert-dismissible fade show" style="display: none;" role="alert"></div>
+              <div class="alert alert-danger alert-dismissible fade show" style="display: none;" role="alert"></div>
+              <div class="alert alert-info alert-dismissible fade show" style="display: none;" role="alert"></div>
+              <div class="alert alert-warning alert-dismissible fade show" style="display: none;" role="alert"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="single section-sm pb-0">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="p-lg-5 p-4 bg-white text-center">
+              <h2 class="mb-5">Resultado</h2>
+              <div class="d-grid gap-2 justify-content-sm-center">
+                <table id="output">
+                  <thead>
+                    <tr id="headerRow">
+                      <th data-column="nomeArquivo">Nome do Arquivo</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 text-md-left text-left">
+          <!-- <p class="mb-md-0 mb-4">Copyright © 2025 by<a href=""></a></p> -->
+        </div>
+        <div class="col-md-6 text-md-right text-right">
+          <ul class="list-inline">
+            <li class="list-inline-item">
+              <a class="text-color d-inline-block p-2" href="https://github.com/marcelo-lourenco" target="_blank">
+                <i class="ti-github"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a class="text-color d-inline-block p-2" href="https://www.linkedin.com/in/marcelolourencodasilva/"
+                target="_blank">
+                <i class="ti-linkedin"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- /footer -->
+
+  <!-- ** JS Plugins Needed for the Project ** -->
+  <script src="plugins/jquery/jquery-1.12.4.js"></script>
+  <script src="plugins/bootstrap/bootstrap.min.js"></script>
+  <script src="plugins/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="plugins/match-height/jquery.matchHeight-min.js"></script>
+  <script src="assets/script.js"></script>
+
+</body>
+
+</html>
+
+
+
+<script>
+  const selectedFileNamesDisplay = document.querySelector('.success-message');
+  const headerRow = document.getElementById('headerRow');
+  const outputTable = document.getElementById('output').getElementsByTagName('tbody')[0];
+
+  function p(l, i, f) {
+    // p = posição
+    // l = linha
+    // i = Inicio 
+    // f = fim
+    return l.slice((i - 1), f);
+  }
+
+  function displaySelectedFileNames() {
+    const fileInput = document.getElementById('cnabFiles');
+    const files = fileInput.files;
+
+    if (files.length > 0) {
+      const selectedFileNames = Array.from(files).map(file => file.name);
+      displayInfoMessage(`Arquivo(s) selecionado(s): ${selectedFileNames.join(', ')}`);
+    } else {
+      selectedFileNamesDisplay.style.display = 'none';
+    }
+  }
+
+
+  function extractInfo(line, fileName, segmento) {
+    let data;
+
+    if (segmento === "A") {
+      data = {
+        nomeArquivo: fileName,
+        numDoc: p(line, 74, 93),
+        dataPagamento: p(line, 94, 101),
+        valorPagamento: p(line, 120, 134)
+      };
+    } else if (segmento === "J" && p(line, 18, 19) !== "52") {
+      data = {
+        nomeArquivo: fileName,
+        numDoc: p(line, 183, 202),
+        dataVencimento: p(line, 92, 99),
+        valorTitulo: p(line, 100, 114),
+        dataPagamento: p(line, 145, 152),
+        valorPagamento: p(line, 153, 167)
+      };
+    }
+
+    for (const key in data) {
+      if (!headerRow.querySelector(`[data-column="${key}"]`)) {
+        const th = document.createElement('th');
+        th.textContent = key;
+        th.setAttribute('data-column', key);
+        headerRow.appendChild(th);
+      }
+    }
+
+    return data;
+  }
+
+
+  function processFiles() {
+    const fileInput = document.getElementById('cnabFiles');
+    const files = fileInput.files;
+
+    if (files.length === 0) {
+      displayErrorMessage('Por favor, selecione arquivo(s) de remessa ou retorno.');
+      return;
+    }
+
+    // Verificar as extensões dos arquivos selecionados
+    const allowedExtensions = ['.rem', '.ret', '.txt', '.REM', '.RET', '.TXT'];
+    for (const file of files) {
+      const fileNameParts = file.name.split('.');
+      const fileExtension = `.${fileNameParts[fileNameParts.length - 1]}`;
+
+      if (!allowedExtensions.includes(fileExtension)) {
+        displayErrorMessage(`Por favor, selecione apenas arquivo(s) com extensão ".rem", ".ret" ou ".txt".`);
+        return;
+      }
+    }
+
+    if (files.length > 0) {
+      outputTable.innerHTML = ''; // Limpar tabela
+
+      for (const file of files) {
+        const reader = new FileReader();
+        reader.onload = function (event) {
+          const content = event.target.result;
+          const lines = content.split('\n');
+          const extractedData = [];
+
+          for (const line of lines) {
+            if (line.length >= 240) {
+              let segmento = p(line, 14, 14);
+              if (segmento == "A" || segmento == "J") {
+                extractedData.push(extractInfo(line, file.name, segmento));
+              }
+            }
+          }
+
+          for (const data of extractedData) {
+            const row = outputTable.insertRow();
+            for (const key in data) {
+              const cell = row.insertCell();
+              cell.textContent = data[key];
+            }
+          }
+        };
+
+        reader.readAsText(file);
+      }
+
+      displaySuccessMessage('Arquivo(s) processado(s) com sucesso');
+    }
+  }
+
+</script>

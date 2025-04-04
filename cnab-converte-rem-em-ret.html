@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8">
+  <title>Teste Help</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="plugins/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="plugins/themify-icons/themify-icons.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap">
+  <link rel="stylesheet" href="assets/style.css" media="screen" />
+  <link rel="icon" href="images/favicon.svg" type="image/x-icon">
+  <script src="assets/gtag.js"></script>
+</head>
+
+<body>
+  <!-- header -->
+  <header class="banner overlay bg-cover">
+    <nav class="navbar navbar-expand-md navbar-dark">
+      <div class="container">
+        <a class="navbar-brand px-2" href="index.html">HOME</a>
+        <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation"
+          aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse text-center" id="navigation">
+          <ul class="navbar-nav ml-auto">
+            <!-- <li class="nav-item">
+							<a class="nav-link text-dark" href="index.html">Home</a>
+						</li> -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle text-dark" href="#" id="dropdown01" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Apoio aos Testes
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="dropdown01">
+                <li>
+                  <a class="dropdown-item" href="https://marcelo-lourenco.github.io/gerador-br/#/geradores"
+                    target="_blank">Gerador de Dados Brasileiros
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="cnab-converte-rem-em-ret.html">
+                    CNAB 240 - Converter Arquivo de Remessa em Retorno
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="https://marcelo-lourenco.github.io/cnab/" target="_blank">CNAB 240 e
+                    400 - Layout Colorido
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="cnab240-localiza-numdoc.html">
+                    CNAB 240 - Localizar NUMDOC em arquivos com Segmentos A e J
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="mongo-gera-controle-lancamentos.html">
+                    Gerar documentos para a "controle_lancamentos" - MongoDB
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle text-dark" href="#" id="dropdown02" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Extensão Chrome
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="dropdown02">
+                <li>
+                  <a class="dropdown-item"
+                    href="https://chromewebstore.google.com/detail/dlfdmghbdpojkioblkohjafoccdnponn"
+                    target="_blank">Validador de Boleto
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item"
+                    href="https://chromewebstore.google.com/detail/ipfihnddjaepajgdamecijfdefikdgam"
+                    target="_blank">Gerador de Dados Fictícios
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item"
+                    href="https://chromewebstore.google.com/detail/kfinkhckgepbndjcolgehfgomeiklffi"
+                    target="_blank">CNAB Converte Remessa para Retorno
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item"
+                    href="https://chromewebstore.google.com/detail/occanfpdiglllenbekgbnhijeoincilf"
+                    target="_blank">Jira Expandir Área de Trabalho
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle text-dark" href="#" id="dropdown02" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Pacotes e Extensões
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="dropdown02">
+                <li>
+                  <a class="dropdown-item" href="https://www.npmjs.com/package/gerador-br" target="_blank">Pacote NPM -
+                    Gerador de Dados Brasileiros
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item"
+                    href="https://marketplace.visualstudio.com/items?itemName=mlourenco.api-test-builder"
+                    target="_blank">Extensão VS Code - API Test Builder
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <!-- /header -->
+
+  <main>
+    <section class="single section-sm pb-0">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="p-lg-5 p-4 bg-white text-center">
+              <h2 class="mb-5">Converter CNAB .rem em .ret</h2>
+              <h3>Converte arquivo de Remessa em arquivo de Retorno</h3>
+              <div class="content col-lg-8 mx-auto">
+                <p>Selecione o(s) arquivo(s) de remessa - CNAB 240 - Segmento A, B, J, J52, O ou N.</p>
+                <div class="d-grid gap-2 py-5 d-sm-flex justify-content-sm-center">
+                  <input type="file" class="form-control" id="cnabFile" multiple>
+                  <button class="btn btn-primary" id="process-button">Converter</button>
+                </div>
+              </div>
+              <div class="alert alert-success alert-dismissible fade show" style="display: none;" role="alert"></div>
+              <div class="alert alert-danger alert-dismissible fade show" style="display: none;" role="alert"></div>
+              <div class="alert alert-info alert-dismissible fade show" style="display: none;" role="alert"></div>
+              <div class="alert alert-warning alert-dismissible fade show" style="display: none;" role="alert"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="single section-sm pb-0">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="p-lg-5 p-4 bg-white text-center">
+              <h2 class="mb-5">Campos que serão alterados</h2>
+              <div class="d-grid gap-2 justify-content-sm-center">
+                <div class="card mb-4 rounded-0 shadow border-0">
+                  <div class="card-header rounded-0 bg-white border p-0 border-0">
+                    <a class="card-link h4 d-flex tex-dark mb-0 py-3 px-4 justify-content-between"
+                      data-toggle="collapse" href="#bradesco-campos">
+                      <span>Bradesco</span> <i class="ti-plus text-primary text-right"></i>
+                    </a>
+                  </div>
+                  <div id="bradesco-campos" class="collapse" data-parent="#accordion">
+                    <div class="card-body font-secondary text-color">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Tipo</th>
+                            <th>Segmento</th>
+                            <th>Posição</th>
+                            <th>QTD</th>
+                            <th>Campo</th>
+                            <th>Nome</th>
+                            <th>Descrição</th>
+                            <th>Exemplo no retorno</th>
+                            <th>Observação</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>0</td>
+                            <td>Header Arq</td>
+                            <td>143 a 143</td>
+                            <td>1</td>
+                            <td>G015</td>
+                            <td>Arquivo</td>
+                            <td>Código Remessa / Retorno</td>
+                            <td>"2"</td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <td>0</td>
+                            <td>Header Arq</td>
+                            <td>172 a 191</td>
+                            <td>20</td>
+                            <td>G021</td>
+                            <td>Reservado Banco</td>
+                            <td></td>
+                            <td>"00000000BRAD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"</td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <td>3</td>
+                            <td>Seg A</td>
+                            <td>135 a 154</td>
+                            <td>20</td>
+                            <td>G043</td>
+                            <td>Crédito</td>
+                            <td>Nº do Docum. Atribuído pelo Banco</td>
+                            <td>"12345678&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"</td>
+                            <td>repete o numDoc - posição 74 a 93</td>
+                          </tr>
+                          <tr>
+                            <td>3</td>
+                            <td>Seg A</td>
+                            <td>155 a 162</td>
+                            <td>8</td>
+                            <td>P003</td>
+                            <td>Crédito</td>
+                            <td>Data Real da Efetivação Pagto</td>
+                            <td>"DDMMAAAA"</td>
+                            <td>repete a dataPagamento - posição 94 a 101</td>
+                          </tr>
+                          <tr>
+                            <td>3</td>
+                            <td>Seg A</td>
+                            <td>163 a 177</td>
+                            <td>15</td>
+                            <td>P004</td>
+                            <td>Crédito</td>
+                            <td>Valor Real da Efetivação do Pagto</td>
+                            <td>"000000000000000"</td>
+                            <td>repete valor pagamento - posição 120 a 134</td>
+                          </tr>
+                          <tr>
+                            <td>3</td>
+                            <td>Seg A</td>
+                            <td>231 a 240</td>
+                            <td>10</td>
+                            <td>G059</td>
+                            <td>Aviso</td>
+                            <td>Códigos das Ocorrências p/ Retorno</td>
+                            <td>"00"</td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <td>3</td>
+                            <td>Seg B</td>
+                            <td>227 a 232</td>
+                            <td>6</td>
+                            <td>P012</td>
+                            <td>Cód UG Centraliz</td>
+                            <td>Uso Exclusivo para o SIAPE</td>
+                            <td>"000000"</td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <td>3</td>
+                            <td>Seg B</td>
+                            <td>233 a 240</td>
+                            <td>8</td>
+                            <td>P015</td>
+                            <td>Ident Banco SPB</td>
+                            <td>Código ISPB</td>
+                            <td>"60746948"</td>
+                            <td>conforme "segmento A"<br>código do banco Favorecido - 021 a 023 - P002</td>
+                          </tr>
+                          <tr>
+                            <td>3</td>
+                            <td>Seg J</td>
+                            <td>203 a 222</td>
+                            <td>20</td>
+                            <td>G043</td>
+                            <td>Nosso Número</td>
+                            <td>Nº do Docto Atribuído pelo Banco</td>
+                            <td>"12345678 "</td>
+                            <td>repete Referência Sacado - posição 183 a 202</td>
+                          </tr>
+                          <tr>
+                            <td>3</td>
+                            <td>Seg J</td>
+                            <td>231 a 240</td>
+                            <td>10</td>
+                            <td>G059</td>
+                            <td>Ocorrências</td>
+                            <td>Códigos das Ocorrências p/ Retorno</td>
+                            <td>"00 "</td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <td>3</td>
+                            <td>Seg J52</td>
+                            <td>1 a 240</td>
+                            <td>240</td>
+                            <td>Todos</td>
+                            <td>Todos</td>
+                            <td>Repete toda a linha</td>
+                            <td>Repete a linha do arquivo de remessa.</td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <td>3</td>
+                            <td>Seg O</td>
+                            <td>143 a 162</td>
+                            <td>20</td>
+                            <td>G043</td>
+                            <td>Nosso Número</td>
+                            <td>Nº do Docto Atribuído pelo Banco</td>
+                            <td>"12345678 "</td>
+                            <td>repete Seu número - posição 123 a 142</td>
+                          </tr>
+                          <tr>
+                            <td>3</td>
+                            <td>Seg O</td>
+                            <td>231 a 240</td>
+                            <td>10</td>
+                            <td>G059</td>
+                            <td>Aviso</td>
+                            <td>Códigos das Ocorrências p/ Retorno</td>
+                            <td>"00 "</td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <td>3</td>
+                            <td>Seg N</td>
+                            <td>231 a 240</td>
+                            <td>10</td>
+                            <td>G059</td>
+                            <td>Aviso</td>
+                            <td>Códigos das Ocorrências p/ Retorno</td>
+                            <td>"00 "</td>
+                            <td></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card mb-4 rounded-0 shadow border-0">
+
+                  <div class="card-header rounded-0 bg-white border p-0 border-0">
+                    <a class="card-link h4 d-flex tex-dark mb-0 py-3 px-4 justify-content-between"
+                      data-toggle="collapse" href="#itau-campos">
+                      <span>Itaú</span> <i class="ti-plus text-primary text-right"></i>
+                    </a>
+                  </div>
+                  <div id="itau-campos" class="collapse" data-parent="#accordion">
+                    <div class="card-body font-secondary text-color">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Tipo</th>
+                            <th>Segmento</th>
+                            <th>Posição</th>
+                            <th>QTD</th>
+                            <th>Campo</th>
+                            <th>Nome</th>
+                            <th>Descrição</th>
+                            <th>Exemplo no Retorno</th>
+                            <th>Observação</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>0</td>
+                            <td>Header Arq</td>
+                            <td>143 a 143</td>
+                            <td>1</td>
+                            <td></td>
+                            <td>Arquivo-Código</td>
+                            <td>Código Remessa/Retorno</td>
+                            <td>"2"</td>
+                            <td>1=Remessa, 2=Retorno</td>
+                          </tr>
+                          <tr>
+                            <td>1</td>
+                            <td>Header Lote</td>
+                            <td>231 a 240</td>
+                            <td>10</td>
+                            <td></td>
+                            <td>Ocorrências</td>
+                            <td>Código Ocorrências p/ Retorno</td>
+                            <td>"00"</td>
+                            <td>Nota 8</td>
+                          </tr>
+                          <tr>
+                            <td>3</td>
+                            <td>Seg A</td>
+                            <td>135 a 154</td>
+                            <td>20</td>
+                            <td></td>
+                            <td>Nosso Número</td>
+                            <td>Nº Docto Atribuído pelo Banco</td>
+                            <td>"12345678&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"</td>
+                            <td>repete o numDoc - posição 74 a 93</td>
+                          </tr>
+                          <tr>
+                            <td>3</td>
+                            <td>Seg A</td>
+                            <td>155 a 162</td>
+                            <td>8</td>
+                            <td></td>
+                            <td>Data Efetiva</td>
+                            <td>Data Real Efetivação do Pagto</td>
+                            <td>"DDMMAAAA"</td>
+                            <td>repete a dataPagamento - posição 94 a 101</td>
+
+                          </tr>
+                          <tr>
+                            <td>3</td>
+                            <td>Seg A</td>
+                            <td>163 a 177</td>
+                            <td>15</td>
+                            <td></td>
+                            <td>Valor Efetivo</td>
+                            <td>Valor Real Efetivação do Pagto</td>
+                            <td>"000000000000000"</td>
+                            <td>repete valor pagamento - posição 120 a 134</td>
+                          </tr>
+                          <tr>
+                            <td>3</td>
+                            <td>Seg A</td>
+                            <td>198 a 203</td>
+                            <td>6</td>
+                            <td></td>
+                            <td>Nº do Documento</td>
+                            <td>Nº do Doc/TED/OP/Cheque no Retorno</td>
+                            <td>"123456"</td>
+                            <td>Recebe um randômico de 6 dígitos</td>
+                          </tr>
+                          <tr>
+                            <td>3</td>
+                            <td>Seg A</td>
+                            <td>231 a 240</td>
+                            <td>10</td>
+                            <td></td>
+                            <td>Ocorrências</td>
+                            <td>Código Ocorrências no Retorno</td>
+                            <td>"00"</td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <td>3</td>
+                            <td>Seg B</td>
+                            <td>231 a 240</td>
+                            <td>10</td>
+                            <td></td>
+                            <td>Ocorrências</td>
+                            <td>Código de Ocorrências no Retorno</td>
+                            <td>"00"</td>
+                            <td></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 text-md-left text-left">
+          <!-- <p class="mb-md-0 mb-4">Copyright © 2025 by<a href=""></a></p> -->
+        </div>
+        <div class="col-md-6 text-md-right text-right">
+          <ul class="list-inline">
+            <li class="list-inline-item">
+              <a class="text-color d-inline-block p-2" href="https://github.com/marcelo-lourenco" target="_blank">
+                <i class="ti-github"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a class="text-color d-inline-block p-2" href="https://www.linkedin.com/in/marcelolourencodasilva/"
+                target="_blank">
+                <i class="ti-linkedin"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- /footer -->
+
+  <!-- ** JS Plugins Needed for the Project ** -->
+  <script src="plugins/jquery/jquery-1.12.4.js"></script>
+  <script src="plugins/bootstrap/bootstrap.min.js"></script>
+  <script src="plugins/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="plugins/match-height/jquery.matchHeight-min.js"></script>
+  <script src="assets/script.js"></script>
+  <script src="assets/cnab-converte-rem-em-ret.js"></script>
+
+</body>
+
+</html>

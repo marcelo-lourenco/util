@@ -2,183 +2,288 @@
 <html lang="pt-BR">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="shortcut icon" href="./assets/images/favicon.svg">
-  <title>Teste Help</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-    }
-
-    .menu {
-      margin: 0px;
-      list-style: none;
-      float: left;
-      background-color: #fff;
-      border-bottom: 3px solid #f2f2f2;
-      width: 100%;
-    }
-
-    .menu li {
-      position: relative;
-      float: left;
-      font-weight: 500;
-    }
-
-    .menu li a {
-      color: #9b9c9c;
-      text-decoration: none;
-      padding: 14px 10px;
-      display: block;
-      border-bottom: 3px solid transparent;
-    }
-
-    .menu li a:hover {
-      background-color: #e5e5e5;
-      border-bottom: 3px solid #c20332;
-      color: #9b9c9c;
-
-    }
-
-    .menu li ul {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background-color: #fff;
-      display: none;
-      border: 1px solid #ddd;
-      padding: 0px;
-    }
-
-    .menu li:hover ul,
-    .menu li.over ul {
-      display: block;
-    }
-
-    .menu li ul li {
-      display: block;
-      min-width: 400px;
-      font-size: 14px;
-    }
-
-    .menu li ul li a {
-      /* white-space: nowrap; */
-      padding-right: 10px;
-    }
-
-    #content {
-      padding: 50px;
-      height: 90vh;
-
-    }
-  </style>
-  <script src="../js/gtag.js"></script>
+	<meta charset="utf-8">
+	<title>Teste Help</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="google-site-verification" content="k2nQOYapQVIt3pnkIZrmUGnjD4wqOJ-GGMop_VIwhXk" />
+	<link rel="stylesheet" href="plugins/bootstrap/bootstrap.min.css">
+	<link rel="stylesheet" href="plugins/themify-icons/themify-icons.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap">
+	<link rel="stylesheet" href="assets/style.css" media="screen" />
+	<link rel="icon" href="images/favicon.svg" type="image/x-icon">
+	<script src=".assets/gtag.js"></script>
 </head>
 
 <body>
-  <nav>
-    <ul class="menu">
-      <li>
-        <a href="assets/pages/home.html" onclick="loadContent('assets/pages/home.html'); return false;">
-          Home
-        </a>
-      </li>
-      <li>
-        <a href="#" onclick="return false;">
-          Apoio aos testes
-        </a>
-        <ul>
-          <li>
-            <a href="https://marcelo-lourenco.github.io/gerador-br/#/geradores" target="_blank">
-              Gerador de Documentos Brasileiros
-            </a>
-          </li>
-          <li>
-            <a href="assets/pages/converte-rem-em-ret-cnab240.html"
-              onclick="loadContent('assets/pages/converte-rem-em-ret-cnab240.html'); return false;">
-              CNAB 240 - Converter Arquivo de Remessa em Retorno
-            </a>
-          </li>
-          <li>
-            <a href="https://marcelo-lourenco.github.io/cnab/" target="_blank">
-              CNAB 240 e 400 - Layout Colorido
-            </a>
-          </li>
-          <li>
-            <a href="assets/pages/localiza-numdoc-no-cnab240.html"
-              onclick="loadContent('assets/pages/localiza-numdoc-no-cnab240.html'); return false;">
-              CNAB 240 - Localizar NUMDOC em arquivos com Segmentos A e J
-            </a>
-          </li>
-          <li>
-            <a href="assets/pages/gera-controle-lancamentos.html"
-              onclick="loadContent('assets/pages/gera-controle-lancamentos.html'); return false;">
-              Gerar documentos para a "controle_lancamentos" - MongoDB
-            </a>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <a href="#" onclick="return false;">
-          Extensão Chrome
-        </a>
-        <ul>
-          <li>
-            <a href="https://chromewebstore.google.com/detail/dlfdmghbdpojkioblkohjafoccdnponn" target="_blank">
-              Extensão Chrome - Validador de Boleto
-            </a>
-          </li>
-          <li>
-            <a href="https://chromewebstore.google.com/detail/ipfihnddjaepajgdamecijfdefikdgam" target="_blank">
-              Extensão Chrome - Gerador de Dados Fictícios
-            </a>
-          </li>
-          <li>
-            <a href="https://chromewebstore.google.com/detail/kfinkhckgepbndjcolgehfgomeiklffi" target="_blank">
-              Extensão Chrome - CNAB Converte Remessa para Retorno
-            </a>
-          </li>
-          <li>
-            <a href="https://chromewebstore.google.com/detail/occanfpdiglllenbekgbnhijeoincilf" target="_blank">
-              Extensão Chrome - Jira Expandir Área de Trabalho
-            </a>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <a href="#" onclick="return false;">
-          Pacotes e Extenções
-        </a>
-        <ul>
-          <li>
-            <a href="https://www.npmjs.com/package/gerador-br" target="_blank">
-              Pacote NPM - Gerador de Dados Brasileiros
-            </a>
-          </li>
-          <li>
-            <a href="https://marketplace.visualstudio.com/items?itemName=mlourenco.api-test-builder" target="_blank">
-              Extensão VS Code - API Test Builder
-            </a>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </nav>
+	<!-- header -->
+	<header class="banner overlay bg-cover">
+		<nav class="navbar navbar-expand-md navbar-dark">
+			<div class="container">
+				<a class="navbar-brand px-2" href="index.html">HOME</a>
+				<button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation"
+					aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
 
-  <div id="content"></div>
+				<div class="collapse navbar-collapse text-center" id="navigation">
+					<ul class="navbar-nav ml-auto">
+						<!-- <li class="nav-item">
+							<a class="nav-link text-dark" href="index.html">Home</a>
+						</li> -->
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle text-dark" href="#" id="dropdown01" data-bs-toggle="dropdown"
+								aria-expanded="false">
+								Apoio aos Testes
+							</a>
+							<ul class="dropdown-menu" aria-labelledby="dropdown01">
+								<li>
+									<a class="dropdown-item" href="https://marcelo-lourenco.github.io/gerador-br/#/geradores"
+										target="_blank">Gerador de Dados Brasileiros
+									</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="cnab-converte-rem-em-ret.html">
+										CNAB 240 - Converter Arquivo de Remessa em Retorno
+									</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="https://marcelo-lourenco.github.io/cnab/" target="_blank">CNAB 240 e
+										400 - Layout Colorido
+									</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="cnab240-localiza-numdoc.html">
+										CNAB 240 - Localizar NUMDOC em arquivos com Segmentos A e J
+									</a>
+								</li>
+								<li>
+									<a class="dropdown-item" href="mongo-gera-controle-lancamentos.html">
+										Gerar documentos para a "controle_lancamentos" - MongoDB
+									</a>
+								</li>
+							</ul>
+						</li>
 
-  <script>
-    function loadContent(contentFileName) {
-      var contentUrl = 'data:text/html;charset=utf-8,' + encodeURIComponent('<object type="text/html" data="' + contentFileName + '" ></object>');
-      var contentContainer = document.getElementById("content");
-      contentContainer.innerHTML = '<object type="text/html" data="' + contentFileName + '" style="width: 100%; height: 100%;"></object>';
-    }
-    loadContent("assets/pages/home.html")
-  </script>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle text-dark" href="#" id="dropdown02" data-bs-toggle="dropdown"
+								aria-expanded="false">
+								Extensão Chrome
+							</a>
+							<ul class="dropdown-menu" aria-labelledby="dropdown02">
+								<li>
+									<a class="dropdown-item"
+										href="https://chromewebstore.google.com/detail/dlfdmghbdpojkioblkohjafoccdnponn"
+										target="_blank">Validador de Boleto
+									</a>
+								</li>
+								<li>
+									<a class="dropdown-item"
+										href="https://chromewebstore.google.com/detail/ipfihnddjaepajgdamecijfdefikdgam"
+										target="_blank">Gerador de Dados Fictícios
+									</a>
+								</li>
+								<li>
+									<a class="dropdown-item"
+										href="https://chromewebstore.google.com/detail/kfinkhckgepbndjcolgehfgomeiklffi"
+										target="_blank">CNAB Converte Remessa para Retorno
+									</a>
+								</li>
+								<li>
+									<a class="dropdown-item"
+										href="https://chromewebstore.google.com/detail/occanfpdiglllenbekgbnhijeoincilf"
+										target="_blank">Jira Expandir Área de Trabalho
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle text-dark" href="#" id="dropdown02" data-bs-toggle="dropdown"
+								aria-expanded="false">
+								Pacotes e Extensões
+							</a>
+							<ul class="dropdown-menu" aria-labelledby="dropdown02">
+								<li>
+									<a class="dropdown-item" href="https://www.npmjs.com/package/gerador-br" target="_blank">Pacote NPM -
+										Gerador de Dados Brasileiros
+									</a>
+								</li>
+								<li>
+									<a class="dropdown-item"
+										href="https://marketplace.visualstudio.com/items?itemName=mlourenco.api-test-builder"
+										target="_blank">Extensão VS Code - API Test Builder
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<!-- /header -->
+
+	<main>
+		<div class="container">
+
+			<!-- topics -->
+			<section class="section">
+				<div class="row justify-content-center">
+					<div class="col-12 text-center">
+						<h2 class="section-title">Apoio aos Testes</h2>
+					</div>
+					<!-- topic-item -->
+					<div class="col-lg-3 col-sm-6 mb-3">
+						<a href="https://marcelo-lourenco.github.io/gerador-br/#/geradores"
+							class="px-4 py-5 bg-white shadow text-center d-block match-height">
+							<i class="ti-id-badge icon text-primary d-block mb-4"></i>
+							<h3 class="mb-3 mt-0">Gerador de Dados</h3>
+							<h4 class="mb-3 mt-0">Brasileiros</h4>
+							<p class="mb-0">Gerador de CPF, RG, CNH, PIS, CNPJ, CEP, Contas Bancárias e muito mais.</p>
+						</a>
+					</div>
+					<div class="col-lg-3 col-sm-6 mb-3">
+						<a href="cnab-converte-rem-em-ret.html" class="px-4 py-5 bg-white shadow text-center d-block match-height">
+							<i class="ti-files icon text-primary d-block mb-4"></i>
+							<h3 class="mb-3 mt-0">CNAB 240</h3>
+							<h4 class="mb-3 mt-0">Converte .REM em .RET</h4>
+							<p class="mb-0">Converter Arquivo de Remessa em Arquivo de Retorno</p>
+						</a>
+					</div>
+					<div class="col-lg-3 col-sm-6 mb-3">
+						<a href="https://marcelo-lourenco.github.io/cnab/"
+							class="px-4 py-5 bg-white shadow text-center d-block match-height">
+							<i class="ti-palette icon text-primary d-block mb-4"></i>
+							<h3 class="mb-3 mt-0">CNAB</h3>
+							<h4 class="mb-3 mt-0">Layout Colorido</h4>
+							<p class="mb-0">Apresenta Arquivo CNAB Colunado e Colorido por posição.</p>
+						</a>
+					</div>
+					<div class="col-lg-3 col-sm-6 mb-3">
+						<a href="cnab240-localiza-numdoc.html" class="px-4 py-5 bg-white shadow text-center d-block match-height">
+							<i class="ti-search icon text-primary d-block mb-4"></i>
+							<h3 class="mb-3 mt-0">CNAB 240</h3>
+							<h4 class="mb-3 mt-0">Localizar NUMDOC</h4>
+							<p class="mb-0">Localizar NUMDOC em arquivos de Segmentos A e J</p>
+						</a>
+					</div>
+				</div>
+			</section>
+
+			<section class="section">
+				<div class="row justify-content-center">
+					<div class="col-12 text-center">
+						<h2 class="section-title">Extensões Chrome</h2>
+					</div>
+					<!-- topic-item -->
+					<div class="col-lg-3 col-sm-6 mb-3">
+						<a href="https://chromewebstore.google.com/detail/kfinkhckgepbndjcolgehfgomeiklffi"
+							class="px-4 py-5 bg-white shadow text-center d-block match-height">
+							<i class="ti-files icon text-primary d-block mb-4"></i>
+							<h3 class="mb-3 mt-0">Extensão Chrome<br></h3>
+							<h4 class="mb-3 mt-0">CNAB 400 Converte .REM em .RET</h4>
+							<p class="mb-0">Converter Arquivo de Remessa em Arquivo de Retorno</p>
+						</a>
+					</div>
+					<div class="col-lg-3 col-sm-6 mb-3">
+						<a href="https://chromewebstore.google.com/detail/dlfdmghbdpojkioblkohjafoccdnponn"
+							class="px-4 py-5 bg-white shadow text-center d-block match-height">
+							<i class="ti-layout-media-overlay icon text-primary d-block mb-4"></i>
+							<h3 class="mb-3 mt-0">Extensão Chrome</h3>
+							<h4 class="mb-3 mt-0">Validador de Boleto</h4>
+							<p class="mb-0">
+								Converte Código de Barras<br>em Linha Digitável<br><br>
+								ConverteLinha Digitável<br>em Código de Barras
+							</p>
+						</a>
+					</div>
+					<div class="col-lg-3 col-sm-6 mb-3">
+						<a href="https://chromewebstore.google.com/detail/ipfihnddjaepajgdamecijfdefikdgam"
+							class="px-4 py-5 bg-white shadow text-center d-block match-height">
+							<i class="ti-id-badge icon text-primary d-block mb-4"></i>
+							<h3 class="mb-3 mt-0">Extensão Chrome</h3>
+							<h4 class="mb-3 mt-0">Gerador de Dados Fictícios</h4>
+							<p class="mb-0">
+								Gerador de CPF, RG, CNH, PIS, CNS, Título, Passaporte, CNPJ, Inscr. Estadual, Conta Bancária, Cartão,
+								CEP,
+								E-mail, Renavam e Placa
+							</p>
+						</a>
+					</div>
+					<div class="col-lg-3 col-sm-6 mb-3">
+						<a href="https://chromewebstore.google.com/detail/occanfpdiglllenbekgbnhijeoincilf"
+							class="px-4 py-5 bg-white shadow text-center d-block match-height">
+							<i class="ti-layout-column3 icon text-primary d-block mb-4"></i>
+							<h3 class="mb-3 mt-0">Extensão Chrome</h3>
+							<h4 class="mb-3 mt-0">Jira Expandir Área de Trabalho</h4>
+							<p class="mb-0">Adiciona botões para expandir a área de trabalho e recolher o painel direito do Jira</p>
+						</a>
+					</div>
+			</section>
+
+			<section class="section">
+				<div class="row justify-content-center">
+					<div class="col-12 text-center">
+						<h2 class="section-title">Pacotes e Extensões</h2>
+					</div>
+					<!-- topic-item -->
+					<div class="col-lg-3 col-sm-6 mb-3">
+						<a href="https://www.npmjs.com/package/gerador-br"
+							class="px-4 py-5 bg-white shadow text-center d-block match-height">
+							<i class="ti-package icon text-primary d-block mb-4"></i>
+							<h3 class="mb-3 mt-0">Pacote NPM</h3>
+							<h4 class="mb-3 mt-0">Gerador de Dados Brasileiros</h4>
+							<p class="mb-0">Gere dados fictícios/válidos, para testes e desenvolvimento de Software.</p>
+						</a>
+					</div>
+					<div class="col-lg-3 col-sm-6 mb-3">
+						<a href="https://marketplace.visualstudio.com/items?itemName=mlourenco.api-test-builder"
+							class="px-4 py-5 bg-white shadow text-center d-block match-height">
+							<i class="ti-view-grid icon text-primary d-block mb-4"></i>
+							<h3 class="mb-3 mt-0">Extenção VS Code</h3>
+							<h4 class="mb-3 mt-0">API Test Builde</h4>
+							<p class="mb-0">Converte Swagger em Script de Teste de API para Playwright e Cypress</p>
+						</a>
+					</div>
+				</div>
+			</section>
+			<!-- /topics -->
+		</div>
+	</main>
+
+	<!-- footer -->
+	<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 text-md-left text-left">
+					<!-- <p class="mb-md-0 mb-4">Copyright © 2025 by<a href=""></a></p> -->
+				</div>
+				<div class="col-md-6 text-md-right text-right">
+					<ul class="list-inline">
+						<li class="list-inline-item">
+							<a class="text-color d-inline-block p-2" href="https://github.com/marcelo-lourenco" target="_blank">
+								<i class="ti-github"></i>
+							</a>
+						</li>
+						<li class="list-inline-item">
+							<a class="text-color d-inline-block p-2" href="https://www.linkedin.com/in/marcelolourencodasilva/"
+								target="_blank">
+								<i class="ti-linkedin"></i>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- /footer -->
+
+	<!-- ** JS Plugins Needed for the Project ** -->
+	<script src="plugins/jquery/jquery-1.12.4.js"></script>
+	<script src="plugins/bootstrap/bootstrap.min.js"></script>
+	<script src="plugins/bootstrap/bootstrap.bundle.min.js"></script>
+	<script src="plugins/match-height/jquery.matchHeight-min.js"></script>
+	<script src="assets/script.js"></script>
+
 </body>
 
 </html>
