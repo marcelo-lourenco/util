@@ -3,40 +3,75 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Teste Help</title>
+  <title>Teste Help - Ferramentas de Apoio para Testes e Desenvolvimento</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="google-site-verification" content="k2nQOYapQVIt3pnkIZrmUGnjD4wqOJ-GGMop_VIwhXk" />
-  <meta name="description" content="Página de apoio aos testes de CNAB, Extensões Chrome e Pacotes NPM">
+
+  <!-- SEO Meta Tags -->
+  <meta name="description"
+    content="Conjunto de ferramentas online e links úteis para apoiar testes de software, incluindo utilitários CNAB, geradores de dados, validadores, extensões Chrome e pacotes NPM criados por Marcelo Lourenço.">
   <meta name="keywords"
-    content="cnab, cnab240, cnab400, extensão chrome, gerador de dados brasileiros, npm, pacote npm, extensão vs code">
+    content="teste de software, qa, cnab, cnab240, cnab400, gerador de dados, cpf, cnpj, cnpj alfanumérico, validador, extensão chrome, pacote npm, mongodb, utilitários, marcelo lourenço">
   <meta name="author" content="Marcelo Lourenço">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://marcelo-lourenco.github.io/util/" />
+  <meta name="google-site-verification" content="k2nQOYapQVIt3pnkIZrmUGnjD4wqOJ-GGMop_VIwhXk" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://marcelo-lourenco.github.io/util/">
+  <meta property="og:title" content="Teste Help - Ferramentas de Apoio para Testes e Desenvolvimento">
+  <meta property="og:description" content="Utilitários CNAB, geradores de dados, validadores, extensões Chrome e pacotes NPM para auxiliar em testes de software.">
+  <meta property="og:image" content="https://marcelo-lourenco.github.io/util/images/social.png">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://marcelo-lourenco.github.io/util/">
+  <meta property="twitter:title" content="Teste Help - Ferramentas de Apoio para Testes e Desenvolvimento">
+  <meta property="twitter:description" content="Utilitários CNAB, geradores de dados, validadores, extensões Chrome e pacotes NPM para auxiliar em testes de software.">
+  <meta property="twitter:image" content="https://marcelo-lourenco.github.io/util/images/social.png">
+
+  <!-- Stylesheets -->
   <link rel="stylesheet" href="plugins/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="plugins/themify-icons/themify-icons.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap">
   <link rel="stylesheet" href="assets/style.css" media="screen" />
-  <link rel="icon" href="images/favicon.svg" type="image/x-icon">
-  <link rel="canonical" href="https://marcelo-lourenco.github.io/util/" />
 
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+
+  <!-- Google Analytics / Tag Manager -->
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-W25QQRNG8L"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'G-W25QQRNG8L');
   </script>
-
   <!-- Google Tag Manager -->
   <script>(function (w, d, s, l, i) {
       w[l] = w[l] || []; w[l].push({
-        'gtm.start':
-          new Date().getTime(), event: 'gtm.js'
+        'gtm.start': new Date().getTime(), event: 'gtm.js'
       }); var f = d.getElementsByTagName(s)[0],
         j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
           'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
     })(window, document, 'script', 'dataLayer', 'GTM-M75WVXG8');</script>
   <!-- End Google Tag Manager -->
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Teste Help",
+    "url": "https://marcelo-lourenco.github.io/util/",
+    "description": "Conjunto de ferramentas online e links úteis para apoiar testes de software, incluindo utilitários CNAB, geradores de dados, validadores, extensões Chrome e pacotes NPM.",
+    "author": {
+      "@type": "Person",
+      "name": "Marcelo Lourenço",
+      "url": "https://www.linkedin.com/in/marcelolourencodasilva/"
+    }
+  }
+  </script>
 
 </head>
 
@@ -45,102 +80,119 @@
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M75WVXG8" height="0" width="0"
       style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
-  <!-- header -->
-  <header class="banner overlay bg-cover">
+
+  <!-- Header -->
+  <header class="banner overlay">
     <nav class="navbar navbar-expand-md navbar-dark">
       <div class="container">
-        <a class="navbar-brand px-2" href="index.html">HOME</a>
-        <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation"
+        <a class="navbar-brand px-2" href="index.html">TESTE HELP</a>
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navigation"
           aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse text-center" id="navigation">
-          <ul class="navbar-nav ml-auto">
-            <!-- <li class="nav-item">
-							<a class="nav-link text-dark" href="index.html">Home</a>
-						</li> -->
+          <ul class="navbar-nav ms-auto">
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle text-dark" href="#" id="dropdown01" data-bs-toggle="dropdown"
+              <a class="nav-link dropdown-toggle" href="#" id="dropdownTests" role="button" data-bs-toggle="dropdown"
                 aria-expanded="false">
                 Apoio aos Testes
               </a>
-              <ul class="dropdown-menu" aria-labelledby="dropdown01">
+              <ul class="dropdown-menu" aria-labelledby="dropdownTests">
                 <li>
                   <a class="dropdown-item" href="https://marcelo-lourenco.github.io/gerador-br/#/geradores"
-                    target="_blank">Gerador de Dados Brasileiros
+                    target="_blank" rel="noopener noreferrer">
+                    Gerador de Dados Brasileiros
                   </a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="https://marcelo-lourenco.github.io/cnab/" target="_blank">
+                  <a class="dropdown-item" href="https://marcelo-lourenco.github.io/cnab/" target="_blank"
+                    rel="noopener noreferrer">
                     CNAB - Layout Colorido
                   </a>
                 </li>
                 <li>
                   <a class="dropdown-item" href="cnab-converte-rem-em-ret.html">
-                    CNAB 240 - Converter Arquivo de Remessa em Retorno
+                    CNAB 240 - Converter Remessa em Retorno
                   </a>
                 </li>
                 <li>
                   <a class="dropdown-item" href="cnab240-localiza-numdoc.html">
-                    CNAB 240 - Localizar NUMDOC em arquivos com Segmentos A e J
+                    CNAB 240 - Localizar NUMDOC (Seg. A/J)
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="cnab240-selecionar-colunas.html.html">
+                    CNAB 240 - Selecionar Colunas (Seg. A/J)
                   </a>
                 </li>
                 <li>
                   <a class="dropdown-item" href="mongo-gera-controle-lancamentos.html">
-                    Gerar documentos para a "controle_lancamentos" - MongoDB
+                    Gerar Docs "controle_lancamentos" (MongoDB)
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="https://marcelo-lourenco.github.io/validador-cnpj-alfanumerico/"
+                    target="_blank" rel="noopener noreferrer">
+                    Validador CNPJ Alfanumérico
                   </a>
                 </li>
               </ul>
             </li>
 
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle text-dark" href="#" id="dropdown02" data-bs-toggle="dropdown"
+              <a class="nav-link dropdown-toggle" href="#" id="dropdownChrome" role="button" data-bs-toggle="dropdown"
                 aria-expanded="false">
-                Extensão Chrome
+                Extensões Chrome
               </a>
-              <ul class="dropdown-menu" aria-labelledby="dropdown02">
+              <ul class="dropdown-menu" aria-labelledby="dropdownChrome">
                 <li>
                   <a class="dropdown-item"
-                    href="https://chromewebstore.google.com/detail/ipfihnddjaepajgdamecijfdefikdgam"
-                    target="_blank">Gerador de Dados Fictícios
+                    href="https://chromewebstore.google.com/detail/ipfihnddjaepajgdamecijfdefikdgam" target="_blank"
+                    rel="noopener noreferrer">
+                    Gerador de Dados Fictícios
                   </a>
                 </li>
                 <li>
                   <a class="dropdown-item"
-                    href="https://chromewebstore.google.com/detail/dlfdmghbdpojkioblkohjafoccdnponn"
-                    target="_blank">Validador de Boleto
+                    href="https://chromewebstore.google.com/detail/dlfdmghbdpojkioblkohjafoccdnponn" target="_blank"
+                    rel="noopener noreferrer">
+                    Validador de Boleto
                   </a>
                 </li>
                 <li>
                   <a class="dropdown-item"
-                    href="https://chromewebstore.google.com/detail/occanfpdiglllenbekgbnhijeoincilf"
-                    target="_blank">Jira Expandir Área de Trabalho
+                    href="https://chromewebstore.google.com/detail/occanfpdiglllenbekgbnhijeoincilf" target="_blank"
+                    rel="noopener noreferrer">
+                    Jira Expandir Área de Trabalho
                   </a>
                 </li>
                 <li>
                   <a class="dropdown-item"
-                    href="https://chromewebstore.google.com/detail/kfinkhckgepbndjcolgehfgomeiklffi"
-                    target="_blank">CNAB Converte Remessa para Retorno
+                    href="https://chromewebstore.google.com/detail/kfinkhckgepbndjcolgehfgomeiklffi" target="_blank"
+                    rel="noopener noreferrer">
+                    CNAB Converte Remessa para Retorno
                   </a>
                 </li>
               </ul>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle text-dark" href="#" id="dropdown02" data-bs-toggle="dropdown"
+              <a class="nav-link dropdown-toggle" href="#" id="dropdownPackages" role="button" data-bs-toggle="dropdown"
                 aria-expanded="false">
                 Pacotes e Extensões
               </a>
-              <ul class="dropdown-menu" aria-labelledby="dropdown02">
+              <ul class="dropdown-menu" aria-labelledby="dropdownPackages">
                 <li>
-                  <a class="dropdown-item" href="https://www.npmjs.com/package/gerador-br" target="_blank">
-                    Pacote NPM - Gerador de Dados Brasileiros
+                  <a class="dropdown-item" href="https://www.npmjs.com/package/gerador-br" target="_blank"
+                    rel="noopener noreferrer">
+                    NPM: Gerador de Dados Brasileiros
                   </a>
                 </li>
                 <li>
                   <a class="dropdown-item"
                     href="https://marketplace.visualstudio.com/items?itemName=mlourenco.api-test-builder"
-                    target="_blank">Extensão VS Code - API Test Builder
+                    target="_blank" rel="noopener noreferrer">
+                    VS Code: API Test Builder
                   </a>
                 </li>
               </ul>
@@ -150,153 +202,229 @@
       </div>
     </nav>
   </header>
-  <!-- /header -->
+  <!-- /Header -->
 
   <main>
     <div class="container">
 
-      <!-- topics -->
-      <section class="section">
+      <!-- Intro Section -->
+      <section class="section text-center">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <h1 class="mb-4">Ferramentas Úteis para Testes e Desenvolvimento</h1>
+            <p class="lead mb-5">
+              Uma coleção de utilitários online, extensões e pacotes para agilizar tarefas comuns
+              em testes de software e desenvolvimento, com foco em dados brasileiros e CNAB.
+            </p>
+          </div>
+        </div>
+      </section>
+      <!-- /Intro Section -->
+
+
+      <!-- Topics Section: Apoio aos Testes -->
+      <section class="section pt-0">
         <div class="row justify-content-center">
           <div class="col-12 text-center">
             <h2 class="section-title">Apoio aos Testes</h2>
           </div>
-          <!-- topic-item -->
-          <div class="col-lg-3 col-sm-6 mb-3">
-            <a href="https://marcelo-lourenco.github.io/gerador-br/#/geradores"
-              class="px-4 py-5 bg-white shadow text-center d-block match-height">
-              <i class="ti-id-badge icon text-primary d-block mb-4"></i>
-              <h3 class="mb-3 mt-0">Gerador de Dados</h3>
-              <h4 class="mb-3 mt-0">Brasileiros</h4>
-              <p class="mb-0">Gerador de CPF, RG, CNH, PIS, CNPJ, CEP, Contas Bancárias e muito mais.</p>
+          <!-- Card Item -->
+          <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <a href="https://marcelo-lourenco.github.io/gerador-br/#/geradores" target="_blank"
+              rel="noopener noreferrer" class="card h-100 text-center shadow-sm text-decoration-none text-dark">
+              <div class="card-body d-flex flex-column">
+                <i class="ti-id-badge icon text-primary d-block mb-3 fs-2"></i>
+                <h3 class="card-title h5 mb-2">Gerador de Dados Brasileiros</h3>
+                <p class="card-text small text-muted mt-auto">CPF, CNPJ, RG, CNH, PIS, Contas, CEP e mais.</p>
+              </div>
             </a>
           </div>
-          <div class="col-lg-3 col-sm-6 mb-3">
-            <a href="https://marcelo-lourenco.github.io/cnab/"
-              class="px-4 py-5 bg-white shadow text-center d-block match-height">
-              <i class="ti-palette icon text-primary d-block mb-4"></i>
-              <h3 class="mb-3 mt-0">CNAB</h3>
-              <h4 class="mb-3 mt-0">Layout Colorido</h4>
-              <p class="mb-0">Separa o conteúdo do arquivo CNAB por cores.<br>CNAB 150, 240 E 400</p>
+          <!-- Card Item -->
+          <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <a href="https://marcelo-lourenco.github.io/cnab/" target="_blank" rel="noopener noreferrer"
+              class="card h-100 text-center shadow-sm text-decoration-none text-dark">
+              <div class="card-body d-flex flex-column">
+                <i class="ti-palette icon text-primary d-block mb-3 fs-2"></i>
+                <h3 class="card-title h5 mb-2">CNAB Layout Colorido</h3>
+                <p class="card-text small text-muted mt-auto">Visualizador de arquivos CNAB (150, 240, 400) com destaque
+                  de campos.</p>
+              </div>
             </a>
           </div>
-          <div class="col-lg-3 col-sm-6 mb-3">
-            <a href="cnab-converte-rem-em-ret.html" class="px-4 py-5 bg-white shadow text-center d-block match-height">
-              <i class="ti-files icon text-primary d-block mb-4"></i>
-              <h3 class="mb-3 mt-0">CNAB 240</h3>
-              <h4 class="mb-3 mt-0">Converte .REM em .RET</h4>
-              <p class="mb-0">Converter Arquivo de Remessa em Arquivo de Retorno</p>
+          <!-- Card Item -->
+          <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <a href="cnab-converte-rem-em-ret.html"
+              class="card h-100 text-center shadow-sm text-decoration-none text-dark">
+              <div class="card-body d-flex flex-column">
+                <i class="ti-files icon text-primary d-block mb-3 fs-2"></i>
+                <h3 class="card-title h5 mb-2">CNAB 240: Remessa p/ Retorno</h3>
+                <p class="card-text small text-muted mt-auto">Converte arquivos de remessa (.REM) em arquivos de retorno
+                  (.RET).</p>
+              </div>
             </a>
           </div>
-          <div class="col-lg-3 col-sm-6 mb-3">
-            <a href="cnab240-localiza-numdoc.html" class="px-4 py-5 bg-white shadow text-center d-block match-height">
-              <i class="ti-search icon text-primary d-block mb-4"></i>
-              <h3 class="mb-3 mt-0">CNAB 240</h3>
-              <h4 class="mb-3 mt-0">Localizar NUMDOC</h4>
-              <p class="mb-0">Localizar NUMDOC em arquivos de Segmentos A e J</p>
+          <!-- Card Item -->
+          <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <a href="cnab240-localiza-numdoc.html"
+              class="card h-100 text-center shadow-sm text-decoration-none text-dark">
+              <div class="card-body d-flex flex-column">
+                <i class="ti-search icon text-primary d-block mb-3 fs-2"></i>
+                <h3 class="card-title h5 mb-2">CNAB 240: Localizar NUMDOC</h3>
+                <p class="card-text small text-muted mt-auto">Encontra NUMDOC em arquivos com Segmentos A e J.</p>
+              </div>
+            </a>
+          </div>
+          <!-- Card Item -->
+          <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <a href="cnab240-selecionar-colunas.html.html"
+              class="card h-100 text-center shadow-sm text-decoration-none text-dark">
+              <div class="card-body d-flex flex-column">
+                <i class="ti-layout-column3 icon text-primary d-block mb-3 fs-2"></i>
+                <h3 class="card-title h5 mb-2">CNAB 240: Selecionar Colunas</h3>
+                <p class="card-text small text-muted mt-auto">Extrai colunas específicas de arquivos com Segmentos A e
+                  J.</p>
+              </div>
+            </a>
+          </div>
+          <!-- Card Item -->
+          <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <a href="mongo-gera-controle-lancamentos.html"
+              class="card h-100 text-center shadow-sm text-decoration-none text-dark">
+              <div class="card-body d-flex flex-column">
+                <i class="ti-server icon text-primary d-block mb-3 fs-2"></i>
+                <h3 class="card-title h5 mb-2">MongoDB: Gerar Docs</h3>
+                <p class="card-text small text-muted mt-auto">Cria documentos para a collection "controle_lancamentos".
+                </p>
+              </div>
+            </a>
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <a href="https://marcelo-lourenco.github.io/validador-cnpj-alfanumerico/" target="_blank"
+              rel="noopener noreferrer" class="card h-100 text-center shadow-sm text-decoration-none text-dark">
+              <div class="card-body d-flex flex-column">
+                <i class="ti-check-box icon text-primary d-block mb-3 fs-2"></i>
+                <h3 class="card-title h5 mb-2">Validador CNPJ Alfanumérico</h3>
+                <p class="card-text small text-muted mt-auto">Valida CNPJs que contêm letras e números.</p>
+              </div>
             </a>
           </div>
         </div>
       </section>
+      <!-- /Topics Section: Apoio aos Testes -->
 
+      <!-- Topics Section: Extensões Chrome -->
       <section class="section">
         <div class="row justify-content-center">
           <div class="col-12 text-center">
             <h2 class="section-title">Extensões Chrome</h2>
           </div>
-          <!-- topic-item -->
-          <div class="col-lg-3 col-sm-6 mb-3">
-            <a href="https://chromewebstore.google.com/detail/kfinkhckgepbndjcolgehfgomeiklffi"
-              class="px-4 py-5 bg-white shadow text-center d-block match-height">
-              <i class="ti-files icon text-primary d-block mb-4"></i>
-              <h3 class="mb-3 mt-0">CNAB Converte .rem para .ret<br></h3>
-              <!-- <h4 class="mb-3 mt-0">CNAB 400 Converte  .REM em .RET</h4> -->
-              <p class="mb-0">Converter Arquivo de Remessa em Arquivo de Retorno</p>
+          <!-- Card Item -->
+          <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <a href="https://chromewebstore.google.com/detail/kfinkhckgepbndjcolgehfgomeiklffi" target="_blank"
+              rel="noopener noreferrer" class="card h-100 text-center shadow-sm text-decoration-none text-dark">
+              <div class="card-body d-flex flex-column">
+                <i class="ti-files icon text-primary d-block mb-3 fs-2"></i>
+                <h3 class="card-title h5 mb-2">CNAB: Remessa p/ Retorno</h3>
+                <p class="card-text small text-muted mt-auto">Extensão para converter arquivos CNAB .REM em .RET.</p>
+              </div>
             </a>
           </div>
-          <div class="col-lg-3 col-sm-6 mb-3">
-            <a href="https://chromewebstore.google.com/detail/dlfdmghbdpojkioblkohjafoccdnponn"
-              class="px-4 py-5 bg-white shadow text-center d-block match-height">
-              <i class="ti-layout-media-overlay icon text-primary d-block mb-4"></i>
-              <h3 class="mb-3 mt-0">Validador de Boleto</h3>
-              <!-- <h4 class="mb-3 mt-0">Validador de Boleto</h4> -->
-              <p class="mb-0">
-                Converte Código de Barras<br>em Linha Digitável<br>
-                ConverteLinha Digitável<br>em Código de Barras
-              </p>
+          <!-- Card Item -->
+          <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <a href="https://chromewebstore.google.com/detail/dlfdmghbdpojkioblkohjafoccdnponn" target="_blank"
+              rel="noopener noreferrer" class="card h-100 text-center shadow-sm text-decoration-none text-dark">
+              <div class="card-body d-flex flex-column">
+                <i class="ti-layout-media-overlay icon text-primary d-block mb-3 fs-2"></i>
+                <h3 class="card-title h5 mb-2">Validador de Boleto</h3>
+                <p class="card-text small text-muted mt-auto">Converte e valida códigos de barras e linhas digitáveis.
+                </p>
+              </div>
             </a>
           </div>
-          <div class="col-lg-3 col-sm-6 mb-3">
-            <a href="https://chromewebstore.google.com/detail/ipfihnddjaepajgdamecijfdefikdgam"
-              class="px-4 py-5 bg-white shadow text-center d-block match-height">
-              <i class="ti-id-badge icon text-primary d-block mb-4"></i>
-              <h3 class="mb-3 mt-0">Gerador de Dados Fictícios</h3>
-              <!-- <h4 class="mb-3 mt-0">Gerador de Dados Fictícios</h4> -->
-              <p class="mb-0">
-                Gerador de CPF, RG, CNH, PIS, CNS, Título, Passaporte, CNPJ, Inscr. Estadual, Conta Bancária, Cartão,
-                CEP, E-mail, Renavam e Placa
-              </p>
+          <!-- Card Item -->
+          <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <a href="https://chromewebstore.google.com/detail/ipfihnddjaepajgdamecijfdefikdgam" target="_blank"
+              rel="noopener noreferrer" class="card h-100 text-center shadow-sm text-decoration-none text-dark">
+              <div class="card-body d-flex flex-column">
+                <i class="ti-id-badge icon text-primary d-block mb-3 fs-2"></i>
+                <h3 class="card-title h5 mb-2">Gerador de Dados Fictícios</h3>
+                <p class="card-text small text-muted mt-auto">Gera diversos tipos de dados brasileiros diretamente no
+                  navegador.</p>
+              </div>
             </a>
           </div>
-          <div class="col-lg-3 col-sm-6 mb-3">
-            <a href="https://chromewebstore.google.com/detail/occanfpdiglllenbekgbnhijeoincilf"
-              class="px-4 py-5 bg-white shadow text-center d-block match-height">
-              <i class="ti-layout-column3 icon text-primary d-block mb-4"></i>
-              <h3 class="mb-3 mt-0">Jira Expandir Área de Trabalho</h3>
-              <!-- <h4 class="mb-3 mt-0">Jira Expandir Área de Trabalho</h4> -->
-              <p class="mb-0">Adiciona botões para expandir a área de trabalho e recolher o painel direito do Jira</p>
+          <!-- Card Item -->
+          <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <a href="https://chromewebstore.google.com/detail/occanfpdiglllenbekgbnhijeoincilf" target="_blank"
+              rel="noopener noreferrer" class="card h-100 text-center shadow-sm text-decoration-none text-dark">
+              <div class="card-body d-flex flex-column">
+                <i class="ti-layout-column3 icon text-primary d-block mb-3 fs-2"></i>
+                <h3 class="card-title h5 mb-2">Jira: Expandir Área</h3>
+                <p class="card-text small text-muted mt-auto">Otimiza a visualização de issues no Jira expandindo a área
+                  útil.</p>
+              </div>
             </a>
           </div>
+        </div>
       </section>
+      <!-- /Topics Section: Extensões Chrome -->
 
+      <!-- Topics Section: Pacotes e Extensões -->
       <section class="section">
         <div class="row justify-content-center">
           <div class="col-12 text-center">
-            <h2 class="section-title">Pacotes e Extensões</h2>
+            <h2 class="section-title">Pacotes e Extensões Dev</h2>
           </div>
-          <!-- topic-item -->
-          <div class="col-lg-3 col-sm-6 mb-3">
-            <a href="https://www.npmjs.com/package/gerador-br"
-              class="px-4 py-5 bg-white shadow text-center d-block match-height">
-              <i class="ti-package icon text-primary d-block mb-4"></i>
-              <h3 class="mb-3 mt-0">NPM</h3>
-              <h4 class="mb-3 mt-0">Gerador Br</h4>
-              <p class="mb-0">Gerador de Dados Brasileiros para automatização em testes e desenvolvimento</p>
+          <!-- Card Item -->
+          <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <a href="https://www.npmjs.com/package/gerador-br" target="_blank" rel="noopener noreferrer"
+              class="card h-100 text-center shadow-sm text-decoration-none text-dark">
+              <div class="card-body d-flex flex-column">
+                <i class="ti-package icon text-primary d-block mb-3 fs-2"></i>
+                <h3 class="card-title h5 mb-2">NPM: Gerador BR</h3>
+                <p class="card-text small text-muted mt-auto">Pacote Node.js para gerar dados brasileiros em testes
+                  automatizados.</p>
+              </div>
             </a>
           </div>
-          <div class="col-lg-3 col-sm-6 mb-3">
-            <a href="https://marketplace.visualstudio.com/items?itemName=mlourenco.api-test-builder"
-              class="px-4 py-5 bg-white shadow text-center d-block match-height">
-              <i class="ti-view-grid icon text-primary d-block mb-4"></i>
-              <h3 class="mb-3 mt-0">VS Code</h3>
-              <h4 class="mb-3 mt-0">API Test Builder</h4>
-              <p class="mb-0">Converte Swagger em Script de Teste de API para Playwright e Cypress</p>
+          <!-- Card Item -->
+          <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <a href="https://marketplace.visualstudio.com/items?itemName=mlourenco.api-test-builder" target="_blank"
+              rel="noopener noreferrer" class="card h-100 text-center shadow-sm text-decoration-none text-dark">
+              <div class="card-body d-flex flex-column">
+                <i class="ti-vector icon text-primary d-block mb-3 fs-2"></i>
+                <h3 class="card-title h5 mb-2">VS Code: API Test Builder</h3>
+                <p class="card-text small text-muted mt-auto">Converte Swagger/OpenAPI em scripts de teste
+                  (Playwright/Cypress).</p>
+              </div>
             </a>
           </div>
         </div>
       </section>
-      <!-- /topics -->
-    </div>
+      <!-- /Topics Section: Pacotes e Extensões -->
+
+    </div> <!-- /container -->
   </main>
 
-  <!-- footer -->
-  <footer>
+  <!-- Footer -->
+  <footer class="bg-light py-4 mt-5">
     <div class="container">
-      <div class="row">
-        <div class="col-md-6 text-md-left text-left">
-          <!-- <p class="mb-md-0 mb-4">Copyright © 2025 by<a href=""></a></p> -->
+      <div class="row align-items-center">
+        <div class="col-md-6 text-center text-md-start mb-2 mb-md-0">
+          <small class="text-muted">Desenvolvido por Marcelo Lourenço</small>
         </div>
-        <div class="col-md-6 text-md-right text-right">
-          <ul class="list-inline">
-            <li class="list-inline-item">
-              <a class="text-color d-inline-block p-2" href="https://github.com/marcelo-lourenco" target="_blank">
-                <i class="ti-github"></i>
+        <div class="col-md-6 text-center text-md-end">
+          <ul class="list-inline mb-0">
+            <li class="list-inline-item mx-2">
+              <a class="text-muted text-decoration-none" href="https://github.com/marcelo-lourenco" target="_blank"
+                rel="noopener noreferrer" aria-label="GitHub de Marcelo Lourenço">
+                <i class="ti-github fs-4"></i>
               </a>
             </li>
-            <li class="list-inline-item">
-              <a class="text-color d-inline-block p-2" href="https://www.linkedin.com/in/marcelolourencodasilva/"
-                target="_blank">
-                <i class="ti-linkedin"></i>
+            <li class="list-inline-item mx-2">
+              <a class="text-muted text-decoration-none" href="https://www.linkedin.com/in/marcelolourencodasilva/"
+                target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Marcelo Lourenço">
+                <i class="ti-linkedin fs-4"></i>
               </a>
             </li>
           </ul>
@@ -304,15 +432,13 @@
       </div>
     </div>
   </footer>
-  <!-- /footer -->
+  <!-- /Footer -->
 
-  <!-- ** JS Plugins Needed for the Project ** -->
+  <!-- JS Plugins -->
   <script src="plugins/jquery/jquery-1.12.4.js"></script>
-  <script src="plugins/bootstrap/bootstrap.min.js"></script>
   <script src="plugins/bootstrap/bootstrap.bundle.min.js"></script>
   <script src="plugins/match-height/jquery.matchHeight-min.js"></script>
   <script src="assets/script.js"></script>
-
 </body>
 
 </html>

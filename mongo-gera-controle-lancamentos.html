@@ -2,24 +2,103 @@
 <html lang="pt-BR">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gerador de documento "controle-lancamento"</title>
-  <link rel="stylesheet" type="text/css" href="../css/styles.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-  <script src="../js/scripts.js"></script>
-  
+  <meta charset="utf-8">
+  <title>MongoDB - Gerar Docs "controle_lancamentos" | Teste Help</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- SEO Meta Tags -->
+  <meta name="description"
+    content="Ferramenta online para gerar scripts MongoDB (insertMany) para a collection 'controle_lancamentos' a partir de arquivos JSON ou CSV.">
+  <meta name="keywords"
+    content="mongodb, controle_lancamentos, gerar script mongo, insertmany, json para mongo, csv para mongo, teste, qa">
+  <meta name="author" content="Marcelo Lourenço">
+  <meta name="robots" content="index, follow">
+  <meta name="google-site-verification" content="k2nQOYapQVIt3pnkIZrmUGnjD4wqOJ-GGMop_VIwhXk" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://marcelo-lourenco.github.io/util/mongo-gera-controle-lancamentos.html">
+  <meta property="og:title" content="MongoDB - Gerar Docs 'controle_lancamentos' | Teste Help">
+  <meta property="og:description"
+    content="Gere scripts MongoDB 'insertMany' para 'controle_lancamentos' a partir de JSON ou CSV.">
+  <meta property="og:image" content="https://marcelo-lourenco.github.io/util/images/social.png">
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://marcelo-lourenco.github.io/util/mongo-gera-controle-lancamentos.html">
+  <meta property="twitter:title" content="MongoDB - Gerar Docs 'controle_lancamentos' | Teste Help">
+  <meta property="twitter:description"
+    content="Gere scripts MongoDB 'insertMany' para 'controle_lancamentos' a partir de JSON ou CSV.">
+  <meta property="twitter:image" content="https://marcelo-lourenco.github.io/util/images/social.png">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="plugins/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="plugins/themify-icons/themify-icons.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap">
+  <link rel="stylesheet" href="assets/style.css" media="screen" />
+
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+
+  <!-- Google Analytics / Tag Manager -->
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-W25QQRNG8L"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'G-W25QQRNG8L');
   </script>
-  
-</head>
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start': new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-M75WVXG8');</script>
+  <!-- End Google Tag Manager -->
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Gerador MongoDB 'controle_lancamentos'",
+    "operatingSystem": "Web",
+    "applicationCategory": "DeveloperTool",
+    "url": "https://marcelo-lourenco.github.io/util/mongo-gera-controle-lancamentos.html",
+    "description": "Ferramenta online para gerar scripts MongoDB (insertMany) para a collection 'controle_lancamentos' a partir de arquivos JSON ou CSV.",
+    "author": {
+      "@type": "Person",
+      "name": "Marcelo Lourenço",
+      "url": "https://www.linkedin.com/in/marcelolourencodasilva/"
+    },
+     "isPartOf": {
+        "@type": "WebSite",
+        "name": "Teste Help",
+        "url": "https://marcelo-lourenco.github.io/util/"
+      }
+  }
+  </script>
+
+  <!-- Custom styles for code blocks if needed -->
+  <style>
+    .code-container {
+      background-color: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 0.25rem;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      overflow-x: auto;
+    }
+
+    .code-container code {
+      white-space: pre;
+      font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 0.875em;
+      color: #212529;
+    }
+  </style>
+
 </head>
 
 <body>
@@ -27,291 +106,296 @@
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M75WVXG8" height="0" width="0"
       style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
-  <!-- header -->
-  <h1>Gerador de documentos para a collection "controle_lancamentos"</h1>
 
-  <h2> Cria o script <i>db.controle_lancamentos.insertMany()</i> para MongoDB</h2>
+  <!-- Header -->
+  <header class="banner overlay">
+    <nav class="navbar navbar-expand-md navbar-dark">
+      <div class="container">
+        <a class="navbar-brand px-2" href="index.html">TESTE HELP</a>
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navigation"
+          aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-  <hr>
-  <h3>Gera controle_lancamentos a partir do payload.json</h3>
-  <p>Selecine o arquivo "payload.json" desejado e clique em "Processar".</p>
+        <div class="collapse navbar-collapse text-center" id="navigation">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdownTests" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Apoio aos Testes
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="dropdownTests">
+                <li>
+                  <a class="dropdown-item" href="https://marcelo-lourenco.github.io/gerador-br/#/geradores"
+                    target="_blank" rel="noopener noreferrer">
+                    Gerador de Dados Brasileiros
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="https://marcelo-lourenco.github.io/cnab/" target="_blank"
+                    rel="noopener noreferrer">
+                    CNAB - Layout Colorido
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="cnab-converte-rem-em-ret.html">
+                    CNAB 240 - Converter Remessa em Retorno
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="cnab240-localiza-numdoc.html">
+                    CNAB 240 - Localizar NUMDOC (Seg. A/J)
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="cnab240-selecionar-colunas.html"> <!-- Corrected link -->
+                    CNAB 240 - Selecionar Colunas (Seg. A/J)
+                  </a>
+                </li>
+                <li>
+                  <!-- Link para a própria página -->
+                  <a class="dropdown-item active" aria-current="page" href="mongo-gera-controle-lancamentos.html">
+                    Gerar Docs "controle_lancamentos" (MongoDB)
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="https://marcelo-lourenco.github.io/validador-cnpj-alfanumerico/"
+                    target="_blank" rel="noopener noreferrer">
+                    Validador CNPJ Alfanumérico
+                  </a>
+                </li>
+              </ul>
+            </li>
 
-  <label for="jsonFile" id="escolherArquivoJson" class="file-upload-label">Escolher Arquivo Json</label>
-  <input type="file" id="jsonFile" accept=".json" onchange="displayFileName('jsonFile', 'escolherArquivoJson')">
-  <button id="process-button-json" class="primary-button" onclick="processFile()">PROCESSAR</button>
-  <div class="success-message" class="secondary-button" style="display: none;">Arquivo gerado com sucesso</div>
-  <div class="error-message" style="display: none;">Por favor, selecione um arquivo Json.</div>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdownChrome" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Extensões Chrome
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="dropdownChrome">
+                <li>
+                  <a class="dropdown-item"
+                    href="https://chromewebstore.google.com/detail/ipfihnddjaepajgdamecijfdefikdgam" target="_blank"
+                    rel="noopener noreferrer">
+                    Gerador de Dados Fictícios
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item"
+                    href="https://chromewebstore.google.com/detail/dlfdmghbdpojkioblkohjafoccdnponn" target="_blank"
+                    rel="noopener noreferrer">
+                    Validador de Boleto
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item"
+                    href="https://chromewebstore.google.com/detail/occanfpdiglllenbekgbnhijeoincilf" target="_blank"
+                    rel="noopener noreferrer">
+                    Jira Expandir Área de Trabalho
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item"
+                    href="https://chromewebstore.google.com/detail/kfinkhckgepbndjcolgehfgomeiklffi" target="_blank"
+                    rel="noopener noreferrer">
+                    CNAB Converte Remessa para Retorno
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdownPackages" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Pacotes e Extensões
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="dropdownPackages">
+                <li>
+                  <a class="dropdown-item" href="https://www.npmjs.com/package/gerador-br" target="_blank"
+                    rel="noopener noreferrer">
+                    NPM: Gerador de Dados Brasileiros
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item"
+                    href="https://marketplace.visualstudio.com/items?itemName=mlourenco.api-test-builder"
+                    target="_blank" rel="noopener noreferrer">
+                    VS Code: API Test Builder
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <!-- /Header -->
 
-  <hr>
-  <h3>Gera controle_lancamentos a partir do .csv</h3>
-  <p>Selecine o arquivo ".csv" desejado e clique em "Processar".</p>
-  <label for="csvFile" id="escolherArquivoCsv" class="file-upload-label">Escolher Arquivo CSV</label>
-  <input type="file" id="csvFile" accept=".csv" onchange="displayFileName('csvFile', 'escolherArquivoCsv')">
+  <main>
+    <div class="container">
+      <!-- Tool Title Section -->
+      <section class="section text-center">
+        <div class="row justify-content-center">
+          <div class="col-lg-9">
+            <h1 class="mb-3">Gerador de Docs MongoDB para "controle_lancamentos"</h1>
+            <p class="lead mb-4">Cria scripts <code>db.controle_lancamentos.insertMany()</code> a partir de arquivos
+              JSON ou CSV.</p>
 
-  <button id="process-button-csv" class="primary-button" onclick="processCSV()">PROCESSAR</button>
-  <div class="success-message" class="secondary-button" style="display: none;">Arquivo gerado com sucesso</div>
-  <div class="error-message" style="display: none;">Por favor, selecione um arquivo CSV.</div>
-  <hr>
+            <div class="alert alert-success alert-dismissible fade show" style="display: none;" role="alert"></div>
+            <div class="alert alert-danger alert-dismissible fade show" style="display: none;" role="alert"></div>
+            <div class="alert alert-info alert-dismissible fade show" style="display: none;" role="alert"></div>
+            <div class="alert alert-warning alert-dismissible fade show" style="display: none;" role="alert"></div>
+          </div>
+        </div>
+      </section>
+      <!-- /Tool Title Section -->
 
-  <h3>Modelo do arquivo .csv</h3>
-  <div class="code-container">
-    <code>
-NUMERO_DOC,TIPO_P_E,DATA_VENCIMENTO,DATA_PAGAMENTO,VALOR,VL_REAL_PAGO
-15567320,P,10-APR-23,11-APR-23,4118.83,4118.83
-15569180,F,10-APR-23,11-APR-23,2702.62,2702.62
-21230196,!,28-JUN-23,29-JUN-23,5252.8,5252.8
-    </code>
-  </div>
+      <!-- JSON Processing Section -->
+      <section class="section pt-0">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div class="card shadow-sm mb-4">
+              <div class="card-body">
+                <h2 class="card-title h4 mb-3 text-center">Gerar a partir de payload.json</h2>
+                <p class="card-text text-center mb-4">Selecione o arquivo "payload.json" desejado e clique em
+                  "Processar".</p>
+                <div class="row justify-content-center align-items-center">
+                  <div class="col-md-7 mb-3 mb-md-0">
+                    <input type="file" class="form-control" id="jsonFile" accept=".json">
+                    <label for="jsonFile" class="visually-hidden">Escolher Arquivo Json</label>
+                  </div>
+                  <div class="col-md-4">
+                    <button class="btn btn-primary w-100" id="process-button-json">Processar JSON</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- /JSON Processing Section -->
 
-  <button id="create-file-button" class="primary-button">Gerar Arquivo Modelo</button>
+      <!-- CSV Processing Section -->
+      <section class="section pt-0">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div class="card shadow-sm mb-4">
+              <div class="card-body">
+                <h2 class="card-title h4 mb-3 text-center">Gerar a partir de .csv</h2>
+                <p class="card-text text-center mb-4">Selecione o arquivo ".csv" desejado e clique em "Processar".</p>
+                <div class="row justify-content-center align-items-center">
+                  <div class="col-md-7 mb-3 mb-md-0">
+                    <input type="file" class="form-control" id="csvFile" accept=".csv">
+                    <label for="csvFile" class="visually-hidden">Escolher Arquivo CSV</label>
+                  </div>
+                  <div class="col-md-4">
+                    <button class="btn btn-primary w-100" id="process-button-csv">Processar CSV</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- /CSV Processing Section -->
 
-  <hr>
+      <!-- CSV Model Section -->
+      <section class="section pt-0">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <h3 class="text-center mb-3">Modelo do arquivo .csv</h3>
+            <p class="text-center">Colunas necessárias: <code>NUMERO_DOC</code>, <code>TIPO_P_E</code>,
+              <code>CNPJ</code>, <code>DATA_VENCIMENTO</code>, <code>DATA_PAGAMENTO</code>, <code>VALOR</code>,
+              <code>VL_REAL_PAGO</code>.</p>
+            <div class="code-container">
+              <code>NUMERO_DOC,TIPO_P_E,CNPJ,DATA_VENCIMENTO,DATA_PAGAMENTO,VALOR,VL_REAL_PAGO
+15567320,P,00000000000191,10-APR-23,11-APR-23,4118.83,4118.83
+15569180,F,00000000000191,10-APR-23,11-APR-23,2702.62,2702.62
+21230196,!,00000000000191,28-JUN-23,29-JUN-23,5252.8,5252.8</code>
+            </div>
+            <div class="text-center mt-3">
+              <button id="create-file-button" class="btn btn-secondary">Gerar Arquivo Modelo CSV</button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- /CSV Model Section -->
 
-  <h3>Os dados de origem podem ser obtidos na CPLANCTO</h3>
-  <p>Exemplo de query:</p>
+      <!-- SQL Query Example Section -->
+      <section class="section pt-0">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <h3 class="text-center mb-3">Exemplo de Query SQL (Oracle)</h3>
+            <p class="text-center">Os dados de origem podem ser obtidos na CPLANCTO com uma query similar a esta:</p>
+            <div class="code-container">
+              <code>SELECT
+    CP.NUMERO_DOC,
+    CP.TIPO_P_E,
+    CG.NR_CGC AS CNPJ, -- Adicionado CNPJ
+    TO_CHAR(CP.DATA_VENCIMENTO, 'DD-MON-YY', 'NLS_DATE_LANGUAGE=AMERICAN') AS DATA_VENCIMENTO,
+    TO_CHAR(NVL(CP.DATA_BAIXA, CP.DATA_VENCIMENTO), 'DD-MON-YY', 'NLS_DATE_LANGUAGE=AMERICAN') AS DATA_PAGAMENTO, -- Usando DATA_BAIXA se disponível
+    CP.VALOR,
+    NVL(CP.VL_REAL_PAGO, CP.VALOR) AS VL_REAL_PAGO -- Usando VL_REAL_PAGO se disponível
+FROM
+    CONDO.CPLANCTO CP
+JOIN
+    CONDO.CONDOMINIO CD ON CP.CD_CONDOMINIO = CD.CD_CONDOMINIO
+JOIN
+    CONDO.CAD_GERAL CG ON CD.CD_PESSOA_ADMIN = CG.CD_PESSOA
+WHERE
+    CP.TIPO_P_E IN ('!', 'P', 'F') -- Ajuste conforme necessidade
+    AND CP.STATUS = 'E' -- Exemplo: Status 'Efetivado' ou 'Enviado'
+    AND CP.TIPO = 'R' -- Exemplo: Tipo 'Receita' ou 'Despesa'
+    AND CP.FL_ENVIO_BCO = 'S' -- Exemplo: Flag de envio
+    AND CP.DATA_BAIXA IS NULL -- Exemplo: Não baixado
+ORDER BY
+    CP.DATA_VENCIMENTO;</code>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- /SQL Query Example Section -->
 
-  <div class="code-container">
-    <code>
-SELECT NUMERO_DOC, TIPO_P_E, DATA_VENCIMENTO, DATA_VENCIMENTO AS DATA_PAGAMENTO, VALOR, VALOR AS VL_REAL_PAGO
-FROM CONDO.CPLANCTO CP
-WHERE TIPO_P_E = '!'
-  AND CP.STATUS = 'E'
-  AND CP.TIPO = 'R'
-  AND CP.FL_ENVIO_BCO = 'S'
-  AND CP.DATA_BAIXA = NULL;
-    </code>
-  </div>
+    </div> <!-- /container -->
+  </main>
 
+  <!-- Footer -->
+  <footer class="bg-light py-4 mt-5">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6 text-center text-md-start mb-2 mb-md-0">
+          <small class="text-muted">Desenvolvido por Marcelo Lourenço</small>
+        </div>
+        <div class="col-md-6 text-center text-md-end">
+          <ul class="list-inline mb-0">
+            <li class="list-inline-item mx-2">
+              <a class="text-muted text-decoration-none" href="https://github.com/marcelo-lourenco" target="_blank"
+                rel="noopener noreferrer" aria-label="GitHub de Marcelo Lourenço">
+                <i class="ti-github fs-4"></i>
+              </a>
+            </li>
+            <li class="list-inline-item mx-2">
+              <a class="text-muted text-decoration-none" href="https://www.linkedin.com/in/marcelolourencodasilva/"
+                target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Marcelo Lourenço">
+                <i class="ti-linkedin fs-4"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- /Footer -->
 
-  <script>
+  <!-- JS Plugins -->
+  <script src="plugins/jquery/jquery-1.12.4.js"></script>
+  <script src="plugins/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="plugins/match-height/jquery.matchHeight-min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 
-    function processJSON(jsonContent, file) {
-      const data = JSON.parse(jsonContent);
+  <script src="assets/script.js"></script>
+  <script src="assets/mongo-gera-controle-lancamentos.js"></script>
 
-      const sistema = data.sistema;
-      const lotes = data.lotes;
-
-      const result = lotes.flatMap((lote) => {
-        return lote.pagamentos.map((pagamento) => {
-          const vencimento = pagamento.pagto.venc;
-          const [ano, mes, dia] = vencimento;
-          return {
-            aplicacaoOrigem: sistema,
-            numDoc: pagamento.pagto.numDoc,
-            dataAgendamento: { $date: moment([ano, mes - 1, dia]).toISOString() },
-            createDate: { $date: moment().subtract(2, 'days').toISOString() },
-            lastModifiedDate: { $date: moment().subtract(2, 'days').toISOString() },
-            dataGeracaoArquivoRetornoBanco: { $date: moment().subtract(1, 'days').toISOString() },
-            dataProcessamentoRetornoBanco: { $date: moment().toISOString() },
-            dataPagamento: { $date: moment([ano, mes - 1, dia]).toISOString() },
-            dataRealEfeticacaoPagamento: { $date: moment([ano, mes - 1, dia]).toISOString() },
-            valorPagamento: pagamento.pagto.vlDoc,
-            valorRealPagamento: pagamento.pagto.vlDoc,
-            codigoOcorrenciaRetorno: "00",
-            _class: "model.ControleLancamento",
-          };
-        });
-      });
-
-      const outputFileContent = `const obj = ${JSON.stringify(result, null, 2)};`;
-      console.log(outputFileContent);
-      // Aqui você pode fazer o que quiser com outputFileContent, por exemplo, enviar para o servidor.
-
-      const fileName = file.name.replace(/\.[^/.]+$/, "") + ".mongodb.js";
-
-      const blob = new Blob([outputFileContent], { type: 'text/javascript' });
-      const link = document.createElement('a');
-      link.href = window.URL.createObjectURL(blob);
-      link.download = fileName; // Usar o novo nome do arquivo
-      link.click();
-
-      displaySuccessMessage('Arquivo gerado com sucesso');
-
-      alert("Processamento concluído. Verifique o console para a saída.");
-    }
-
-    function processFile() {
-      const fileInput = document.getElementById('jsonFile');
-      const file = fileInput.files[0];
-
-      if (file) {
-        const reader = new FileReader();
-
-        reader.onload = function (e) {
-          const jsonContent = e.target.result;
-          processJSON(jsonContent, file);
-        };
-
-        reader.readAsText(file);
-      } else {
-        alert('Por favor, selecione um arquivo JSON.');
-      }
-    }
-
-    function createCSVFile() {
-      const csvContent = `NUMERO_DOC,TIPO_P_E,DATA_VENCIMENTO,DATA_PAGAMENTO,VALOR,VL_REAL_PAGO
-15567320,P,10-APR-23,11-APR-23,4118.83,4118.83
-15569180,F,10-APR-23,11-APR-23,2702.62,2702.62
-21230196,!,28-JUN-23,29-JUN-23,5252.8,5252.8`;
-
-      const fileName = 'modelo-para-gerar-controle-lancamento.csv';
-      const blob = new Blob([csvContent], { type: 'text/csv' });
-
-      const link = document.createElement('a');
-      link.href = window.URL.createObjectURL(blob);
-      link.download = fileName;
-      link.click();
-    }
-
-    // Adiciona um ouvinte de evento ao botão
-    document.getElementById('create-file-button').addEventListener('click', createCSVFile);
-
-
-
-    function validateCSVHeaders(headers) {
-      const requiredColumns = ['NUMERO_DOC', 'TIPO_P_E', 'DATA_VENCIMENTO', 'DATA_PAGAMENTO', 'VALOR', 'VL_REAL_PAGO', 'CNPJ'];
-
-      for (const column of requiredColumns) {
-        if (!headers.includes(column)) {
-          const errorMessage = `A coluna "${column}" é obrigatória no arquivo CSV.`;
-          displayErrorMessage(errorMessage);
-          return false;
-        }
-      }
-
-      return true;
-    }
-
-
-
-    function processCSV() {
-      const fileInput = document.getElementById('csvFile');
-      const file = fileInput.files[0];
-
-
-      if (!file) {
-        displayErrorMessage('Por favor, selecione um arquivo CSV.');
-        return;
-      }
-
-      const reader = new FileReader();
-
-      reader.onload = function (e) {
-        const csvContent = e.target.result;
-        const lines = csvContent.trim().split('\n');
-        const headers = lines[0].replace(/\r/, '').split(/[,;]/);
-
-        if (!validateCSVHeaders(headers)) {
-          return;
-        }
-
-        // Remover cabeçalho
-        lines.shift();
-
-        const data = lines.map(line => {
-          const values = line.split(',');
-
-          const obj = {
-            /* "_id": {
-              "$oid": new Date().getTime().toString(16) + '0000000000000000',
-            }, */
-            "aplicacaoOrigem": getAplicacaoOrigem(values[1]),
-            "numDoc": values[0],
-            "cpfCnpj": values[2],
-            "dataAgendamento": {
-              "$date": moment(values[2], 'DD-MMM-YY').toISOString(),
-            },
-            "createDate": {
-              "$date": moment().subtract(2, 'days').toISOString(),
-            },
-            "lastModifiedDate": {
-              "$date": moment().subtract(2, 'days').toISOString(),
-            },
-            "dataGeracaoArquivoRetornoBanco": {
-              "$date": moment().subtract(1, 'days').toISOString(),
-            },
-            "dataProcessamentoRetornoBanco": {
-              "$date": moment().toISOString(),
-            },
-            "dataPagamento": {
-              "$date": moment(values[3], 'DD-MMM-YY').toISOString(),
-            },
-            "dataRealEfeticacaoPagamento": {
-              "$date": moment(values[3], 'DD-MMM-YY').toISOString(),
-            },
-            "valorPagamento": parseFloat(values[4]),
-            "valorRealPagamento": parseFloat(values[5]),
-            "codigoOcorrenciaRetorno": "00",
-            "_class": "model.ControleLancamento",
-          };
-
-          return obj;
-        });
-
-        // Gerar o arquivo .mongodb.js
-        const output = `db.controle_lancamentos.insertMany(${JSON.stringify(data, null, 2)});`;
-
-        // Obter o nome do arquivo e substituir a extensão
-        const fileName = file.name.replace(/\.[^/.]+$/, "") + ".mongodb.js";
-
-        const blob = new Blob([output], { type: 'text/javascript' });
-        const link = document.createElement('a');
-        link.href = window.URL.createObjectURL(blob);
-        link.download = fileName; // Usar o novo nome do arquivo
-        link.click();
-
-        displaySuccessMessage('Arquivo gerado com sucesso');
-      };
-
-      reader.readAsText(file);
-      //} else {
-      //  alert('Por favor, selecione um arquivo CSV.');
-      //}
-    }
-
-
-    function displayFileName(inputId, labelId) {
-      const fileInput = document.getElementById(inputId);
-      const label = document.getElementById(labelId);
-
-      if (fileInput.files.length > 0) {
-        label.textContent = fileInput.files[0].name;
-      } else {
-        label.textContent = 'Escolher Arquivo';
-      }
-    }
-
-    function getAplicacaoOrigem(tipo_p_e) {
-      switch (tipo_p_e) {
-        case 'P':
-          return 'REGISTRO_PAGAR';
-        case 'F':
-          return 'REGISTRO_FOLHA';
-        case '!':
-          return 'RESIN_INVEST';
-        default:
-          return '';
-      }
-    }
-
-    /* function displayErrorMessage(message) {
-      const errorMessage = document.querySelector('.error-message');
-      errorMessage.textContent = message;
-      errorMessage.style.display = 'block';
-
-      // Esconder a mensagem de sucesso se estiver visível
-      document.querySelector('.success-message').style.display = 'none';
-    }
-
-    function displaySuccessMessage(message) {
-      const successMessage = document.querySelector('.success-message');
-      successMessage.textContent = message;
-      successMessage.style.display = 'block';
-
-      // Esconder a mensagem de erro se estiver visível
-      document.querySelector('.error-message').style.display = 'none';
-    } */
-  </script>
 </body>
 
 </html>

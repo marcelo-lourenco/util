@@ -3,24 +3,80 @@
 
 <head>
   <meta charset="utf-8">
-  <title>CNAB - converte remessa em retorno</title>
+  <title>CNAB 240 - Converter Remessa em Retorno | Teste Help</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- SEO Meta Tags -->
+  <meta name="description"
+    content="Ferramenta online para converter arquivos de remessa CNAB 240 (.rem) em arquivos de retorno (.ret) simulando o processamento bancário para testes.">
+  <meta name="keywords" content="cnab, cnab240, converter cnab, remessa para retorno, rem para ret, teste cnab">
+  <meta name="author" content="Marcelo Lourenço">
+  <meta name="robots" content="index, follow">
+  <meta name="google-site-verification" content="k2nQOYapQVIt3pnkIZrmUGnjD4wqOJ-GGMop_VIwhXk" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://marcelo-lourenco.github.io/util/cnab-converte-rem-em-ret.html">
+  <meta property="og:title" content="CNAB 240 - Converter Remessa em Retorno | Teste Help">
+  <meta property="og:description" content="Converta arquivos CNAB 240 de remessa (.rem) para retorno (.ret) facilmente para seus testes.">
+  <meta property="og:image" content="https://marcelo-lourenco.github.io/util/images/social.png">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://marcelo-lourenco.github.io/util/cnab-converte-rem-em-ret.html">
+  <meta property="twitter:title" content="CNAB 240 - Converter Remessa em Retorno | Teste Help">
+  <meta property="twitter:description" content="Converta arquivos CNAB 240 de remessa (.rem) para retorno (.ret) facilmente para seus testes.">
+  <meta property="twitter:image" content="https://marcelo-lourenco.github.io/util/images/social.png">
+
+  <!-- Stylesheets -->
   <link rel="stylesheet" href="plugins/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="plugins/themify-icons/themify-icons.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap">
   <link rel="stylesheet" href="assets/style.css" media="screen" />
-  <link rel="icon" href="images/favicon.svg" type="image/x-icon">
 
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+
+  <!-- Google Analytics / Tag Manager -->
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-W25QQRNG8L"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-W25QQRNG8L');
+  </script>
   <!-- Google Tag Manager -->
   <script>(function (w, d, s, l, i) {
       w[l] = w[l] || []; w[l].push({
-        'gtm.start':
-          new Date().getTime(), event: 'gtm.js'
+        'gtm.start': new Date().getTime(), event: 'gtm.js'
       }); var f = d.getElementsByTagName(s)[0],
         j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
           'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
     })(window, document, 'script', 'dataLayer', 'GTM-M75WVXG8');</script>
   <!-- End Google Tag Manager -->
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Conversor CNAB Remessa para Retorno",
+    "operatingSystem": "Web",
+    "applicationCategory": "DeveloperTool",
+    "url": "https://marcelo-lourenco.github.io/util/cnab-converte-rem-em-ret.html",
+    "description": "Ferramenta online para converter arquivos de remessa CNAB 240 (.rem) em arquivos de retorno (.ret) para fins de teste.",
+    "author": {
+      "@type": "Person",
+      "name": "Marcelo Lourenço",
+      "url": "https://www.linkedin.com/in/marcelolourencodasilva/"
+    },
+     "isPartOf": {
+        "@type": "WebSite",
+        "name": "Teste Help",
+        "url": "https://marcelo-lourenco.github.io/util/"
+      }
+  }
+  </script>
 
 </head>
 
@@ -29,102 +85,119 @@
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M75WVXG8" height="0" width="0"
       style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
-  <!-- header -->
-  <header class="banner overlay bg-cover">
+
+  <!-- Header -->
+  <header class="banner overlay">
     <nav class="navbar navbar-expand-md navbar-dark">
       <div class="container">
-        <a class="navbar-brand px-2" href="index.html">HOME</a>
-        <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation"
+        <a class="navbar-brand px-2" href="index.html">TESTE HELP</a>
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navigation"
           aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse text-center" id="navigation">
-          <ul class="navbar-nav ml-auto">
-            <!-- <li class="nav-item">
-							<a class="nav-link text-dark" href="index.html">Home</a>
-						</li> -->
+          <ul class="navbar-nav ms-auto">
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle text-dark" href="#" id="dropdown01" data-bs-toggle="dropdown"
+              <a class="nav-link dropdown-toggle" href="#" id="dropdownTests" role="button" data-bs-toggle="dropdown"
                 aria-expanded="false">
                 Apoio aos Testes
               </a>
-              <ul class="dropdown-menu" aria-labelledby="dropdown01">
+              <ul class="dropdown-menu" aria-labelledby="dropdownTests">
                 <li>
                   <a class="dropdown-item" href="https://marcelo-lourenco.github.io/gerador-br/#/geradores"
-                    target="_blank">Gerador de Dados Brasileiros
+                    target="_blank" rel="noopener noreferrer">
+                    Gerador de Dados Brasileiros
                   </a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="https://marcelo-lourenco.github.io/cnab/" target="_blank">
+                  <a class="dropdown-item" href="https://marcelo-lourenco.github.io/cnab/" target="_blank"
+                    rel="noopener noreferrer">
                     CNAB - Layout Colorido
                   </a>
                 </li>
                 <li>
                   <a class="dropdown-item" href="cnab-converte-rem-em-ret.html">
-                    CNAB 240 - Converter Arquivo de Remessa em Retorno
+                    CNAB 240 - Converter Remessa em Retorno
                   </a>
                 </li>
                 <li>
                   <a class="dropdown-item" href="cnab240-localiza-numdoc.html">
-                    CNAB 240 - Localizar NUMDOC em arquivos com Segmentos A e J
+                    CNAB 240 - Localizar NUMDOC (Seg. A/J)
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="cnab240-selecionar-colunas.html.html">
+                    CNAB 240 - Selecionar Colunas (Seg. A/J)
                   </a>
                 </li>
                 <li>
                   <a class="dropdown-item" href="mongo-gera-controle-lancamentos.html">
-                    Gerar documentos para a "controle_lancamentos" - MongoDB
+                    Gerar Docs "controle_lancamentos" (MongoDB)
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="https://marcelo-lourenco.github.io/validador-cnpj-alfanumerico/"
+                    target="_blank" rel="noopener noreferrer">
+                    Validador CNPJ Alfanumérico
                   </a>
                 </li>
               </ul>
             </li>
 
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle text-dark" href="#" id="dropdown02" data-bs-toggle="dropdown"
+              <a class="nav-link dropdown-toggle" href="#" id="dropdownChrome" role="button" data-bs-toggle="dropdown"
                 aria-expanded="false">
-                Extensão Chrome
+                Extensões Chrome
               </a>
-              <ul class="dropdown-menu" aria-labelledby="dropdown02">
+              <ul class="dropdown-menu" aria-labelledby="dropdownChrome">
                 <li>
                   <a class="dropdown-item"
-                    href="https://chromewebstore.google.com/detail/ipfihnddjaepajgdamecijfdefikdgam"
-                    target="_blank">Gerador de Dados Fictícios
+                    href="https://chromewebstore.google.com/detail/ipfihnddjaepajgdamecijfdefikdgam" target="_blank"
+                    rel="noopener noreferrer">
+                    Gerador de Dados Fictícios
                   </a>
                 </li>
                 <li>
                   <a class="dropdown-item"
-                    href="https://chromewebstore.google.com/detail/dlfdmghbdpojkioblkohjafoccdnponn"
-                    target="_blank">Validador de Boleto
+                    href="https://chromewebstore.google.com/detail/dlfdmghbdpojkioblkohjafoccdnponn" target="_blank"
+                    rel="noopener noreferrer">
+                    Validador de Boleto
                   </a>
                 </li>
                 <li>
                   <a class="dropdown-item"
-                    href="https://chromewebstore.google.com/detail/occanfpdiglllenbekgbnhijeoincilf"
-                    target="_blank">Jira Expandir Área de Trabalho
+                    href="https://chromewebstore.google.com/detail/occanfpdiglllenbekgbnhijeoincilf" target="_blank"
+                    rel="noopener noreferrer">
+                    Jira Expandir Área de Trabalho
                   </a>
                 </li>
                 <li>
                   <a class="dropdown-item"
-                    href="https://chromewebstore.google.com/detail/kfinkhckgepbndjcolgehfgomeiklffi"
-                    target="_blank">CNAB Converte Remessa para Retorno
+                    href="https://chromewebstore.google.com/detail/kfinkhckgepbndjcolgehfgomeiklffi" target="_blank"
+                    rel="noopener noreferrer">
+                    CNAB Converte Remessa para Retorno
                   </a>
                 </li>
               </ul>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle text-dark" href="#" id="dropdown02" data-bs-toggle="dropdown"
+              <a class="nav-link dropdown-toggle" href="#" id="dropdownPackages" role="button" data-bs-toggle="dropdown"
                 aria-expanded="false">
                 Pacotes e Extensões
               </a>
-              <ul class="dropdown-menu" aria-labelledby="dropdown02">
+              <ul class="dropdown-menu" aria-labelledby="dropdownPackages">
                 <li>
-                  <a class="dropdown-item" href="https://www.npmjs.com/package/gerador-br" target="_blank">
-                    Pacote NPM - Gerador de Dados Brasileiros
+                  <a class="dropdown-item" href="https://www.npmjs.com/package/gerador-br" target="_blank"
+                    rel="noopener noreferrer">
+                    NPM: Gerador de Dados Brasileiros
                   </a>
                 </li>
                 <li>
                   <a class="dropdown-item"
                     href="https://marketplace.visualstudio.com/items?itemName=mlourenco.api-test-builder"
-                    target="_blank">Extensão VS Code - API Test Builder
+                    target="_blank" rel="noopener noreferrer">
+                    VS Code: API Test Builder
                   </a>
                 </li>
               </ul>
@@ -134,50 +207,63 @@
       </div>
     </nav>
   </header>
-  <!-- /header -->
+  <!-- /Header -->
 
   <main>
-    <section class="single section-sm pb-0">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="p-lg-5 p-4 bg-white text-center">
-              <h2 class="mb-5">Converter CNAB .rem em .ret</h2>
-              <h3>Converte arquivo de Remessa em arquivo de Retorno</h3>
-              <div class="content col-lg-8 mx-auto">
-                <p>Selecione o(s) arquivo(s) de remessa - CNAB 240 - Segmento A, B, J, J52, O ou N.</p>
-                <div class="d-grid gap-2 py-5 d-sm-flex justify-content-sm-center">
-                  <input type="file" class="form-control" id="cnabFile" multiple>
-                  <button class="btn btn-primary" id="process-button">Converter</button>
-                </div>
+    <div class="container">
+      <!-- Tool Section -->
+      <section class="section text-center">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <h1 class="mb-3">Converter CNAB .rem em .ret</h1>
+            <p class="lead mb-4">Converte arquivo de Remessa (CNAB 240) em arquivo de Retorno simulado.</p>
+            <p class="mb-5">Selecione o(s) arquivo(s) de remessa (.rem ou .txt) com Segmentos A, B, J, J52, O ou N.</p>
+
+            <div class="row justify-content-center align-items-center mb-4">
+              <div class="col-md-6 mb-3 mb-md-0">
+                <input type="file" class="form-control" id="cnabFile" multiple>
               </div>
-              <div class="alert alert-success alert-dismissible fade show" style="display: none;" role="alert"></div>
-              <div class="alert alert-danger alert-dismissible fade show" style="display: none;" role="alert"></div>
-              <div class="alert alert-info alert-dismissible fade show" style="display: none;" role="alert"></div>
-              <div class="alert alert-warning alert-dismissible fade show" style="display: none;" role="alert"></div>
+              <div class="col-md-3">
+                <button class="btn btn-primary w-100" id="process-button">Converter</button>
+              </div>
             </div>
+
+            <div class="alert alert-success alert-dismissible fade show" style="display: none;" role="alert"></div>
+            <div class="alert alert-danger alert-dismissible fade show" style="display: none;" role="alert"></div>
+            <div class="alert alert-info alert-dismissible fade show" style="display: none;" role="alert"></div>
+            <div class="alert alert-warning alert-dismissible fade show" style="display: none;" role="alert"></div>
+
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+      <!-- /Tool Section -->
 
-    <section class="single section-sm pb-0">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="p-lg-5 p-4 bg-white text-center">
-              <h2 class="mb-5">Campos que serão alterados</h2>
-              <div class="d-grid gap-2 justify-content-sm-center">
-                <div class="card mb-4 rounded-0 shadow border-0">
-                  <div class="card-header rounded-0 bg-white border p-0 border-0">
-                    <a class="card-link h4 d-flex tex-dark mb-0 py-3 px-4 justify-content-between"
-                      data-toggle="collapse" href="#bradesco-campos">
-                      <span>Bradesco</span> <i class="ti-plus text-primary text-right"></i>
-                    </a>
-                  </div>
-                  <div id="bradesco-campos" class="collapse" data-parent="#accordion">
-                    <div class="card-body font-secondary text-color">
-                      <table>
+      <!-- Fields Section -->
+      <section class="section pt-0">
+        <div class="row justify-content-center">
+          <div class="col-12 text-center">
+            <h2 class="section-title">Campos Alterados na Conversão</h2>
+          </div>
+
+          <div class="col-lg-10 d-grid gap-2 justify-content-sm-center">
+            <div class="accordion" id="accordionCamposAlterados">
+              <div class="mb-4 rounded-0 shadow border-0 accordion-item">
+                <div class="card-header rounded-0 bg-white p-0 border-0 accordion-header" id="headingBradesco">
+                  <a href="#" role="button"
+                    class="card-link h4 d-flex text-dark mb-0 py-3 px-4 justify-content-between collapsed"
+                    data-bs-toggle="collapse" data-bs-target="#collapseBradesco" aria-expanded="false"
+                    aria-controls="collapseBradesco">
+                    Bradesco
+                    <i class="text-primary ti-plus"></i>
+                  </a>
+                </div>
+                <div id="collapseBradesco" class="accordion-collapse collapse" aria-labelledby="headingBradesco"
+                  data-bs-parent="#accordionCamposAlterados">
+
+                  <div class="accordion-body">
+                    <div class="table-responsive p-3">
+                      <table class="table table-striped table-bordered table-sm caption-top">
+                        <caption>Campos alterados para simular retorno Bradesco</caption>
                         <thead>
                           <tr>
                             <th>Tipo</th>
@@ -351,18 +437,26 @@
                     </div>
                   </div>
                 </div>
+              </div>
+              <!-- /Bradesco Accordion Item -->
 
-                <div class="card mb-4 rounded-0 shadow border-0">
-
-                  <div class="card-header rounded-0 bg-white border p-0 border-0">
-                    <a class="card-link h4 d-flex tex-dark mb-0 py-3 px-4 justify-content-between"
-                      data-toggle="collapse" href="#itau-campos">
-                      <span>Itaú</span> <i class="ti-plus text-primary text-right"></i>
-                    </a>
-                  </div>
-                  <div id="itau-campos" class="collapse" data-parent="#accordion">
-                    <div class="card-body font-secondary text-color">
-                      <table>
+              <!-- Itaú Accordion Item-->
+              <div class="mb-4 rounded-0 shadow border-0 accordion-item">
+                <div class="card-header rounded-0 bg-white p-0 border-0 accordion-header" id="headingItau">
+                  <a href="#" role="button"
+                    class="card-link h4 d-flex text-dark mb-0 py-3 px-4 justify-content-between collapsed"
+                    data-bs-toggle="collapse" data-bs-target="#collapseItau" aria-expanded="false"
+                    aria-controls="collapseItau">
+                    Itaú
+                    <i class="text-primary ti-plus"></i>
+                  </a>
+                </div>
+                <div id="collapseItau" class="accordion-collapse collapse" aria-labelledby="headingItau"
+                  data-bs-parent="#accordionCamposAlterados">
+                  <div class="accordion-body">
+                    <div class="table-responsive p-3">
+                      <table class="table table-striped table-bordered table-sm caption-top">
+                        <caption>Campos alterados para simular retorno Itaú</caption>
                         <thead>
                           <tr>
                             <th>Tipo</th>
@@ -472,32 +566,37 @@
                   </div>
                 </div>
               </div>
+              <!-- /Itaú Accordion Item -->
 
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+            </div> <!-- /accordion -->
+          </div> <!-- /col -->
+        </div> <!-- /row -->
+      </section>
+      <!-- /Fields Section -->
+
+
+    </div> <!-- /container -->
   </main>
 
-  <!-- footer -->
-  <footer>
+  <!-- Footer -->
+  <footer class="bg-light py-4 mt-5">
     <div class="container">
-      <div class="row">
-        <div class="col-md-6 text-md-left text-left">
-          <!-- <p class="mb-md-0 mb-4">Copyright © 2025 by<a href=""></a></p> -->
+      <div class="row align-items-center">
+        <div class="col-md-6 text-center text-md-start mb-2 mb-md-0">
+          <small class="text-muted">Desenvolvido por Marcelo Lourenço</small>
         </div>
-        <div class="col-md-6 text-md-right text-right">
-          <ul class="list-inline">
-            <li class="list-inline-item">
-              <a class="text-color d-inline-block p-2" href="https://github.com/marcelo-lourenco" target="_blank">
-                <i class="ti-github"></i>
+        <div class="col-md-6 text-center text-md-end">
+          <ul class="list-inline mb-0">
+            <li class="list-inline-item mx-2">
+              <a class="text-muted text-decoration-none" href="https://github.com/marcelo-lourenco" target="_blank"
+                rel="noopener noreferrer" aria-label="GitHub de Marcelo Lourenço">
+                <i class="ti-github fs-4"></i>
               </a>
             </li>
-            <li class="list-inline-item">
-              <a class="text-color d-inline-block p-2" href="https://www.linkedin.com/in/marcelolourencodasilva/"
-                target="_blank">
-                <i class="ti-linkedin"></i>
+            <li class="list-inline-item mx-2">
+              <a class="text-muted text-decoration-none" href="https://www.linkedin.com/in/marcelolourencodasilva/"
+                target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Marcelo Lourenço">
+                <i class="ti-linkedin fs-4"></i>
               </a>
             </li>
           </ul>
@@ -505,11 +604,10 @@
       </div>
     </div>
   </footer>
-  <!-- /footer -->
+  <!-- /Footer -->
 
-  <!-- ** JS Plugins Needed for the Project ** -->
+  <!-- JS Plugins -->
   <script src="plugins/jquery/jquery-1.12.4.js"></script>
-  <script src="plugins/bootstrap/bootstrap.min.js"></script>
   <script src="plugins/bootstrap/bootstrap.bundle.min.js"></script>
   <script src="plugins/match-height/jquery.matchHeight-min.js"></script>
   <script src="assets/script.js"></script>

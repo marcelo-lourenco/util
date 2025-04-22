@@ -37,8 +37,8 @@ document.addEventListener('DOMContentLoaded', () => {
    * @returns {string} Nome do banco: "Bradesco", "Itaú" ou "Outros"
    */
   function identifyBank(firstLine) {
-    const layout = firstLine.length === 240 ? "CNAB240" : 
-                   firstLine.length === 400 ? "CNAB400" : "CNAB150";
+    const layout = firstLine.length === 240 ? "CNAB240" :
+      firstLine.length === 400 ? "CNAB400" : "CNAB150";
 
     let bankCode;
     if (layout === "CNAB150") {
@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
     for (const file of files) {
       const reader = new FileReader();
 
-      reader.onload = function(event) {
+      reader.onload = function (event) {
         const fileContent = event.target.result;
         const lines = fileContent.split('\n');
         const firstLine = lines[0].replace(/\r?\n|\r/g, '');
@@ -274,7 +274,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Implementações específicas do Itaú
   function processItauSegmentA(line) {
-    const p135a154 = p(line, 74, 93) 
+    const p135a154 = p(line, 74, 93)
     const p155a162 = p(line, 94, 101);
     const p163a177 = p(line, 120, 134);
     const p198a203 = String(Math.floor(100000 + Math.random() * 900000)); // Número aleatório de 6 dígitos

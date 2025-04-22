@@ -1,879 +1,711 @@
+@charset "UTF-8";
+
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+/*------------------------------------------------------------------
+[Master Stylesheet]
+
+Project:    Teste Help - Utilitários
+Version:    1.1 (Modernized)
+Author:     Marcelo Lourenço (Layout Refined by AI)
+
+-------------------------------------------------------------------*/
+
+/*------------------------------------------------------------------
+[Table of contents]
+
+1. Variables
+2. Base Styles
+3. Typography
+4. Helper Classes
+5. Buttons
+6. Navigation
+7. Header / Banner
+8. Sections
+9. Cards (Bootstrap Override)
+10. Forms
+11. Footer
+12. jQuery UI Autocomplete (Kept for potential use)
+13. Responsive Styles
+-------------------------------------------------------------------*/
+
+
+/* ========================================================================= */
+/* 1. Variables */
+/* ========================================================================= */
 :root {
-  --primary-color: #02007e;
-  --body-color: #f9f9f9;
-  --text-color: #636363;
-  --text-color-dark: #242738;
-  --white-color: #ffffff;
-  --light-color: #f8f9fa;
-  --font-family: Lato;
+  --primary-color: #2a28a8; /* Slightly softer blue */
+  --primary-color-rgb: 42, 40, 168; /* RGB for rgba() usage */
+  --body-color: #ffffff;
+  --border-color: #dee2e6; /* Bootstrap's default border color */
+  --black: #000000;
+  --white: #ffffff;
+  --light-gray: #f8f9fa; /* Bootstrap's light gray */
+
+  --text-color: #495057; /* Bootstrap's default body text color */
+  --text-color-dark: #212529; /* Bootstrap's default dark text */
+
+  --font-family: 'Inter', sans-serif; /* Modern font */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --h1-font-size: 2.5rem;   /* ~40px */
+  --h2-font-size: 2rem;     /* ~32px */
+  --h3-font-size: 1.5rem;   /* ~24px */
+  --h4-font-size: 1.25rem;  /* ~20px */
+  --h5-font-size: 1.1rem;   /* ~18px */
+  --h6-font-size: 1rem;     /* ~16px */
+  --base-font-size: 1rem;   /* ~16px */
+  --small-font-size: 0.875rem; /* ~14px */
+
+  --border-radius: 6px; /* Consistent rounded corners */
+  --box-shadow-sm: 0 .125rem .25rem rgba(0, 0, 0, .075);
+  --box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1); /* Softer shadow */
+  --box-shadow-lg: 0 1rem 3rem rgba(0, 0, 0, .15); /* Softer large shadow */
+  --box-shadow-hover: 0 .75rem 1.5rem rgba(0, 0, 0, .12); /* Subtle hover shadow */
+
+  --transition: all 0.3s ease-in-out;
+}
+
+/* ========================================================================= */
+/* 2. Base Styles */
+/* ========================================================================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  line-height: 1.5;
-  font-family: var(--font-family), sans-serif;
-  -webkit-font-smoothing: antialiased;
-  font-size: 17px;
+  font-family: var(--font-family);
+  font-size: var(--base-font-size);
+  font-weight: var(--font-weight-normal);
+  line-height: 1.6;
   color: var(--text-color);
-  background-color: var(--body-color)
+  background-color: var(--body-color);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
+
+/* ========================================================================= */
+/* 3. Typography */
+/* ========================================================================= */
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+  font-family: var(--font-family);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-color-dark);
+  line-height: 1.2;
+  margin-top: 0;
+  margin-bottom: 0.75rem; /* Consistent bottom margin */
+}
+
+h1, .h1 { font-size: var(--h1-font-size); }
+h2, .h2 { font-size: var(--h2-font-size); }
+h3, .h3 { font-size: var(--h3-font-size); }
+h4, .h4 { font-size: var(--h4-font-size); }
+h5, .h5 { font-size: var(--h5-font-size); }
+h6, .h6 { font-size: var(--h6-font-size); }
 
 p {
-  color: var(--text-color);
-  font-size: 15px
+  margin-top: 0;
+  margin-bottom: 1rem;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  color: var(--text-color-dark);
-  font-family: var(--font-family), sans-serif;
-  font-weight: 700;
-  line-height: 1.2
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: var(--transition);
 }
 
-h1,
-.h1 {
-  font-size: 45px
+a:hover {
+  color: darken(var(--primary-color), 10%);
+  text-decoration: none;
 }
 
-h2,
-.h2 {
-  font-size: 32px
+a:focus {
+  outline: none; /* Replaced with box-shadow on focus-visible */
 }
 
-h3,
-.h3 {
-  font-size: 26px
+/* Add focus styles for accessibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.25);
+}
+/* Remove default outline when focus-visible is supported */
+a:focus:not(:focus-visible),
+button:focus:not(:focus-visible),
+input:focus:not(:focus-visible),
+textarea:focus:not(:focus-visible),
+select:focus:not(:focus-visible) {
+  outline: none;
+  box-shadow: none;
 }
 
-h4,
-.h4 {
-  font-size: 20px
+
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
 }
 
-h5,
-.h5 {
-  font-size: 18px
+/* ========================================================================= */
+/* 4. Helper Classes */
+/* ========================================================================= */
+.overflow-hidden {
+  overflow: hidden;
 }
 
-h6,
-.h6 {
-  font-size: 14px
+.bg-primary { background-color: var(--primary-color) !important; }
+.bg-light { background-color: var(--light-gray) !important; }
+.bg-white { background-color: var(--white) !important; }
+.bg-dark { background-color: var(--text-color-dark) !important; }
+
+.text-primary { color: var(--primary-color) !important; }
+.text-dark { color: var(--text-color-dark) !important; }
+.text-light { color: var(--light-gray) !important; } /* Use carefully on light backgrounds */
+.text-muted { color: #6c757d !important; } /* Bootstrap's muted color */
+
+.fs-2 { font-size: var(--h2-font-size) !important; } /* Example override if needed */
+
+.section-title {
+  margin-bottom: 3rem;
+  font-weight: var(--font-weight-bold);
 }
 
+/* ========================================================================= */
+/* 5. Buttons */
+/* ========================================================================= */
 .btn {
-  font-size: 14px;
-  font-family: var(--font-family), sans-serif;
-  text-transform: uppercase;
-  padding: 16px 44px;
-  border-radius: 0;
-  font-weight: 600;
-  border: 0;
-  position: relative;
-  z-index: 1;
-  transition: .2s ease
+  font-family: var(--font-family);
+  font-size: var(--base-font-size);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase; /* Keep or remove based on preference */
+  padding: 0.75rem 1.5rem; /* Modern padding */
+  border-radius: var(--border-radius);
+  border: 1px solid transparent;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.5;
+  cursor: pointer;
+  box-shadow: var(--box-shadow-sm);
+}
 }
 
-.btn:focus {
-  outline: 0;
-  box-shadow: none !important
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--box-shadow);
 }
 
 .btn:active {
-  box-shadow: none
+  transform: translateY(0);
+  box-shadow: var(--box-shadow-sm);
 }
 
 .btn-primary {
-  background: var(--primary-color);
-  color: var(--white-color)
-}
-
-.btn-primary:active {
-  background: var(--primary-color)
-}
-
-.btn-primary:hover {
-  background: var(--primary-color)
-}
-
-.btn-primary:not(:disabled):not(.disabled).active,
-.btn-primary:not(:disabled):not(.disabled):active,
-.show>.btn-primary.dropdown-toggle {
-  color: var(--white-color);
   background-color: var(--primary-color);
-  border-color: var(--primary-color)
+  border-color: var(--primary-color);
+  color: var(--white);
 }
 
-.inline-button {
-  line-height: .8rem !important;
-  padding: 5px 8px !important;
-  pointer-events: none;
-  margin-top: -5px
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+  background-color: #1a186d;
+  border-color: #1a186d;
+  color: var(--white);
+  transform: translateY(0); /* Remove o efeito de elevação */
+  box-shadow: var(--box-shadow-sm); /* Volta para a sombra menor */
 }
 
-.overflow-hidden {
-  overflow: hidden !important
+.btn-primary:focus-visible {
+  background-color: #21208a; /* Mesma cor do hover */
+  border-color: #21208a;
+  color: var(--white);
+  /* Adiciona o anel de foco + sombra de hover */
+  box-shadow: var(--box-shadow), 0 0 0 3px rgba(var(--primary-color-rgb), 0.5);
+}
+/* Remove o anel de foco extra se o foco não for via teclado */
+.btn-primary:focus:not(:focus-visible) {
+   box-shadow: var(--box-shadow); /* Mantém a sombra do hover/focus normal */
 }
 
-::-moz-selection {
-  background: var(--primary-color);
-  color: var(--white-color)
+/* Focus state handled by global focus-visible */
+.btn:focus {
+  box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.25);
+}
+.btn:focus:not(:focus-visible) {
+  box-shadow: var(--box-shadow-sm); /* Revert to normal shadow if not keyboard focus */
+}
+.btn-primary:focus {
+   box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.5);
+}
+.btn-primary:focus:not(:focus-visible) {
+  box-shadow: var(--box-shadow-sm);
 }
 
-::selection {
-  background: var(--primary-color);
-  color: var(--white-color)
+
+/* ========================================================================= */
+/* 6. Navigation */
+/* ========================================================================= */
+.navbar {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  transition: var(--transition);
+  /* background-color: transparent; /* Or set a default */
 }
 
-.preloader {
-  position: fixed;
+/* Add a background and shadow on scroll (requires JS) */
+/*
+.navbar-scrolled {
+  background-color: var(--white);
+  box-shadow: var(--box-shadow);
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+.navbar-scrolled .navbar-brand,
+.navbar-scrolled .nav-link {
+  color: var(--text-color-dark) !important;
+}
+.navbar-scrolled .navbar-toggler {
+   color: var(--text-color-dark) !important;
+   border-color: rgba(0,0,0,.1) !important;
+}
+*/
+
+.navbar-brand {
+  font-weight: var(--font-weight-bold);
+  font-size: 1.5rem;
+  color: var(--white); /* Adjust if navbar-light is used */
+}
+.navbar-brand:hover {
+  color: var(--white); /* Adjust if navbar-light is used */
+}
+
+.nav-link {
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  padding: 0.5rem 1rem !important; /* Ensure consistent padding */
+  color: rgba(255, 255, 255, 0.8); /* Adjust if navbar-light is used */
+}
+
+.nav-link:hover,
+.nav-link:focus,
+.nav-link.active {
+  color: var(--white); /* Adjust if navbar-light is used */
+}
+
+.navbar-dark .navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.8);
+}
+.navbar-dark .navbar-toggler-icon {
+   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+  border: none; /* Remove default border */
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow-lg);
+  padding: 0.5rem 0;
+  margin-top: 0.5rem; /* Add some space */
+  font-size: var(--base-font-size);
+}
+
+.dropdown-item {
+  padding: 0.5rem 1.25rem;
+  color: var(--text-color);
+  font-weight: var(--font-weight-normal);
+  transition: var(--transition);
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+  background-color: var(--light-gray);
+  color: var(--primary-color);
+}
+
+.dropdown-item:active {
+  background-color: var(--primary-color);
+  color: var(--white);
+}
+
+/* Desktop Hover for Dropdowns (Optional) */
+@media (min-width: 768px) {
+  .navbar-nav .nav-item.dropdown:hover > .dropdown-menu {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+    margin-top: 0; /* Adjust if needed */
+  }
+  .dropdown-menu {
+     /* Optional: slight fade-in */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out, margin-top 0.2s ease-in-out;
+  }
+}
+
+/* ========================================================================= */
+/* 7. Header / Banner */
+/* ========================================================================= */
+.banner {
+  position: relative;
+  background-color: var(--primary-color); /* Fallback if no image */
+  /* Add background image styles if used */
+  /* background-image: url('../images/your-banner-image.jpg'); */
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  /* padding: 4rem 0; */ /* Adjust padding as needed */
+}
+
+.banner.overlay::before {
+  content: '';
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: var(--white-color);
-  z-index: 999;
-  display: flex;
-  align-items: center;
-  justify-content: center
+  background: rgba(var(--primary-color-rgb), 0.7); /* Overlay color and opacity */
+  z-index: 1;
 }
 
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding-left: 0;
-  font-size: 15px
+.banner .container {
+  position: relative;
+  z-index: 2;
 }
 
-ol {
-  padding-left: 20px;
-  font-size: 15px
+/* Style content within the banner if needed */
+.banner h1, .banner p {
+  color: var(--white);
 }
 
-img {
-  vertical-align: middle;
-  border: 0
-}
-
-a,
-a:hover,
-a:focus {
-  text-decoration: none;
-  color: var(--primary-color)
-}
-
-a:hover,
-a:focus {
-  color: var(--primary-color)
-}
-
-a,
-button,
-select {
-  cursor: pointer;
-  transition: .2s ease
-}
-
-a:focus,
-button:focus,
-select:focus {
-  outline: 0
-}
-
-.slick-slide {
-  outline: 0
-}
-
+/* ========================================================================= */
+/* 8. Sections */
+/* ========================================================================= */
 .section {
   padding-top: 80px;
-  padding-bottom: 80px
-}
-
-@media(max-width:768px) {
-  .section {
-    padding-top: 60px
-  }
+  padding-bottom: 80px;
 }
 
 .section-sm {
   padding-top: 60px;
-  padding-bottom: 60px
+  padding-bottom: 60px;
 }
 
-@media(max-width:768px) {
+.pt-0 { padding-top: 0 !important; }
+.pb-0 { padding-bottom: 0 !important; }
+
+@media (max-width: 767px) {
+  .section {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
   .section-sm {
-    padding-top: 40px
+    padding-top: 40px;
+    padding-bottom: 40px;
   }
 }
 
-.section-title {
-  margin-bottom: 40px
+/* ========================================================================= */
+/* 9. Cards (Bootstrap Override) */
+/* ========================================================================= */
+.card {
+  border: none; /* Remove default border */
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow); /* Use standard shadow */
+  transition: var(--transition);
+  background-color: var(--white);
+  height: 100%; /* Ensure cards in a row match height (use with BS grid or matchHeight) */
 }
 
-.bg-cover {
-  background-size: cover;
-  background-position: 50%;
-  background-repeat: no-repeat
+/* Hover effect for clickable cards (assuming the <a> tag wraps the card or is the card itself) */
+a.card:hover,
+.card:has(a:hover) { /* More general hover effect if link is inside */
+  transform: translateY(-5px);
+  box-shadow: var(--box-shadow-hover);
 }
 
-.border-primary {
-  border-color: #f2f2f2 !important
+.card-body {
+  padding: 1.5rem; /* Consistent padding */
 }
 
-pre {
-  padding: 20px
-}
-
-.overlay {
-  position: relative
-}
-
-.overlay::before {
-  position: absolute;
-  content: '';
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  background: var(--primary-color);
-  opacity: .8
-}
-
-.outline-0 {
-  outline: 0 !important
-}
-
-.d-unset {
-  display: unset !important
-}
-
-.bg-primary {
-  background: var(--primary-color) !important
-}
-
-.bg-white {
-  background-color: var(--white-color) !important
-}
-
-.bg-light {
-  background-color: var(--light-color) !important
-}
-
-.text-primary {
-  color: var(--primary-color) !important
-}
-
-.text-color {
-  color: var(--text-color) !important
-}
-
-.text-dark {
-  color: var(--text-color-dark) !important
-}
-
-.text-white {
-  color: var(--white-color) !important
-}
-
-.top-50 {
-  top: 50px
-}
-
-.navbar {
-  padding: 0
-}
-
-@media(max-width:768px) {
-  .navbar {
-    padding: 10px 0
-  }
-}
-
-.navbar-brand img {
-  max-width: 100px;
-  margin-bottom: 0
-}
-
-.navbar .nav-item .nav-link {
-  text-transform: uppercase;
-  padding: 10px 15px !important;
-  font-size: 15px
-}
-
-.navbar .dropdown:hover .dropdown-menu {
-  visibility: visible;
-  opacity: 1;
-  -webkit-transform: scaleX(1);
-  transform: scaleX(1)
-}
-
-.navbar .dropdown-menu {
-  box-shadow: 0 3px 9px 0 rgba(0, 0, 0, .12);
-  padding: 15px 0;
-  border: 0;
-  top: 40px;
-  left: -35px;
-  border-radius: 0;
-  display: block;
-  visibility: hidden;
-  transition: .3s ease;
-  opacity: 0;
-  -webkit-transform: translateY(20px);
-  transform: translateY(20px);
-  background: var(--white-color)
-}
-
-@media(max-width:768px) {
-  .navbar .dropdown-menu {
-    display: none;
-    opacity: 1;
-    visibility: visible;
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-    -webkit-transform-origin: unset;
-    transform-origin: unset
-  }
-}
-
-.navbar .dropdown-menu.view {
-  visibility: visible !important;
-  opacity: 1;
-  -webkit-transform: translateY(0);
-  transform: translateY(0);
-  -webkit-transform-origin: top;
-  transform-origin: top
-}
-
-@media(max-width:768px) {
-  .navbar .dropdown-menu.view {
-    display: block
-  }
-}
-
-.navbar .dropdown-menu.show {
-  visibility: hidden
-}
-
-@media(max-width:768px) {
-  .navbar .dropdown-menu.show {
-    visibility: visible;
-    display: block
-  }
-}
-
-.navbar .dropdown-item {
-  position: relative;
+.card-title {
+  font-size: var(--h5-font-size); /* Adjust size if needed */
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: 0.75rem;
   color: var(--text-color-dark);
-  transition: .2s ease;
-  font-family: var(--font-family), sans-serif
 }
 
-@media(max-width:768px) {
-  .navbar .dropdown-item {
-    text-align: center
-  }
-}
-
-.navbar .dropdown-item:hover {
-  color: var(--primary-color);
-  background: 0 0
-}
-
-.lang-list {
-  background: var(--primary-color);
-  color: var(--white-color)
-}
-
-.lang-list.dark {
-  color: var(--text-color-dark);
-  background: var(--white-color)
-}
-
-.banner {
-  /* overflow: hidden */
-}
-
-.banner p {
-  font-size: 20px;
-  opacity: .8
-}
-
-.banner .nav-link.text-dark {
-  color: var(--white-color) !important
-}
-
-.banner .nav-link.text-dark:hover {
-  color: var(--white-color) !important
-}
-
-.banner .navbar-brand {
-  color: var(--white-color) !important
-}
-
-#project-icon {
-  float: left;
-  height: 32px;
-  width: 32px
-}
-
-#project-description {
-  margin: 0;
-  padding: 0
-}
-
-.ui-helper-hidden-accessible {
-  display: none
-}
-
-.ui-menu {
-  background: var(--white-color);
-  padding: 5px 20px 20px;
-  right: 0 !important;
-  max-height: 200px;
-  overflow: hidden;
-  border-radius: 0 0 25px 25px;
-  z-index: 9999;
-  box-shadow: 0 13px 20px 0 rgba(0, 0, 0, .07)
-}
-
-@media(max-width:575px) {
-  .ui-menu {
-    width: calc(100% - 30px) !important
-  }
-}
-
-@media(min-width:576px) {
-  .ui-menu {
-    max-width: 510px !important
-  }
-}
-
-@media(min-width:768px) {
-  .ui-menu {
-    max-width: 690px !important
-  }
-}
-
-@media(min-width:992px) {
-  .ui-menu {
-    max-width: 610px !important
-  }
-}
-
-@media(min-width:1200px) {
-  .ui-menu {
-    max-width: 730px !important
-  }
-}
-
-.ui-menu-item a {
+.card-text {
+  font-size: var(--base-font-size);
   color: var(--text-color);
-  padding: 8px 0;
-  font-size: 15px
 }
 
-.ui-menu-item a:hover {
-  color: var(--primary-color)
+.card-text.small {
+  font-size: var(--small-font-size);
 }
 
-.ui-menu-item:not(:last-child) {
-  border-bottom: 1px solid #e8e8e8
+/* Card Icons */
+.card .icon {
+  font-size: 2.5rem; /* Adjust icon size */
+  line-height: 1;
+  margin-bottom: 1rem; /* Space below icon */
+  color: var(--primary-color); /* Use primary color for icons */
 }
 
-.ui-menu-item * {
-  display: none
+/* Ensure content aligns nicely in flex cards */
+.card-body.d-flex {
+  display: flex;
+  flex-direction: column;
+}
+.card-body.d-flex .mt-auto {
+  margin-top: auto; /* Pushes content below it to the bottom */
 }
 
-.ui-menu-item .ui-corner-all {
-  display: block
-}
-
+/* ========================================================================= */
+/* 10. Forms */
+/* ========================================================================= */
 .form-control {
-  height: 50px;
-  border-radius: 25px;
-  border: 0;
-  padding: 0 20px
+  height: calc(1.6em + 1rem + 2px); /* Slightly taller inputs */
+  padding: 0.5rem 1rem;
+  font-size: var(--base-font-size);
+  font-family: var(--font-family);
+  color: var(--text-color);
+  background-color: var(--white);
+  background-clip: padding-box;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
 .form-control:focus {
-  border: 0;
-  box-shadow: none !important
+  color: var(--text-color-dark);
+  background-color: var(--white);
+  border-color: var(--primary-color);
+  outline: 0;
+  /* Focus shadow handled by global focus-visible */
+  box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.25);
 }
+.form-control:focus:not(:focus-visible) {
+   box-shadow: none;
+}
+
 
 textarea.form-control {
-  height: 150px;
-  padding: 20px
-}
-
-.icon {
-  font-size: 40px
-}
-
-.shadow {
-  box-shadow: 0 5px 15px rgba(0, 0, 0, .07) !important;
-  transition: .3s ease
-}
-
-.shadow-bottom {
-  box-shadow: 0 1px 0 rgba(12, 13, 14, .1), 0 1px 6px rgba(59, 64, 69, .1)
-}
-
-.shadow:hover,
-.shadow:focus {
-  box-shadow: 0 14px 25px rgba(0, 0, 0, .1) !important
-}
-
-.content * {
-  margin-bottom: 20px
-}
-
-.content img {
-  max-width: 100%;
+  min-height: calc(1.6em + 1rem + 2px); /* Ensure consistent height */
   height: auto;
-  margin: 0 auto 15px;
-  display: block;
-  text-align: center
 }
 
-.content ul {
-  padding-left: 0;
-  margin-bottom: 20px
+/* Style file inputs if needed */
+.form-control[type="file"] {
+  padding: 0.375rem 0.75rem; /* Adjust padding for file input */
 }
 
-.content ul li {
-  padding-left: 20px;
-  position: relative
-}
-
-.content ul li::before {
-  position: absolute;
-  content: '';
-  height: 8px;
-  width: 8px;
-  border-radius: 50%;
-  background: var(--primary-color);
-  opacity: .3;
-  left: 0;
-  top: 8px
-}
-
-.list-styled li {
-  padding-left: 20px;
-  position: relative
-}
-
-.list-styled li::before {
-  position: absolute;
-  content: '';
-  height: 8px;
-  width: 8px;
-  border-radius: 50%;
-  background: var(--primary-color);
-  opacity: .3;
-  left: 0;
-  top: 17px
-}
-
-.post-meta {
+/* ========================================================================= */
+/* 11. Footer */
+/* ========================================================================= */
+footer {
+  background-color: var(--light-gray);
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  margin-top: 4rem; /* Ensure space above footer */
   color: var(--text-color);
-  font-style: italic;
-  font-size: 14px
 }
 
-blockquote {
-  font-size: 20px !important;
-  color: var(--text-color-dark);
-  padding: 20px 40px;
-  border-left: 2px solid var(--primary-color);
-  margin: 40px 0;
-  font-weight: 700;
-  background: var(--light-color)
+footer small {
+  font-size: var(--small-font-size);
 }
 
-blockquote p {
-  margin-bottom: 0 !important
+footer .list-inline-item a {
+  color: var(--text-color);
+  text-decoration: none;
+  transition: var(--transition);
 }
 
-.pagination {
-  justify-content: space-between
+footer .list-inline-item a:hover {
+  color: var(--primary-color);
 }
 
-.pagination a {
-  color: var(--primary-color)
+footer .list-inline-item i {
+  font-size: 1.5rem; /* Adjust icon size */
 }
 
-.pagination i {
-  font-size: 15px;
-  line-height: 1.8
-}
-
-#accordion i {
-  font-size: 14px;
-  line-height: 2
-}
-
-table {
-  text-align: left;
-  width: 100%;
-  max-width: 100%;
-  margin-bottom: 1rem;
-  border: 1px solid #dee2e6
-}
-
-table td,
-table th {
-  padding: .75rem;
-  vertical-align: top;
-  border: 1px solid #dee2e6;
-  margin-bottom: 0
-}
-
-thead {
-  background: #ececec;
-  margin-bottom: 0
-}
-
-tbody {
-  background: #f8f8f8;
-  margin-bottom: 0
-}
-
-.notices {
-  margin: 2rem 0;
-  position: relative
-}
-
-.notices p {
-  padding: 10px
-}
-
-.notices p::before {
-  position: absolute;
-  top: 2px;
-  color: #fff;
-  font-family: themify;
-  font-weight: 900;
-  content: "\e717";
-  left: 10px
-}
-
-.notices.note p {
-  border-top: 30px solid #6ab0de;
-  background: #e7f2fa
-}
-
-.notices.note p::after {
-  content: 'Note';
-  position: absolute;
-  top: 2px;
-  color: #fff;
-  left: 2rem
-}
-
-.notices.tip p {
-  border-top: 30px solid #78c578;
-  background: #e6f9e6
-}
-
-.notices.tip p::after {
-  content: 'Tip';
-  position: absolute;
-  top: 2px;
-  color: #fff;
-  left: 2rem
-}
-
-.notices.info p {
-  border-top: 30px solid #f0b37e;
-  background: #fff2db
-}
-
-.notices.info p::after {
-  content: 'Info';
-  position: absolute;
-  top: 2px;
-  color: #fff;
-  left: 2rem
-}
-
-.notices.warning p {
-  border-top: 30px solid #e06f6c;
-  background: #fae2e2
-}
-
-.notices.warning p::after {
-  content: 'Warning';
-  position: absolute;
-  top: 2px;
-  color: #fff;
-  left: 2rem
-}
-
-.sidebar {
-  background-color: var(--white-color);
-  position: sticky;
-  top: 50px;
-  margin-bottom: 30px;
-  padding: 40px 10px 20px
-}
-
-.sidelist {
-  display: block
-}
-
-li.sidelist>a {
-  margin-left: 20px;
-  margin-bottom: 10px;
+/* ========================================================================= */
+/* 12. jQuery UI Autocomplete (Kept for potential use) */
+/* ========================================================================= */
+.ui-menu {
+  background-color: var(--white);
+  padding: 0.5rem 0;
+  margin: 0;
   display: block;
-  font-size: 20px
+  outline: none;
+  list-style: none;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow-lg);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  z-index: 1050; /* Ensure it's above other content */
 }
 
-li.sidelist li a {
-  margin: 0
+.ui-menu .ui-menu-item {
+  margin: 0;
+  cursor: pointer;
+  min-height: 0;
+  list-style-image: url("data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7");
 }
 
-.sidelist li.sidelist {
-  display: block
-}
-
-.sidelist li.sidelist.active a {
-  color: var(--primary-color)
-}
-
-.sidelist li.sidelist.active::before {
-  opacity: 1
-}
-
-.page-list li a {
-  display: none
-}
-
-.page-list li ul a {
-  display: block
-}
-
-.sidelist li a {
-  color: var(--text-color-dark);
+.ui-menu .ui-menu-item-wrapper {
+  position: relative;
+  padding: 0.5rem 1.25rem;
+  color: var(--text-color);
+  font-weight: var(--font-weight-normal);
   display: block;
-  font-size: 15px;
-  font-weight: 500;
-  padding: 10px 0;
-  line-height: 1.4
+  clear: both;
+  white-space: nowrap;
+  text-decoration: none;
 }
 
-p:empty,
-p a:empty {
-  display: none !important
-}
-
-pre {
-  display: block;
-  padding: 9.5px;
-  margin: 10px 0
-}
-
-code {
-  margin-bottom: 0 !important;
-  font-size: 100%
-}
-
-.back-btn {
-  position: relative
-}
-
-.back-btn::before {
-  position: absolute;
-  font-family: themify;
-  content: "\e6bc";
-  font-size: 25px;
-  height: 30px;
-  width: 40px;
-  background-color: var(--white-color);
-  color: inherit;
-  text-align: right;
-  z-index: 1;
-  left: -5px;
-  top: -5px
+.ui-menu .ui-state-active,
+.ui-menu .ui-menu-item-wrapper.ui-state-active {
+  color: var(--primary-color);
+  background-color: var(--light-gray);
+  border: none;
+  outline: none;
+  margin: 0; /* Reset margin */
 }
 
 .ui-autocomplete-input {
-  border-bottom: 1px solid #d4d4d4 !important
+  /* Styles for the input field itself, if needed */
 }
 
-.ui-autocomplete-input.active {
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0
+/* ========================================================================= */
+/* 13. Responsive Styles */
+/* ========================================================================= */
+@media (max-width: 991px) {
+  /* Adjustments for medium devices (tablets) */
+  h1, .h1 { font-size: calc(var(--h1-font-size) * 0.9); }
+  h2, .h2 { font-size: calc(var(--h2-font-size) * 0.9); }
 }
 
-.search-icon {
-  position: absolute;
-  right: 20px;
-  top: 18px;
-  font-size: 14px
+@media (max-width: 767px) {
+  /* Adjustments for small devices (landscape phones) */
+  h1, .h1 { font-size: calc(var(--h1-font-size) * 0.8); }
+  h2, .h2 { font-size: calc(var(--h2-font-size) * 0.8); }
+  h3, .h3 { font-size: calc(var(--h3-font-size) * 0.9); }
+
+  .navbar-collapse {
+    background-color: var(--text-color-dark); /* Dark background for collapsed menu */
+    padding: 1rem;
+    margin-top: 0.5rem;
+    border-radius: var(--border-radius);
+  }
+  .navbar .nav-link {
+    padding: 0.75rem 0 !important; /* More vertical space */
+    color: rgba(255, 255, 255, 0.8);
+    text-align: left;
+  }
+   .navbar .nav-link:hover,
+   .navbar .nav-link.active {
+     color: var(--white);
+   }
+  .navbar .dropdown-menu {
+    box-shadow: none;
+    background-color: transparent;
+    margin-top: 0;
+    padding-left: 1rem; /* Indent dropdown items */
+  }
+  .navbar .dropdown-item {
+    color: rgba(255, 255, 255, 0.7);
+    padding: 0.5rem 0;
+  }
+  .navbar .dropdown-item:hover,
+  .navbar .dropdown-item:focus {
+    color: var(--white);
+    background-color: transparent;
+  }
+
+  footer .text-md-start,
+  footer .text-md-end {
+    text-align: center !important;
+  }
+  footer .col-md-6:last-child {
+    margin-top: 1rem;
+  }
 }
 
-i {
-  transition: .2s ease
+@media (max-width: 575px) {
+  /* Adjustments for extra small devices (portrait phones) */
+  h1, .h1 { font-size: calc(var(--h1-font-size) * 0.7); }
+  h2, .h2 { font-size: calc(var(--h2-font-size) * 0.7); }
+
+  .btn {
+    padding: 0.6rem 1.2rem; /* Slightly smaller buttons */
+    font-size: calc(var(--base-font-size) * 0.9);
+  }
 }
 
-a:hover i {
-  color: var(--primary-color)
+/* ========================================================================= */
+/* 14. Accordion (Flush Style Customization)                               */
+/* ========================================================================= */
+
+/* Accordion Flush Custom Styles */
+.accordion-flush .accordion-item {
+  border-bottom: 1px solid #dee2e6;
 }
 
-pre code::-webkit-scrollbar {
-  height: 5px
+.accordion-flush .accordion-item:first-of-type {
+  border-top: 1px solid #dee2e6;
 }
 
-pre code::-webkit-scrollbar-track {
-  background: #000
-}
-
-pre code::-webkit-scrollbar-thumb {
-  background: #888
-}
-
-.code-tabs {
-  border: 1px solid #dee2e6;
-  overflow: hidden;
-  margin: 20px 0
-}
-
-.code-tabs .tab-content {
-  padding: 20px 15px;
-  margin-bottom: 0
-}
-
-.code-tabs .tab-content .tab-pane {
-  margin-bottom: 0
-}
-
-.code-tabs .nav-tabs {
-  margin-bottom: 0
-}
-
-.code-tabs .nav-tabs .nav-item {
-  padding-left: 0;
-  border-right: 1px solid #dee2e6
-}
-
-.code-tabs .nav-tabs .nav-item .nav-link {
-  text-decoration: none;
+.accordion-flush .accordion-button {
+  padding: 1rem 0;
   font-weight: 500;
-  border: 0;
-  margin-bottom: 0
 }
 
-.code-tabs .nav-tabs .nav-item::before {
-  display: none
+.accordion-flush .accordion-button:not(.collapsed) {
+  background-color: transparent;
+  color: inherit;
+  box-shadow: none;
 }
 
-.code-tabs .nav-tabs .nav-item.active {
-  background: var(--primary-color)
+.accordion-flush .accordion-button:focus {
+  box-shadow: none;
+  border-color: transparent;
 }
 
-.code-tabs .nav-tabs .nav-item.active .nav-link {
-  color: var(--white-color)
+.accordion-flush .accordion-body {
+  padding: 0;
+}
+
+/* Ajustes para as tabelas dentro do accordion */
+.accordion-flush .table {
+  margin-bottom: 0;
+}
+
+.accordion-flush .table caption {
+  padding-left: 0;
+  padding-right: 0;
+  text-align: left;
+  font-weight: 500;
 }
