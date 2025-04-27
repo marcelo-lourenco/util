@@ -6,7 +6,7 @@ const outputTable = document.getElementById('output').getElementsByTagName('tbod
 function p(l, i, f) {
   // p = posição
   // l = linha
-  // i = Inicio 
+  // i = Inicio
   // f = fim
   return l.slice((i - 1), f);
 }

@@ -35,37 +35,56 @@ Author:     Marcelo Lourenço (Layout Refined by AI)
 /* 1. Variables */
 /* ========================================================================= */
 :root {
-  --primary-color: #2a28a8; /* Slightly softer blue */
-  --primary-color-rgb: 42, 40, 168; /* RGB for rgba() usage */
+  --primary-color: #2a28a8;
+  /* Slightly softer blue */
+  --primary-color-rgb: 42, 40, 168;
+  /* RGB for rgba() usage */
   --body-color: #ffffff;
-  --border-color: #dee2e6; /* Bootstrap's default border color */
+  --border-color: #dee2e6;
+  /* Bootstrap's default border color */
   --black: #000000;
   --white: #ffffff;
-  --light-gray: #f8f9fa; /* Bootstrap's light gray */
+  --light-gray: #f8f9fa;
+  /* Bootstrap's light gray */
 
-  --text-color: #495057; /* Bootstrap's default body text color */
-  --text-color-dark: #212529; /* Bootstrap's default dark text */
+  --text-color: #495057;
+  /* Bootstrap's default body text color */
+  --text-color-dark: #212529;
+  /* Bootstrap's default dark text */
 
-  --font-family: 'Inter', sans-serif; /* Modern font */
+  --font-family: 'Inter', sans-serif;
+  /* Modern font */
   --font-weight-light: 300;
   --font-weight-normal: 400;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
 
-  --h1-font-size: 2.5rem;   /* ~40px */
-  --h2-font-size: 2rem;     /* ~32px */
-  --h3-font-size: 1.5rem;   /* ~24px */
-  --h4-font-size: 1.25rem;  /* ~20px */
-  --h5-font-size: 1.1rem;   /* ~18px */
-  --h6-font-size: 1rem;     /* ~16px */
-  --base-font-size: 1rem;   /* ~16px */
-  --small-font-size: 0.875rem; /* ~14px */
+  --h1-font-size: 2.5rem;
+  /* ~40px */
+  --h2-font-size: 2rem;
+  /* ~32px */
+  --h3-font-size: 1.5rem;
+  /* ~24px */
+  --h4-font-size: 1.25rem;
+  /* ~20px */
+  --h5-font-size: 1.1rem;
+  /* ~18px */
+  --h6-font-size: 1rem;
+  /* ~16px */
+  --base-font-size: 1rem;
+  /* ~16px */
+  --small-font-size: 0.875rem;
+  /* ~14px */
 
-  --border-radius: 6px; /* Consistent rounded corners */
+  --border-radius: 6px;
+  /* Consistent rounded corners */
   --box-shadow-sm: 0 .125rem .25rem rgba(0, 0, 0, .075);
-  --box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1); /* Softer shadow */
-  --box-shadow-lg: 0 1rem 3rem rgba(0, 0, 0, .15); /* Softer large shadow */
-  --box-shadow-hover: 0 .75rem 1.5rem rgba(0, 0, 0, .12); /* Subtle hover shadow */
+  --box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
+  /* Softer shadow */
+  --box-shadow-lg: 0 1rem 3rem rgba(0, 0, 0, .15);
+  /* Softer large shadow */
+  --box-shadow-hover: 0 .75rem 1.5rem rgba(0, 0, 0, .12);
+  /* Subtle hover shadow */
 
   --transition: all 0.3s ease-in-out;
 }
@@ -98,26 +117,56 @@ body {
 /* ========================================================================= */
 /* 3. Typography */
 /* ========================================================================= */
-h1, .h1,
-h2, .h2,
-h3, .h3,
-h4, .h4,
-h5, .h5,
-h6, .h6 {
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
   font-family: var(--font-family);
   font-weight: var(--font-weight-semibold);
   color: var(--text-color-dark);
   line-height: 1.2;
   margin-top: 0;
-  margin-bottom: 0.75rem; /* Consistent bottom margin */
+  margin-bottom: 0.75rem;
+  /* Consistent bottom margin */
 }
 
-h1, .h1 { font-size: var(--h1-font-size); }
-h2, .h2 { font-size: var(--h2-font-size); }
-h3, .h3 { font-size: var(--h3-font-size); }
-h4, .h4 { font-size: var(--h4-font-size); }
-h5, .h5 { font-size: var(--h5-font-size); }
-h6, .h6 { font-size: var(--h6-font-size); }
+h1,
+.h1 {
+  font-size: var(--h1-font-size);
+}
+
+h2,
+.h2 {
+  font-size: var(--h2-font-size);
+}
+
+h3,
+.h3 {
+  font-size: var(--h3-font-size);
+}
+
+h4,
+.h4 {
+  font-size: var(--h4-font-size);
+}
+
+h5,
+.h5 {
+  font-size: var(--h5-font-size);
+}
+
+h6,
+.h6 {
+  font-size: var(--h6-font-size);
+}
 
 p {
   margin-top: 0;
@@ -136,7 +185,8 @@ a:hover {
 }
 
 a:focus {
-  outline: none; /* Replaced with box-shadow on focus-visible */
+  outline: none;
+  /* Replaced with box-shadow on focus-visible */
 }
 
 /* Add focus styles for accessibility */
@@ -149,6 +199,7 @@ select:focus-visible {
   outline-offset: 2px;
   box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.25);
 }
+
 /* Remove default outline when focus-visible is supported */
 a:focus:not(:focus-visible),
 button:focus:not(:focus-visible),
@@ -173,17 +224,46 @@ img {
   overflow: hidden;
 }
 
-.bg-primary { background-color: var(--primary-color) !important; }
-.bg-light { background-color: var(--light-gray) !important; }
-.bg-white { background-color: var(--white) !important; }
-.bg-dark { background-color: var(--text-color-dark) !important; }
+.bg-primary {
+  background-color: var(--primary-color) !important;
+}
 
-.text-primary { color: var(--primary-color) !important; }
-.text-dark { color: var(--text-color-dark) !important; }
-.text-light { color: var(--light-gray) !important; } /* Use carefully on light backgrounds */
-.text-muted { color: #6c757d !important; } /* Bootstrap's muted color */
+.bg-light {
+  background-color: var(--light-gray) !important;
+}
 
-.fs-2 { font-size: var(--h2-font-size) !important; } /* Example override if needed */
+.bg-white {
+  background-color: var(--white) !important;
+}
+
+.bg-dark {
+  background-color: var(--text-color-dark) !important;
+}
+
+.text-primary {
+  color: var(--primary-color) !important;
+}
+
+.text-dark {
+  color: var(--text-color-dark) !important;
+}
+
+.text-light {
+  color: var(--light-gray) !important;
+}
+
+/* Use carefully on light backgrounds */
+.text-muted {
+  color: #6c757d !important;
+}
+
+/* Bootstrap's muted color */
+
+.fs-2 {
+  font-size: var(--h2-font-size) !important;
+}
+
+/* Example override if needed */
 
 .section-title {
   margin-bottom: 3rem;
@@ -197,8 +277,10 @@ img {
   font-family: var(--font-family);
   font-size: var(--base-font-size);
   font-weight: var(--font-weight-semibold);
-  text-transform: uppercase; /* Keep or remove based on preference */
-  padding: 0.75rem 1.5rem; /* Modern padding */
+  text-transform: uppercase;
+  /* Keep or remove based on preference */
+  padding: 0.75rem 1.5rem;
+  /* Modern padding */
   border-radius: var(--border-radius);
   border: 1px solid transparent;
   transition: var(--transition);
@@ -233,32 +315,41 @@ img {
   background-color: #1a186d;
   border-color: #1a186d;
   color: var(--white);
-  transform: translateY(0); /* Remove o efeito de elevação */
-  box-shadow: var(--box-shadow-sm); /* Volta para a sombra menor */
+  transform: translateY(0);
+  /* Remove o efeito de elevação */
+  box-shadow: var(--box-shadow-sm);
+  /* Volta para a sombra menor */
 }
 
 .btn-primary:focus-visible {
-  background-color: #21208a; /* Mesma cor do hover */
+  background-color: #21208a;
+  /* Mesma cor do hover */
   border-color: #21208a;
   color: var(--white);
   /* Adiciona o anel de foco + sombra de hover */
   box-shadow: var(--box-shadow), 0 0 0 3px rgba(var(--primary-color-rgb), 0.5);
 }
+
 /* Remove o anel de foco extra se o foco não for via teclado */
 .btn-primary:focus:not(:focus-visible) {
-   box-shadow: var(--box-shadow); /* Mantém a sombra do hover/focus normal */
+  box-shadow: var(--box-shadow);
+  /* Mantém a sombra do hover/focus normal */
 }
 
 /* Focus state handled by global focus-visible */
 .btn:focus {
   box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.25);
 }
+
 .btn:focus:not(:focus-visible) {
-  box-shadow: var(--box-shadow-sm); /* Revert to normal shadow if not keyboard focus */
+  box-shadow: var(--box-shadow-sm);
+  /* Revert to normal shadow if not keyboard focus */
 }
+
 .btn-primary:focus {
-   box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.5);
+  box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.5);
 }
+
 .btn-primary:focus:not(:focus-visible) {
   box-shadow: var(--box-shadow-sm);
 }
@@ -295,40 +386,49 @@ img {
 .navbar-brand {
   font-weight: var(--font-weight-bold);
   font-size: 1.5rem;
-  color: var(--white); /* Adjust if navbar-light is used */
+  color: var(--white);
+  /* Adjust if navbar-light is used */
 }
+
 .navbar-brand:hover {
-  color: var(--white); /* Adjust if navbar-light is used */
+  color: var(--white);
+  /* Adjust if navbar-light is used */
 }
 
 .nav-link {
   font-weight: var(--font-weight-semibold);
   text-transform: uppercase;
-  padding: 0.5rem 1rem !important; /* Ensure consistent padding */
-  color: rgba(255, 255, 255, 0.8); /* Adjust if navbar-light is used */
+  padding: 0.5rem 1rem !important;
+  /* Ensure consistent padding */
+  color: rgba(255, 255, 255, 0.8);
+  /* Adjust if navbar-light is used */
 }
 
 .nav-link:hover,
 .nav-link:focus,
 .nav-link.active {
-  color: var(--white); /* Adjust if navbar-light is used */
+  color: var(--white);
+  /* Adjust if navbar-light is used */
 }
 
 .navbar-dark .navbar-toggler {
   border-color: rgba(255, 255, 255, 0.1);
   color: rgba(255, 255, 255, 0.8);
 }
+
 .navbar-dark .navbar-toggler-icon {
-   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
 /* Dropdown Menu */
 .dropdown-menu {
-  border: none; /* Remove default border */
+  border: none;
+  /* Remove default border */
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow-lg);
   padding: 0.5rem 0;
-  margin-top: 0.5rem; /* Add some space */
+  margin-top: 0.5rem;
+  /* Add some space */
   font-size: var(--base-font-size);
 }
 
@@ -345,21 +445,24 @@ img {
   color: var(--primary-color);
 }
 
+.dropdown-item.active,
 .dropdown-item:active {
-  background-color: var(--primary-color);
-  color: var(--white);
+  background-color: var(--light-gray);
+  color: var(--primary-color);
 }
 
 /* Desktop Hover for Dropdowns (Optional) */
 @media (min-width: 768px) {
-  .navbar-nav .nav-item.dropdown:hover > .dropdown-menu {
+  .navbar-nav .nav-item.dropdown:hover>.dropdown-menu {
     display: block;
     opacity: 1;
     visibility: visible;
-    margin-top: 0; /* Adjust if needed */
+    margin-top: 0;
+    /* Adjust if needed */
   }
+
   .dropdown-menu {
-     /* Optional: slight fade-in */
+    /* Optional: slight fade-in */
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out, margin-top 0.2s ease-in-out;
@@ -371,13 +474,15 @@ img {
 /* ========================================================================= */
 .banner {
   position: relative;
-  background-color: var(--primary-color); /* Fallback if no image */
+  background-color: var(--primary-color);
+  /* Fallback if no image */
   /* Add background image styles if used */
   /* background-image: url('../images/your-banner-image.jpg'); */
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-  /* padding: 4rem 0; */ /* Adjust padding as needed */
+  /* padding: 4rem 0; */
+  /* Adjust padding as needed */
 }
 
 .banner.overlay::before {
@@ -387,7 +492,8 @@ img {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(var(--primary-color-rgb), 0.7); /* Overlay color and opacity */
+  background: rgba(var(--primary-color-rgb), 0.7);
+  /* Overlay color and opacity */
   z-index: 1;
 }
 
@@ -397,7 +503,8 @@ img {
 }
 
 /* Style content within the banner if needed */
-.banner h1, .banner p {
+.banner h1,
+.banner p {
   color: var(--white);
 }
 
@@ -414,14 +521,20 @@ img {
   padding-bottom: 60px;
 }
 
-.pt-0 { padding-top: 0 !important; }
-.pb-0 { padding-bottom: 0 !important; }
+.pt-0 {
+  padding-top: 0 !important;
+}
+
+.pb-0 {
+  padding-bottom: 0 !important;
+}
 
 @media (max-width: 767px) {
   .section {
     padding-top: 60px;
     padding-bottom: 60px;
   }
+
   .section-sm {
     padding-top: 40px;
     padding-bottom: 40px;
@@ -432,27 +545,35 @@ img {
 /* 9. Cards (Bootstrap Override) */
 /* ========================================================================= */
 .card {
-  border: none; /* Remove default border */
+  border: none;
+  /* Remove default border */
   border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow); /* Use standard shadow */
+  box-shadow: var(--box-shadow);
+  /* Use standard shadow */
   transition: var(--transition);
   background-color: var(--white);
-  height: 100%; /* Ensure cards in a row match height (use with BS grid or matchHeight) */
+  height: 100%;
+  /* Ensure cards in a row match height (use with BS grid or matchHeight) */
 }
 
 /* Hover effect for clickable cards (assuming the <a> tag wraps the card or is the card itself) */
 a.card:hover,
-.card:has(a:hover) { /* More general hover effect if link is inside */
+.card:has(a:hover) {
+  /* More general hover effect if link is inside */
   transform: translateY(-5px);
   box-shadow: var(--box-shadow-hover);
+  background-color: var(--light-gray);
+
 }
 
 .card-body {
-  padding: 1.5rem; /* Consistent padding */
+  padding: 1.5rem;
+  /* Consistent padding */
 }
 
 .card-title {
-  font-size: var(--h5-font-size); /* Adjust size if needed */
+  font-size: var(--h5-font-size);
+  /* Adjust size if needed */
   font-weight: var(--font-weight-semibold);
   margin-bottom: 0.75rem;
   color: var(--text-color-dark);
@@ -469,10 +590,13 @@ a.card:hover,
 
 /* Card Icons */
 .card .icon {
-  font-size: 2.5rem; /* Adjust icon size */
+  font-size: 2.5rem;
+  /* Adjust icon size */
   line-height: 1;
-  margin-bottom: 1rem; /* Space below icon */
-  color: var(--primary-color); /* Use primary color for icons */
+  margin-bottom: 1rem;
+  /* Space below icon */
+  color: var(--primary-color);
+  /* Use primary color for icons */
 }
 
 /* Ensure content aligns nicely in flex cards */
@@ -480,15 +604,18 @@ a.card:hover,
   display: flex;
   flex-direction: column;
 }
+
 .card-body.d-flex .mt-auto {
-  margin-top: auto; /* Pushes content below it to the bottom */
+  margin-top: auto;
+  /* Pushes content below it to the bottom */
 }
 
 /* ========================================================================= */
 /* 10. Forms */
 /* ========================================================================= */
 .form-control {
-  height: calc(1.6em + 1rem + 2px); /* Slightly taller inputs */
+  height: calc(1.6em + 1rem + 2px);
+  /* Slightly taller inputs */
   padding: 0.5rem 1rem;
   font-size: var(--base-font-size);
   font-family: var(--font-family);
@@ -508,19 +635,22 @@ a.card:hover,
   /* Focus shadow handled by global focus-visible */
   box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.25);
 }
+
 .form-control:focus:not(:focus-visible) {
-   box-shadow: none;
+  box-shadow: none;
 }
 
 
 textarea.form-control {
-  min-height: calc(1.6em + 1rem + 2px); /* Ensure consistent height */
+  min-height: calc(1.6em + 1rem + 2px);
+  /* Ensure consistent height */
   height: auto;
 }
 
 /* Style file inputs if needed */
 .form-control[type="file"] {
-  padding: 0.375rem 0.75rem; /* Adjust padding for file input */
+  padding: 0.375rem 0.75rem;
+  /* Adjust padding for file input */
 }
 
 /* ========================================================================= */
@@ -530,7 +660,8 @@ footer {
   background-color: var(--light-gray);
   padding-top: 2rem;
   padding-bottom: 2rem;
-  margin-top: 4rem; /* Ensure space above footer */
+  margin-top: 4rem;
+  /* Ensure space above footer */
   color: var(--text-color);
 }
 
@@ -549,7 +680,8 @@ footer .list-inline-item a:hover {
 }
 
 footer .list-inline-item i {
-  font-size: 1.5rem; /* Adjust icon size */
+  font-size: 1.5rem;
+  /* Adjust icon size */
 }
 
 /* ========================================================================= */
@@ -565,7 +697,8 @@ footer .list-inline-item i {
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow-lg);
   border: 1px solid rgba(0, 0, 0, 0.1);
-  z-index: 1050; /* Ensure it's above other content */
+  z-index: 1050;
+  /* Ensure it's above other content */
 }
 
 .ui-menu .ui-menu-item {
@@ -592,7 +725,8 @@ footer .list-inline-item i {
   background-color: var(--light-gray);
   border: none;
   outline: none;
-  margin: 0; /* Reset margin */
+  margin: 0;
+  /* Reset margin */
 }
 
 .ui-autocomplete-input {
@@ -603,42 +737,70 @@ footer .list-inline-item i {
 /* 13. Responsive Styles */
 /* ========================================================================= */
 @media (max-width: 991px) {
+
   /* Adjustments for medium devices (tablets) */
-  h1, .h1 { font-size: calc(var(--h1-font-size) * 0.9); }
-  h2, .h2 { font-size: calc(var(--h2-font-size) * 0.9); }
+  h1,
+  .h1 {
+    font-size: calc(var(--h1-font-size) * 0.9);
+  }
+
+  h2,
+  .h2 {
+    font-size: calc(var(--h2-font-size) * 0.9);
+  }
 }
 
 @media (max-width: 767px) {
+
   /* Adjustments for small devices (landscape phones) */
-  h1, .h1 { font-size: calc(var(--h1-font-size) * 0.8); }
-  h2, .h2 { font-size: calc(var(--h2-font-size) * 0.8); }
-  h3, .h3 { font-size: calc(var(--h3-font-size) * 0.9); }
+  h1,
+  .h1 {
+    font-size: calc(var(--h1-font-size) * 0.8);
+  }
+
+  h2,
+  .h2 {
+    font-size: calc(var(--h2-font-size) * 0.8);
+  }
+
+  h3,
+  .h3 {
+    font-size: calc(var(--h3-font-size) * 0.9);
+  }
 
   .navbar-collapse {
-    background-color: var(--text-color-dark); /* Dark background for collapsed menu */
+    background-color: var(--text-color-dark);
+    /* Dark background for collapsed menu */
     padding: 1rem;
     margin-top: 0.5rem;
     border-radius: var(--border-radius);
   }
+
   .navbar .nav-link {
-    padding: 0.75rem 0 !important; /* More vertical space */
+    padding: 0.75rem 0 !important;
+    /* More vertical space */
     color: rgba(255, 255, 255, 0.8);
     text-align: left;
   }
-   .navbar .nav-link:hover,
-   .navbar .nav-link.active {
-     color: var(--white);
-   }
+
+  .navbar .nav-link:hover,
+  .navbar .nav-link.active {
+    color: var(--white);
+  }
+
   .navbar .dropdown-menu {
     box-shadow: none;
     background-color: transparent;
     margin-top: 0;
-    padding-left: 1rem; /* Indent dropdown items */
+    padding-left: 1rem;
+    /* Indent dropdown items */
   }
+
   .navbar .dropdown-item {
     color: rgba(255, 255, 255, 0.7);
     padding: 0.5rem 0;
   }
+
   .navbar .dropdown-item:hover,
   .navbar .dropdown-item:focus {
     color: var(--white);
@@ -649,18 +811,28 @@ footer .list-inline-item i {
   footer .text-md-end {
     text-align: center !important;
   }
+
   footer .col-md-6:last-child {
     margin-top: 1rem;
   }
 }
 
 @media (max-width: 575px) {
+
   /* Adjustments for extra small devices (portrait phones) */
-  h1, .h1 { font-size: calc(var(--h1-font-size) * 0.7); }
-  h2, .h2 { font-size: calc(var(--h2-font-size) * 0.7); }
+  h1,
+  .h1 {
+    font-size: calc(var(--h1-font-size) * 0.7);
+  }
+
+  h2,
+  .h2 {
+    font-size: calc(var(--h2-font-size) * 0.7);
+  }
 
   .btn {
-    padding: 0.6rem 1.2rem; /* Slightly smaller buttons */
+    padding: 0.6rem 1.2rem;
+    /* Slightly smaller buttons */
     font-size: calc(var(--base-font-size) * 0.9);
   }
 }

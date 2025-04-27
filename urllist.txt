@@ -1,5 +1,0 @@
-https://marcelo-lourenco.github.io/util/
-https://marcelo-lourenco.github.io/util/index.html
-https://marcelo-lourenco.github.io/util/cnab-converte-rem-em-ret.html
-https://marcelo-lourenco.github.io/util/cnab240-localiza-numdoc.html
-https://marcelo-lourenco.github.io/util/mongo-gera-controle-lancamentos.html
