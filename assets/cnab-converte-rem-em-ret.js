@@ -165,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function processHeader(line, bank) {
     const acceptedCodes = {
       Bradesco: ['2001', '2010', '2041', '3041', '3001', '2030', '2031', '2211', '2217'],
-      Itaú: ['2001', '2010', '2041', '3041', '3001', '2030', '2031', '2211', '2217'] // Exemplo, ajustar conforme necessário
+      Itaú: ['2001','2010','2013','2030','2031','2041','2211','2216','2217','2219','2291','3001','3041'] // Exemplo, ajustar conforme necessário
     };
 
     const bankCodes = acceptedCodes[bank] || [];

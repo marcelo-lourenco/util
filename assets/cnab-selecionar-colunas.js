@@ -107,6 +107,11 @@ function extractInfo(line, fileName, segmento) {
       selectedCols.forEach(col => {
         data[col.label] = p(line, col.start, col.end);
       });
+    } else if (segmento === "O" || segmento === "N") {
+      // Colunas fixas para os Segmentos O e N
+      data.numDoc = p(line, 123, 142);
+      data.dataPagamento = p(line, 100, 107);
+      data.valorPagamento = p(line, 108, 122);
     } else {
       return null; // Não é um segmento que processamos
     }
@@ -210,7 +215,10 @@ async function processFiles() {
           for (const line of lines) {
             if (line.length >= 240) { // Verificação básica do comprimento da linha CNAB 240
               const segmento = p(line, 14, 14); // Segmento está na posição 14
-              if (segmento === "A" || (segmento === "J" && p(line, 18, 19) !== "52")) {
+              if (segmento === "A" || 
+                (segmento === "J" && p(line, 18, 19) !== "52")||
+                segmento === "O" ||
+                segmento === "N") {
                 const extracted = extractInfo(line, file.name, segmento);
                 if (extracted) {
                   extractedDataForFile.push(extracted);
@@ -277,9 +285,9 @@ async function processFiles() {
       }
     } else {
       if (typeof displayWarningMessage === 'function') {
-        displayWarningMessage(`Processamento concluído. Nenhum dado relevante encontrado nos Segmentos A/J do(s) arquivo(s) selecionado(s).`);
+        displayWarningMessage(`Processamento concluído. Nenhum dado relevante encontrado nos Segmentos A/J/O/N do(s) arquivo(s) selecionado(s).`);
       } else if (typeof displayInfoMessage === 'function') {
-        displayInfoMessage(`Processamento concluído. Nenhum dado relevante encontrado nos Segmentos A/J do(s) arquivo(s) selecionado(s).`);
+        displayInfoMessage(`Processamento concluído. Nenhum dado relevante encontrado nos Segmentos A/J/O/N do(s) arquivo(s) selecionado(s).`);
       }
     }
   } else {

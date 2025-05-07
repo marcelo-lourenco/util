@@ -8,9 +8,9 @@
 
   <!-- SEO Meta Tags -->
   <meta name="description"
-    content="Ferramenta online para selecionar e extrair colunas específicas de arquivos CNAB 240 (.rem ou .ret) que contenham Segmentos A ou J.">
+    content="Ferramenta online para selecionar e extrair colunas específicas de arquivos CNAB 240 (.rem ou .ret) que contenham Segmentos A, J, O. ou N.">
   <meta name="keywords"
-    content="cnab, cnab240, selecionar colunas cnab, extrair dados cnab, segmento a, segmento j, teste cnab">
+    content="cnab, cnab240, selecionar colunas cnab, extrair dados cnab, segmento a, segmento j, segmento o, segmento n, teste cnab">
   <!-- Keywords updated -->
   <meta name="author" content="Marcelo Lourenço">
   <meta name="robots" content="index, follow">
@@ -19,17 +19,17 @@
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://marcelo-lourenco.github.io/util/cnab240-selecionar-colunas.html">
-  <meta property="og:title" content="CNAB 240 - Selecionar Colunas (Seg. A/J) | Teste Help">
+  <meta property="og:title" content="CNAB 240 - Selecionar Colunas (Seg. A/J/O/N) | Teste Help">
   <meta property="og:description"
-    content="Selecione e extraia colunas específicas de arquivos CNAB 240 (Segmentos A/J) para seus testes.">
+    content="Selecione e extraia colunas específicas de arquivos CNAB 240 (Segmentos A/J/O/N) para seus testes.">
   <meta property="og:image" content="https://marcelo-lourenco.github.io/util/images/social.png">
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:url" content="https://marcelo-lourenco.github.io/util/cnab240-selecionar-colunas.html">
-  <meta property="twitter:title" content="CNAB 240 - Selecionar Colunas (Seg. A/J) | Teste Help">
+  <meta property="twitter:title" content="CNAB 240 - Selecionar Colunas (Seg. A/J/O/N) | Teste Help">
   <meta property="twitter:description"
-    content="Selecione e extraia colunas específicas de arquivos CNAB 240 (Segmentos A/J) para seus testes.">
+    content="Selecione e extraia colunas específicas de arquivos CNAB 240 (Segmentos A/J/O/N) para seus testes.">
   <meta property="twitter:image" content="https://marcelo-lourenco.github.io/util/images/social.png">
 
   <!-- Stylesheets -->
@@ -71,7 +71,7 @@
     "operatingSystem": "Web",
     "applicationCategory": "DeveloperTool",
     "url": "https://marcelo-lourenco.github.io/util/cnab240-selecionar-colunas.html",
-    "description": "Ferramenta online para selecionar e extrair colunas específicas de arquivos CNAB 240 (.rem ou .ret) com Segmentos A ou J.",
+    "description": "Ferramenta online para selecionar e extrair colunas específicas de arquivos CNAB 240 (.rem ou .ret) com Segmentos A, J, O e N.",
     "author": {
       "@type": "Person",
       "name": "Marcelo Lourenço",
@@ -124,7 +124,7 @@
               </a>
               <ul class="dropdown-menu" aria-labelledby="dropdownTests">
                 <li>
-                  <a class="dropdown-item" href="https://marcelo-lourenco.github.io/gerador-br/#/geradores"
+                  <a class="dropdown-item" href="https://marcelo-lourenco.github.io/gerador-br/geradores"
                     target="_blank" rel="noopener noreferrer">
                     Gerador de Dados Brasileiros
                   </a>
@@ -148,7 +148,7 @@
                 <li>
                   <!-- Link para a própria página -->
                   <a class="dropdown-item active" aria-current="page" href="cnab240-selecionar-colunas.html">
-                    CNAB 240 - Selecionar Colunas (Seg. A/J)
+                    CNAB 240 - Selecionar Colunas (Seg. A/J/O/N)
                   </a>
                 </li>
                 <li>
@@ -236,7 +236,7 @@
         <div class="row justify-content-center">
           <div class="col-lg-8">
             <h1 class="mb-3">Selecionar Colunas em CNAB 240</h1>
-            <p class="lead mb-4">Extrai colunas específicas de arquivos CNAB 240 (Segmentos A e J).</p>
+            <p class="lead mb-4">Extrai colunas específicas de arquivos CNAB 240 (Segmentos A, J, O e N).</p>
             <p class="mb-4">Selecione o(s) arquivo(s) de remessa ou retorno (.rem ou .txt) e escolha as colunas
               desejadas.</p>
 
@@ -257,7 +257,7 @@
                 <div id="checkboxContainer" class="border p-3 rounded bg-light">
                   <small class="text-muted">Carregando opções...</small>
                 </div>
-                <small class="form-text text-muted mt-2">Nota: Para Segmento A, as colunas são fixas (numDoc,
+                <small class="form-text text-muted mt-2">Nota: Para Segmento A, O e N as colunas são fixas (Nome do Arquivo, numDoc,
                   dataPagamento, valorPagamento).</small>
               </div>
             </div>
@@ -305,7 +305,7 @@
     <div class="container">
       <div class="row align-items-center">
         <div class="col-md-6 text-center text-md-start mb-2 mb-md-0">
-          <small class="text-muted">Desenvolvido por Marcelo Lourenço</small>
+          <!-- <small class="text-muted">Desenvolvido por Marcelo Lourenço</small> -->
         </div>
         <div class="col-md-6 text-center text-md-end">
           <ul class="list-inline mb-0">
