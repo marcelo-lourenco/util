@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>CNAB 240 - Selecionar Colunas (Seg. A/J) | Teste Help</title>
+  <title>CNAB 240 - Selecionar Colunas (Seg. A/J/O/N) | Teste Help</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- SEO Meta Tags -->
@@ -292,6 +292,9 @@
                 </tbody>
               </table>
             </div>
+            <div class="text-center mt-3 mb-3">
+              <button id="export-xlsx-button" class="btn btn-success">Exportar para XLSX</button>
+            </div>
           </div> <!-- /col -->
         </div> <!-- /row -->
       </section>
@@ -334,7 +337,57 @@
   <script src="plugins/match-height/jquery.matchHeight-min.js"></script>
   <script src="assets/script.js"></script>
   <script src="assets/cnab-selecionar-colunas.js"></script>
+  <!-- SheetJS library for XLSX export -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <!-- Script to handle XLSX export -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const exportButton = document.getElementById('export-xlsx-button');
+      if (exportButton) {
+        exportButton.addEventListener('click', function () {
+          const table = document.getElementById('output');
+          if (!table) {
+            alert('Tabela de resultados não encontrada.');
+            return;
+          }
 
+          const tBody = table.querySelector('tbody');
+          if (!tBody || tBody.rows.length === 0) {
+            alert('Não há dados na tabela para exportar.');
+            return;
+          }
+
+          const data = [];
+
+          // Get headers
+          const headerRow = table.querySelector('thead tr#headerRow');
+          if (headerRow) {
+            const headers = [];
+            headerRow.querySelectorAll('th').forEach(th => headers.push(th.textContent.trim()));
+            data.push(headers);
+          } else {
+            alert('Cabeçalho da tabela não encontrado.');
+            return;
+          }
+
+          // Get data rows
+          tBody.querySelectorAll('tr').forEach(tr => {
+            const rowData = [];
+            tr.querySelectorAll('td').forEach(td => rowData.push(td.textContent.trim()));
+            data.push(rowData);
+          });
+
+          // Create worksheet and workbook
+          const ws = XLSX.utils.aoa_to_sheet(data);
+          const wb = XLSX.utils.book_new();
+          XLSX.utils.book_append_sheet(wb, ws, 'ExtracaoCNAB');
+
+          // Generate XLSX file and trigger download
+          XLSX.writeFile(wb, 'extracao_cnab_colunas.xlsx');
+        });
+      }
+    });
+  </script>
 </body>
 
 </html>
