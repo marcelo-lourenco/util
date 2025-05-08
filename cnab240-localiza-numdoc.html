@@ -250,7 +250,12 @@
           </div>
 
           <div class="col-lg-10">
-            <div class="table-responsive p-3">
+            <div id="export-button-container" class="text-end mb-2" style="display: none;">
+              <a href="#" id="export-xlsx-button" class="text-decoration-none" title="Exportar para XLSX" aria-label="Exportar para XLSX">
+                <i class="ti-import text-primary fs-3"></i>
+              </a>
+            </div>
+            <div class="table-responsive">
               <table id="output" class="table table-striped table-bordered table-sm">
                 <thead>
                   <!-- A linha de cabeçalho será preenchida por JS -->
@@ -306,6 +311,9 @@
   <script src="plugins/match-height/jquery.matchHeight-min.js"></script>
   <script src="assets/script.js"></script>
   <script src="assets/cnab-localiza-numdoc.js"></script>
+  <script src="assets/export-to-xls.js"></script>
+  <script src="assets/xlsx.full.min.js"></script>
+
 
 </body>
 

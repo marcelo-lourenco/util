@@ -257,10 +257,18 @@ img {
   color: #6c757d !important;
 }
 
+.text-end {
+  text-align: right !important;
+}
+
 /* Bootstrap's muted color */
 
 .fs-2 {
   font-size: var(--h2-font-size) !important;
+}
+
+.fs-3 {
+  font-size: var(--h3-font-size) !important;
 }
 
 /* Example override if needed */
@@ -290,7 +298,6 @@ img {
   line-height: 1.5;
   cursor: pointer;
   box-shadow: var(--box-shadow-sm);
-}
 }
 
 .btn:hover {
