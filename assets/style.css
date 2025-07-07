@@ -606,6 +606,24 @@ a.card:hover,
   /* Use primary color for icons */
 }
 
+/* Custom SVG icon style for Meerkat Logo */
+.meerkat-logo.icon {
+  /*
+    The <i> element is empty, so we need to give it dimensions.
+    We match the height to the fs-2 class font-size (2rem).
+  */
+  height: 2rem;
+  background-color: currentColor;
+  -webkit-mask-image: url(../images/meerkat-ico.svg);
+  mask-image: url(../images/meerkat-ico.svg);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
 /* Ensure content aligns nicely in flex cards */
 .card-body.d-flex {
   display: flex;
