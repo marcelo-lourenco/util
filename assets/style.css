@@ -555,7 +555,7 @@ img {
   border: none;
   /* Remove default border */
   border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
+  box-shadow: var(--box-shadow) !important;
   /* Use standard shadow */
   transition: var(--transition);
   background-color: var(--white);
