@@ -110,127 +110,146 @@
   <!-- End Google Tag Manager (noscript) -->
 
   <!-- Header -->
-  <header class="banner overlay">
-    <nav class="navbar navbar-expand-md navbar-dark">
-      <div class="container">
-        <a class="navbar-brand px-2" href="index.html">TESTE HELP</a>
-        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navigation"
-          aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+  <nav class="navbar navbar-expand-md main-navbar fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <img src="images/favicon.svg" alt="Logo">TESTE HELP
+      </a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navigation"
+        aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse text-center" id="navigation">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdownPackages" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Pacotes e Extensões
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="dropdownPackages">
+              <li>
+                <a class="dropdown-item"
+                  href="https://marketplace.visualstudio.com/items?itemName=mlourenco.live-api-url-monitor"
+                  target="_blank" rel="noopener noreferrer">
+                  VS Code: Live API & URL Monitor
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item"
+                  href="https://marketplace.visualstudio.com/items?itemName=mlourenco.api-test-builder" target="_blank"
+                  rel="noopener noreferrer">
+                  VS Code: API Test Builder
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="https://www.npmjs.com/package/gerador-br" target="_blank"
+                  rel="noopener noreferrer">
+                  NPM: Gerador de Dados Brasileiros
+                </a>
+              </li>
 
-        <div class="collapse navbar-collapse text-center" id="navigation">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="dropdownTests" role="button" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                Apoio aos Testes
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="dropdownTests">
-                <li>
-                  <a class="dropdown-item" href="https://marcelo-lourenco.github.io/gerador-br/geradores"
-                    target="_blank" rel="noopener noreferrer">
-                    Gerador de Dados Brasileiros
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="https://marcelo-lourenco.github.io/cnab/" target="_blank"
-                    rel="noopener noreferrer">
-                    CNAB - Layout Colorido
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="cnab-converte-rem-em-ret.html">
-                    CNAB 240 - Converter Remessa em Retorno
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="cnab240-localiza-numdoc.html">
-                    CNAB 240 - Localizar NUMDOC (Seg. A/J)
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="cnab240-selecionar-colunas.html"> <!-- Corrected link -->
-                    CNAB 240 - Selecionar Colunas (Seg. A/J/O/N)
-                  </a>
-                </li>
-                <li>
-                  <!-- Link para a própria página -->
-                  <a class="dropdown-item active" aria-current="page" href="mongo-gera-controle-lancamentos.html">
-                    Gerar Docs "controle_lancamentos" (MongoDB)
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="https://marcelo-lourenco.github.io/validador-cnpj-alfanumerico/"
-                    target="_blank" rel="noopener noreferrer">
-                    Validador CNPJ Alfanumérico
-                  </a>
-                </li>
-              </ul>
-            </li>
+            </ul>
+          </li>
 
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="dropdownChrome" role="button" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                Extensões Chrome
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="dropdownChrome">
-                <li>
-                  <a class="dropdown-item"
-                    href="https://chromewebstore.google.com/detail/ipfihnddjaepajgdamecijfdefikdgam" target="_blank"
-                    rel="noopener noreferrer">
-                    Gerador de Dados Fictícios
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item"
-                    href="https://chromewebstore.google.com/detail/dlfdmghbdpojkioblkohjafoccdnponn" target="_blank"
-                    rel="noopener noreferrer">
-                    Validador de Boleto
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item"
-                    href="https://chromewebstore.google.com/detail/occanfpdiglllenbekgbnhijeoincilf" target="_blank"
-                    rel="noopener noreferrer">
-                    Jira Expandir Área de Trabalho
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item"
-                    href="https://chromewebstore.google.com/detail/kfinkhckgepbndjcolgehfgomeiklffi" target="_blank"
-                    rel="noopener noreferrer">
-                    CNAB Converte Remessa para Retorno
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="dropdownPackages" role="button" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                Pacotes e Extensões
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="dropdownPackages">
-                <li>
-                  <a class="dropdown-item" href="https://www.npmjs.com/package/gerador-br" target="_blank"
-                    rel="noopener noreferrer">
-                    NPM: Gerador de Dados Brasileiros
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item"
-                    href="https://marketplace.visualstudio.com/items?itemName=mlourenco.api-test-builder"
-                    target="_blank" rel="noopener noreferrer">
-                    VS Code: API Test Builder
-                  </a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </div>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdownChrome" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Extensões Chrome
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="dropdownChrome">
+              <li>
+                <a class="dropdown-item"
+                  href="https://chromewebstore.google.com/detail/ipfihnddjaepajgdamecijfdefikdgam" target="_blank"
+                  rel="noopener noreferrer">
+                  Gerador de Dados Fictícios
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item"
+                  href="https://chromewebstore.google.com/detail/dlfdmghbdpojkioblkohjafoccdnponn" target="_blank"
+                  rel="noopener noreferrer">
+                  Validador de Boleto
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item"
+                  href="https://chromewebstore.google.com/detail/occanfpdiglllenbekgbnhijeoincilf" target="_blank"
+                  rel="noopener noreferrer">
+                  Jira Expandir Área de Trabalho
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item"
+                  href="https://chromewebstore.google.com/detail/kfinkhckgepbndjcolgehfgomeiklffi" target="_blank"
+                  rel="noopener noreferrer">
+                  CNAB Converte Remessa para Retorno
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdownTests" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Páginas
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="dropdownTests">
+              <li>
+                <a class="dropdown-item" href="https://marcelo-lourenco.github.io/gerador-br/geradores" target="_blank"
+                  rel="noopener noreferrer">
+                  Gerador de Dados Brasileiros
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="https://marcelo-lourenco.github.io/validador-cnpj-alfanumerico/"
+                  target="_blank" rel="noopener noreferrer">
+                  Validador CNPJ Alfanumérico
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="https://marcelo-lourenco.github.io/cnab/" target="_blank"
+                  rel="noopener noreferrer">
+                  CNAB - Layout Colorido
+                </a>
+              </li>
+
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdownTests" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Apoio aos Testes
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="dropdownTests">
+              <li>
+                <a class="dropdown-item" href="cnab-converte-rem-em-ret.html">
+                  CNAB 240 - Converter Remessa em Retorno
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="cnab240-localiza-numdoc.html">
+                  CNAB 240 - Localizar NUMDOC (Seg. A/J)
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="cnab240-selecionar-colunas.html">
+                  CNAB 240 - Selecionar Colunas (Seg. A/J/O/N)
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="mongo-gera-controle-lancamentos.html">
+                  Gerar Docs "controle_lancamentos" (MongoDB)
+                </a>
+              </li>
+            </ul>
+          </li>
+
+
+        </ul>
       </div>
-    </nav>
-  </header>
+    </div>
+  </nav>
   <!-- /Header -->
 
   <main>

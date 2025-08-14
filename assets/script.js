@@ -25,7 +25,25 @@
 
 })(jQuery);
 
-
+function toggleNavbarInvert() {
+  const navbar = document.querySelector('.main-navbar');
+  const hero = document.querySelector('.main-hero');
+  if (!navbar) return;
+  if (!hero) {
+    navbar.classList.add('invert');
+    return;
+  }
+  const rect = hero.getBoundingClientRect();
+  // Se o banner não está visível na viewport
+  if (rect.bottom <= 0) {
+    navbar.classList.add('invert');
+  } else {
+    navbar.classList.remove('invert');
+  }
+}
+window.addEventListener('scroll', toggleNavbarInvert);
+window.addEventListener('resize', toggleNavbarInvert);
+document.addEventListener('DOMContentLoaded', toggleNavbarInvert);
 
 function displayMessage(type, message) {
   const messageTypes = ['danger', 'info', 'success', 'warning'];

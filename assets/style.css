@@ -365,114 +365,168 @@ img {
 /* ========================================================================= */
 /* 6. Navigation */
 /* ========================================================================= */
-.navbar {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  transition: var(--transition);
-  /* background-color: transparent; /* Or set a default */
+
+.main-navbar {
+  background: #fff !important;
+  box-shadow: 0 2px 16px 0 rgba(44, 62, 80, 0.07);
+  border-bottom: 1px solid #f2f2f2;
+  z-index: 1030;
+  transition: box-shadow 0.2s;
 }
 
-/* Add a background and shadow on scroll (requires JS) */
-/*
-.navbar-scrolled {
-  background-color: var(--white);
-  box-shadow: var(--box-shadow);
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-}
-.navbar-scrolled .navbar-brand,
-.navbar-scrolled .nav-link {
-  color: var(--text-color-dark) !important;
-}
-.navbar-scrolled .navbar-toggler {
-   color: var(--text-color-dark) !important;
-   border-color: rgba(0,0,0,.1) !important;
-}
-*/
-
-.navbar-brand {
-  font-weight: var(--font-weight-bold);
+.main-navbar .navbar-brand {
+  color: #2b50c7 !important;
+  font-weight: 700;
+  letter-spacing: 1px;
   font-size: 1.5rem;
-  color: var(--white);
-  /* Adjust if navbar-light is used */
+  display: flex;
+  align-items: center;
 }
 
-.navbar-brand:hover {
-  color: var(--white);
-  /* Adjust if navbar-light is used */
+.main-navbar .navbar-brand img {
+  height: 36px;
+  margin-right: 10px;
 }
 
-.nav-link {
-  font-weight: var(--font-weight-semibold);
-  text-transform: uppercase;
-  padding: 0.5rem 1rem !important;
-  /* Ensure consistent padding */
-  color: rgba(255, 255, 255, 0.8);
-  /* Adjust if navbar-light is used */
+.main-navbar .nav-link {
+  color: #222 !important;
+  font-weight: 500;
+  margin-right: 1rem;
+  transition: color 0.2s;
+  font-size: 1rem;
 }
 
-.nav-link:hover,
-.nav-link:focus,
-.nav-link.active {
-  color: var(--white);
-  /* Adjust if navbar-light is used */
+.main-navbar .nav-link:hover,
+.main-navbar .nav-link.active,
+.main-navbar .dropdown-item.active,
+.main-navbar .dropdown-item:active {
+  color: #2b4eff !important;
+  background: none;
 }
 
-.navbar-dark .navbar-toggler {
-  border-color: rgba(255, 255, 255, 0.1);
-  color: rgba(255, 255, 255, 0.8);
+.main-navbar .dropdown-menu {
+  border-radius: 0.5rem;
+  border: 1px solid #f2f2f2;
+  box-shadow: 0 4px 24px 0 rgba(44, 62, 80, 0.07);
+  min-width: 220px;
 }
 
-.navbar-dark .navbar-toggler-icon {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+.main-navbar .dropdown-item {
+  color: #222 !important;
+  font-size: 1rem;
+  padding: 0.6rem 1.2rem;
+  transition: background 0.2s, color 0.2s;
 }
 
-/* Dropdown Menu */
-.dropdown-menu {
+.main-navbar .dropdown-item:hover {
+  color: #2b4eff !important;
+  background: #f4f8ff;
+}
+
+.main-navbar .btn-primary {
+  background: #2b4eff;
   border: none;
-  /* Remove default border */
-  border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow-lg);
-  padding: 0.5rem 0;
-  margin-top: 0.5rem;
-  /* Add some space */
-  font-size: var(--base-font-size);
+  font-weight: 600;
+  border-radius: 2rem;
+  padding: 0.5rem 1.5rem;
+  margin-left: 1rem;
 }
 
-.dropdown-item {
-  padding: 0.5rem 1.25rem;
-  color: var(--text-color);
-  font-weight: var(--font-weight-normal);
-  transition: var(--transition);
+.main-navbar .btn-primary:hover {
+  background: #1a2e66;
 }
 
-.dropdown-item:hover,
-.dropdown-item:focus {
-  background-color: var(--light-gray);
-  color: var(--primary-color);
+.main-navbar.invert {
+  background: linear-gradient(120deg, #2b4eff 0%, #0a1832 100%) !important;
+  border-bottom: none;
 }
 
-.dropdown-item.active,
-.dropdown-item:active {
-  background-color: var(--light-gray);
-  color: var(--primary-color);
+.main-navbar.invert .navbar-brand,
+.main-navbar.invert .nav-link {
+  color: #fff !important;
 }
 
-/* Desktop Hover for Dropdowns (Optional) */
-@media (min-width: 768px) {
-  .navbar-nav .nav-item.dropdown:hover>.dropdown-menu {
-    display: block;
-    opacity: 1;
-    visibility: visible;
-    margin-top: 0;
-    /* Adjust if needed */
+.main-navbar.invert .navbar-brand img {
+  filter: brightness(0) invert(1);
+}
+
+.main-navbar.invert .nav-link:hover,
+.main-navbar.invert .nav-link.active {
+  color: #ccc !important;
+}
+
+.main-navbar.invert .btn-primary {
+  background: #fff;
+  color: #2b4eff;
+}
+
+.main-navbar.invert .btn-primary:hover {
+  background: #ccc;
+  color: #2b4eff;
+}
+
+/* SUBMENU (dropdown) deve permanecer claro mesmo no modo invertido */
+.main-navbar .dropdown-menu {
+  background: #fff;
+  border-radius: 0.5rem;
+  border: 1px solid #f2f2f2;
+  box-shadow: 0 4px 24px 0 rgba(44, 62, 80, 0.07);
+  min-width: 220px;
+}
+
+.main-navbar .dropdown-item {
+  color: #222 !important;
+  font-size: 1rem;
+  padding: 0.6rem 1.2rem;
+  background: #fff;
+  transition: background 0.2s, color 0.2s;
+}
+
+.main-navbar .dropdown-item:hover,
+.main-navbar .dropdown-item:focus,
+.main-navbar .dropdown-item.active,
+.main-navbar .dropdown-item:active {
+  color: #2b4eff !important;
+  background: #f4f8ff;
+}
+
+.main-hero {
+  background: linear-gradient(120deg, #2b4eff 0%, #0a1832 100%);
+  padding: 100px 0 60px 0;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+}
+
+.main-hero h1,
+.main-hero p {
+  color: #fff;
+}
+
+.main-hero .btn-light {
+  color: #2b4eff;
+  background: #fff;
+  border: none;
+  font-weight: 600;
+  border-radius: 2rem;
+  padding: 0.7rem 2.5rem;
+  font-size: 1.15rem;
+  box-shadow: 0 2px 8px 0 rgba(44, 62, 80, 0.07);
+}
+
+.main-hero .btn-light:hover {
+  background: #e6eaff;
+  color: #1a2e66;
+}
+
+@media (max-width: 991px) {
+  .main-hero {
+    padding: 60px 0 20px 0;
+    min-height: 40vh;
   }
 
-  .dropdown-menu {
-    /* Optional: slight fade-in */
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out, margin-top 0.2s ease-in-out;
+  .main-navbar .navbar-brand {
+    font-size: 1.5rem;
   }
 }
 
@@ -519,7 +573,7 @@ img {
 /* 8. Sections */
 /* ========================================================================= */
 .section {
-  padding-top: 80px;
+  padding-top: 100px;
   padding-bottom: 80px;
 }
 
