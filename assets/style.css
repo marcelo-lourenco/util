@@ -689,6 +689,23 @@ a.card:hover,
   /* Pushes content below it to the bottom */
 }
 
+.card-flag-new {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background: #ffe600;
+  color: #222;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25em 0.7em;
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px 0 rgba(44,62,80,0.07);
+  letter-spacing: 1px;
+  z-index: 2;
+  pointer-events: none;
+  text-transform: uppercase;
+}
+
 /* ========================================================================= */
 /* 10. Forms */
 /* ========================================================================= */
